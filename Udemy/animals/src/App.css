@@ -1,0 +1,22 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  background-color: green;
+  border: 1px solid green;
+  border-radius: 3px;
+  font-size: 20px;
+  padding: 10px;
+  width: 30%;
+}
+
+.animal-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* all the items will be aligned in multiple lines */
+  /* flex-wrap: nowrap;  all the items will be aligned in a single line */
+  justify-content: center;
+}
