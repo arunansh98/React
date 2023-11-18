@@ -23,7 +23,10 @@ function App() {
   ];
 
   return (
-    <DropDown options={options} selection={selection} onSelect={handleSelect} />
+    <div className="flex">
+      <DropDown options={options} value={selection} onChange={handleSelect} />
+      <DropDown options={options} value={selection} onChange={handleSelect} />
+    </div>
   );
 }
 export default App;
