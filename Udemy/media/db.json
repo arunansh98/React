@@ -1,14 +1,20 @@
 {
   "users": [
     {
-      "name": "Janie Jerde",
+      "name": "Marilyn Anderson",
       "id": 1
     },
     {
-      "name": "Freddie Blanda-Casper III",
+      "name": "Shirley Bogan",
       "id": 2
     }
   ],
-  "albums": [],
+  "albums": [
+    {
+      "userId": 1,
+      "title": "Rustic Steel Pizza",
+      "id": 1
+    }
+  ],
   "photos": []
 }
