@@ -14,7 +14,18 @@
       "userId": 1,
       "title": "Rustic Steel Pizza",
       "id": 1
+    },
+    {
+      "userId": 1,
+      "title": "Intelligent Plastic Tuna",
+      "id": 2
     }
   ],
-  "photos": []
+  "photos": [
+    {
+      "url": "https://loremflickr.com/150/150/abstract?lock=4690262047588352",
+      "albumId": 1,
+      "id": 3
+    }
+  ]
 }
