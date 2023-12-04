@@ -1,0 +1,97 @@
+{
+  "users": [
+    {
+      "email": "akhilesh4@gmail.com",
+      "password": "$2a$10$VCPcFefSIx4YHiKdYa/RXO3sIrcROqYDx1/uaeFypcmLWhJVZA0.q",
+      "id": 1
+    },
+    {
+      "email": "arunansh98@gmail.com",
+      "password": "$2a$10$uZG/FS4AP/dhpCVmW0j33uZhf293JhMmSvHWmK.mrexEflQ11LiGG",
+      "id": 2
+    },
+    {
+      "email": "kushagra@gmail.com",
+      "password": "$2a$10$fIXaqO7MlOjAgNswFaoxee3AnFwo1vzlArEkxmgI2qHGJ9Cj4Yuga",
+      "id": 3
+    },
+    {
+      "email": "ruchiaug@gmail.com",
+      "password": "$2a$10$fEwRsqvtNUgy8cQy2o6XS.A.QjaNMGOmIAAHxCS.k2q7Lq4ctCmdO",
+      "id": 4
+    }
+  ],
+  "posts": [
+    {
+      "title": "Luxurious Bronze Shirt",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=1016598208970752",
+      "id": 1
+    },
+    {
+      "title": "Elegant Plastic Ball",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=696701713121280",
+      "userId": "2",
+      "id": 2
+    },
+    {
+      "title": "Intelligent Frozen Chair",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=2059987427786752",
+      "userId": "2",
+      "id": 3
+    },
+    {
+      "title": "Modern Fresh Sausages",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=4470642799804416",
+      "userId": 2,
+      "id": 4
+    },
+    {
+      "title": "Sleek Fresh Cheese",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=3353052195061760",
+      "userId": 2,
+      "id": 5
+    },
+    {
+      "title": "Oriental Concrete Bacon",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=1001241379340288",
+      "userId": 2,
+      "id": 6
+    },
+    {
+      "title": "Awesome Cotton Cheese",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=4786610598051840",
+      "userId": 3,
+      "id": 7
+    },
+    {
+      "title": "Intelligent Metal Gloves",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=5030761021308928",
+      "userId": 3,
+      "id": 8
+    },
+    {
+      "title": "Gorgeous Concrete Table",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=6890888775073792",
+      "userId": 3,
+      "id": 9
+    },
+    {
+      "title": "Recycled Granite Chair",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=707659600756736",
+      "userId": 3,
+      "id": 10
+    },
+    {
+      "title": "Practical Steel Table",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=6981685239349248",
+      "userId": 4,
+      "id": 11
+    },
+    {
+      "title": "Tasty Plastic Soap",
+      "photoUrl": "https://loremflickr.com/150/150/abstract?lock=5549081642401792",
+      "userId": 4,
+      "id": 12
+    }
+  ]
+}
