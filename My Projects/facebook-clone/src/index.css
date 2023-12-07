@@ -5,3 +5,37 @@
 * {
   @apply font-basic;
 }
+
+.vertical-align {
+  @apply flex flex-col;
+}
+
+.horizontal-align {
+  @apply flex flex-row;
+}
+
+div#home div {
+  @apply w-[364px] rounded-[6px] mb-4 py-[14px] px-[16px];
+  border: 1px solid #dddfe2;
+}
+
+div#home div:focus-within {
+  @apply border-blue caret-blue outline-none;
+  box-shadow: 0 0 0 2px #e7f3ff;
+}
+
+div#home input {
+  @apply border-none outline-none w-full;
+}
+
+hr {
+  border: solid 0.1px #dadde1;
+  width: 97%;
+  color: #dadde1;
+  height: 1px;
+}
+
+.login-container {
+  @apply vertical-align h-[456px] w-[396px] items-center p-4 bg-[#fff] rounded-[6px] h-fit;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+}
