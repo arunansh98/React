@@ -6,10 +6,11 @@ module.exports = {
       colors: {
         blue: "#1b74e4",
         green: "#42b72a",
+        black: "#1c1e21",
       },
       fontFamily: {
-        basic: "Helvetica, Arial, sans-serif",
-        logo: "SFProDisplay-Regular, Helvetica, Arial, sans-serif;",
+        primary: "Helvetica, Arial, sans-serif",
+        secondary: "SFProDisplay-Regular, Helvetica, Arial, sans-serif;",
       },
     },
   },

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import TextInput from "../../../components/TextInput";
+import SignUpModal from "./SignUpModal";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
 
   return (
     <div id="home" className="login-container">
@@ -29,9 +31,15 @@ function Login() {
         Forgotten password?
       </button>
       <hr className="mb-6" />
-      <button className="text-[#fff] text-[17px] font-bold bg-green py-[11px] px-[16px] rounded-[6px] border-green">
+      <button
+        onClick={() => setShowSignUpModal(true)}
+        className="text-[#fff] text-[17px] font-bold bg-green py-[11px] px-[16px] rounded-[6px] border-green"
+      >
         Create new account
       </button>
+      {showSignUpModal && (
+        <SignUpModal onClose={() => setShowSignUpModal(false)} />
+      )}
     </div>
   );
 }
