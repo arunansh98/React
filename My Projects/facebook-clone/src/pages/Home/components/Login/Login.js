@@ -1,23 +1,36 @@
 import { useState } from "react";
-import TextInput from "../../../components/TextInput";
-import SignUpModal from "./SignUpModal";
+import TextInput from "../../../../components/TextInput";
+import SignUpModal from "../SignUpModal";
+import classNames from "classnames";
+import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
+  const textInputClassNames = classNames(
+    "horizontal-align",
+    "w-[364px] rounded-[6px] mb-4 py-[14px] px-[16px]",
+    "border-not-focused",
+    "focus-within:border-blue",
+    "focus-within:caret-blue",
+    "focus-within:outline-none",
+    "focus-within:box-shadow"
+  );
+
   return (
     <div id="home" className="login-container">
       <form>
         <TextInput
+          className={textInputClassNames}
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder="Email address or phone number"
           type="text"
         />
         <TextInput
-          className="horizontal-align"
+          className={textInputClassNames}
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           placeholder="Password"

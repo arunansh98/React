@@ -14,17 +14,8 @@
   @apply flex flex-row;
 }
 
-div#home div {
-  @apply w-[364px] rounded-[6px] mb-4 py-[14px] px-[16px];
-  border: 1px solid #dddfe2;
-}
-
-div#home div:focus-within {
-  @apply border-blue caret-blue outline-none;
-  box-shadow: 0 0 0 2px #e7f3ff;
-}
-
-div#home input {
+input[type="text"],
+input[type="password"] {
   @apply border-none outline-none w-full;
 }
 

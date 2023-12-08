@@ -1,4 +1,4 @@
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import Logo from "./components/Logo";
 
 function Home() {
