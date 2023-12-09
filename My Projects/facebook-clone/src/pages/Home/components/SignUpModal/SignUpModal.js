@@ -3,6 +3,8 @@ import Close from "../../../../assets/images/close.png";
 import classNames from "classnames";
 import TextInput from "../../../../components/TextInput";
 import DropDown from "../../../../components/DropDown";
+import { useState } from "react";
+import { GoQuestion } from "react-icons/go";
 
 function SignUpModal({ onClose }) {
   const inputClassNames = classNames(
@@ -12,9 +14,38 @@ function SignUpModal({ onClose }) {
   );
 
   const dropDownClassNames = classNames(
-    "w-[125px] h-[36px] border focus-within:outline-none",
-    "rounded-[5px] py-[0] pl-[8px] pr-[20px]"
+    "horizontal-align border items-center",
+    "w-[125px] h-[36px] justify-between rounded-[5px]"
   );
+
+  const [selectedDateOfBirth, setSelectedDateOfBirth] = useState(undefined);
+
+  const [selectedMonth, setSelectedMonth] = useState(undefined);
+
+  const [selectedYear, setSelectedYear] = useState(undefined);
+
+  const dateOfBirthOptions = Array(31)
+    .fill("")
+    .map((_item, index) => {
+      return { key: index + 1, label: index + 1 };
+    });
+
+  const monthOptions = Array.from({ length: 12 }, (e, i) => {
+    return new Date(null, i + 1, null).toLocaleDateString("en", {
+      month: "short",
+    });
+  }).map((month, index) => {
+    return {
+      label: month,
+      key: index,
+    };
+  });
+
+  const yearOptions = Array(119)
+    .fill("")
+    .map((_item, index) => {
+      return { key: index + 1, label: 2023 - parseInt(index) };
+    });
 
   return (
     <Modal>
@@ -52,10 +83,30 @@ function SignUpModal({ onClose }) {
             type="password"
             placeholder="New password"
           />
-          <div className="horizontal-align mb-3">
-            <DropDown className={dropDownClassNames} label="Date of birth" />
-            <DropDown className={dropDownClassNames + " ml-[12px]"} />
-            <DropDown className={dropDownClassNames + " ml-[12px]"} />
+          <div className="horizontal-align justify-start items-center font-secondary text-[12px] text-[#606770]">
+            Date of birth
+            <GoQuestion className="ml-1" />
+          </div>
+          <div className="horizontal-align mb-3 justify-between">
+            <DropDown
+              className={dropDownClassNames}
+              label="Date of birth"
+              options={dateOfBirthOptions}
+              selected={selectedDateOfBirth}
+              handleSelectChange={setSelectedDateOfBirth}
+            />
+            <DropDown
+              className={dropDownClassNames}
+              options={monthOptions}
+              selected={selectedMonth}
+              handleSelectChange={setSelectedMonth}
+            />
+            <DropDown
+              className={dropDownClassNames}
+              options={yearOptions}
+              selected={selectedYear}
+              handleSelectChange={setSelectedYear}
+            />
           </div>
         </div>
       </div>
