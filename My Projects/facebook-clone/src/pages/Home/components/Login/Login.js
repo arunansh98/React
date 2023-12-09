@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TextInput from "../../../../components/TextInput";
-import SignUpModal from "../SignUpModal";
+import SignUpModal from "../SignUpModal/SignUpModal";
 import classNames from "classnames";
 import "./Login.css";
 
@@ -10,7 +10,6 @@ function Login() {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
   const textInputClassNames = classNames(
-    "horizontal-align",
     "w-[364px] rounded-[6px] mb-4 py-[14px] px-[16px]",
     "border-not-focused",
     "focus-within:border-blue",
