@@ -6,7 +6,7 @@ function TextInput({ ...rest }) {
   const { className, ...inputRest } = rest;
   const isPassword = rest.type === "password" && rest?.value?.length > 0;
   const inputClassName = classNames(
-    "bg-transparent",
+    "!bg-transparent",
     isPassword && "!w-[93%] mr-1"
   );
   const divClassName = classNames("horizontal-align", className);
