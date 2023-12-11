@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { GoChevronDown } from "react-icons/go";
+import { useEffect, useRef, useState } from 'react';
+import { GoChevronDown } from 'react-icons/go';
 
 function DropDown({ ...props }) {
-  const { className, label, options, selected, handleSelectChange, ...rest } =
-    props;
+  const { className, label, options, selected, onChange, ...rest } = props;
   const [showOptions, setShowOptions] = useState(false);
   const dropDownEl = useRef();
 
@@ -12,7 +11,7 @@ function DropDown({ ...props }) {
       <div
         key={option.key}
         className="px-[10px]"
-        onClick={() => handleSelectChange(option)}
+        onClick={() => onChange(option)}
       >
         {option.label}
       </div>
@@ -29,23 +28,23 @@ function DropDown({ ...props }) {
         setShowOptions(false);
       }
     };
-    document.addEventListener("click", handler, true);
+    document.addEventListener('click', handler, true);
     return () => {
-      document.removeEventListener("click", handler);
+      document.removeEventListener('click', handler);
     };
   }, []);
 
   return (
     <div className="relative" ref={dropDownEl}>
       <button
-        className={className + " p-[10px]"}
+        className={className + ' p-[10px]'}
         onClick={() => setShowOptions(!showOptions)}
       >
-        <div>{selected?.label || "Select"}</div>
+        <div>{selected?.label || 'Select'}</div>
         <GoChevronDown />
       </button>
       {showOptions && (
-        <div className="absolute border w-full h-[199px] overflow-y-scroll">
+        <div className="absolute border w-full h-[199px] overflow-y-scroll bg-[#fff]">
           <button
             className="vertical-align"
             onClick={() => setShowOptions(false)}
