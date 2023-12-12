@@ -6,6 +6,7 @@ import DropDown from '../../../../components/DropDown';
 import { useState } from 'react';
 import { GoQuestion } from 'react-icons/go';
 import MultiRadio from '../../../../components/MultiRadio';
+import './SignUpModal.css';
 
 function SignUpModal({ onClose }) {
   const inputClassNames = classNames(
@@ -24,6 +25,8 @@ function SignUpModal({ onClose }) {
     'w-[125px] h-[36px] justify-between rounded-[5px] px-[10px]'
   );
 
+  const anchorClassNames = classNames('text-[#385898] no-underline');
+
   const [selectedDateOfBirth, setSelectedDateOfBirth] = useState(undefined);
 
   const [selectedMonth, setSelectedMonth] = useState(undefined);
@@ -31,6 +34,10 @@ function SignUpModal({ onClose }) {
   const [selectedYear, setSelectedYear] = useState(undefined);
 
   const [selectedGender, setSelectedGender] = useState(undefined);
+
+  const [selectedPronoun, setSelectedPronoun] = useState(undefined);
+
+  const showPronounSection = selectedGender === 'custom';
 
   const dateOfBirthOptions = Array(31)
     .fill('')
@@ -67,6 +74,21 @@ function SignUpModal({ onClose }) {
     {
       key: 'custom',
       label: 'Custom',
+    },
+  ];
+
+  const pronounOptions = [
+    {
+      key: 'she',
+      label: `She : "Wish her a happy birthday!"`,
+    },
+    {
+      key: 'he',
+      label: `He : "Wish him a happy birthday!"`,
+    },
+    {
+      key: 'they',
+      label: `They : "Wish them a happy birthday!"`,
     },
   ];
 
@@ -135,12 +157,54 @@ function SignUpModal({ onClose }) {
             Gender
             <GoQuestion className="ml-1" />
           </div>
-          <MultiRadio
-            className={radioClassNames}
-            options={radioOpions}
-            value={selectedGender}
-            onChange={setSelectedGender}
-          />
+          <div className="mb-3">
+            <MultiRadio
+              className={radioClassNames}
+              options={radioOpions}
+              value={selectedGender}
+              onChange={setSelectedGender}
+            />
+          </div>
+          {showPronounSection && (
+            <>
+              <DropDown
+                className={dropDownClassNames + ' w-full'}
+                options={pronounOptions}
+                selected={selectedPronoun}
+                onChange={setSelectedPronoun}
+                placeholder="Select your pronoun"
+              />
+              <p className="mt-1 mb-2 text-[12px] text-[#606770]">
+                Your pronoun is visible to everyone.
+              </p>
+              <TextInput
+                className={inputClassNames + ' w-full mb-3'}
+                type="text"
+                placeholder="Gender (optional)"
+              />
+            </>
+          )}{' '}
+          <p className="text-[11px] text-[#777]">
+            People who use our service may have uploaded your contact
+            information to Facebook. <a href="learn more">Learn more</a>
+          </p>
+          <p className="text-[11px] text-[#777] my-[11px]">
+            By clicking Sign Up, you agree to our
+            <a href="terms" className={anchorClassNames}>
+              {' '}
+              Terms,{' '}
+            </a>
+            <a href="privacy" className={anchorClassNames}>
+              Privacy Policy{' '}
+            </a>
+            and <a href="cookies">Cookies Policy. </a>You may receive SMS
+            notifications from us and can opt out at any time.
+          </p>
+          <div className="flex justify-center items-center">
+            <button className="text-[#fff] text-[18px] font-bold font-secondary w-[194px] h-[36px] bg-green px-[32px] rounded-[6px] border-green">
+              Sign Up
+            </button>
+          </div>
         </div>
       </div>
     </Modal>
