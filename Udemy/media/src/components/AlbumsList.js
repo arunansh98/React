@@ -1,12 +1,11 @@
-import { useFetchAlbumsQuery, useAddAlbumsMutation } from "../store";
-import Skeleton from "./Skeleton";
-import Button from "./Button";
-import AlbumsListItem from "./AlbumsListItem";
+import { useFetchAlbumsQuery, useAddAlbumsMutation } from '../store';
+import Skeleton from './Skeleton';
+import Button from './Button';
+import AlbumsListItem from './AlbumsListItem';
 
 function AlbumsList({ user }) {
   const { data, error, isFetching } = useFetchAlbumsQuery(user);
   const [addAlbum, results] = useAddAlbumsMutation();
-  console.log(results);
 
   const handleAddAlbum = () => {
     addAlbum(user);
