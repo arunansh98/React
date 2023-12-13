@@ -4,7 +4,6 @@ import { GoChevronDown } from 'react-icons/go';
 function DropDown({ ...props }) {
   const {
     className,
-    label,
     options,
     selected,
     onChange,
@@ -14,12 +13,14 @@ function DropDown({ ...props }) {
   const [showOptions, setShowOptions] = useState(false);
   const dropDownEl = useRef();
 
+  const label = options?.find((option) => selected === option?.key)?.label;
+
   const contentOptions = options.map((option) => {
     return (
       <div
         key={option.key}
         className="hover:bg-blue hover:text-white px-[10px]"
-        onClick={() => onChange(option)}
+        onClick={() => onChange(option.key)}
       >
         {option.label}
       </div>
@@ -49,7 +50,7 @@ function DropDown({ ...props }) {
       onClick={() => setShowOptions(!showOptions)}
     >
       <button className={className + ' p-[10px]'}>
-        <div>{selected?.label || placeholder || 'Select'}</div>
+        <div>{label || placeholder || 'Select'}</div>
         <GoChevronDown />
       </button>
       {showOptions && (
