@@ -7,17 +7,17 @@ import { useReducer } from 'react';
 import { GoQuestion } from 'react-icons/go';
 import MultiRadio from '../../../../components/MultiRadio';
 import './SignUpModal.css';
-import { produce } from "immer";
+import { produce } from 'immer';
 
 const FIRST_NAME = 'firstName';
 const SURNAME = 'surName';
 const MOBILE_NUMBER_EMAIL = 'mobileNumberEmail';
 const NEW_PASSWORD = 'newPassword';
-const DATE_OF_BIRTH = 'dateOfBirth'
-const MONTH = "month";
-const YEAR = "year";
-const GENDER = "gender";
-const PRONOUN = "pronoun";
+const DATE_OF_BIRTH = 'dateOfBirth';
+const MONTH = 'month';
+const YEAR = 'year';
+const GENDER = 'gender';
+const PRONOUN = 'pronoun';
 const GENDER_OPTIONAL = 'genderOptional';
 
 const reducer = (state, action) => {
@@ -54,9 +54,8 @@ function SignUpModal({ onClose }) {
     [YEAR]: '',
     [GENDER]: '',
     [PRONOUN]: '',
-    [GENDER_OPTIONAL]: ''
+    [GENDER_OPTIONAL]: '',
   });
-
 
   const showPronounSection = state.gender === 'custom';
 
@@ -115,27 +114,24 @@ function SignUpModal({ onClose }) {
 
   const getFieldValue = (id) => {
     return state?.[id];
-  }
+  };
 
   const setFieldValue = (type, payload) => {
-    dispatch(
-      {
-        type,
-        payload
-      }
-    )
-  }
+    dispatch({
+      type,
+      payload,
+    });
+  };
 
   const handleSubmit = (event = undefined) => {
     if (event) {
       event.preventDefault();
     }
-    console.log('form submitted', state)
-  }
+    console.log('form submitted', state);
+  };
 
-  console.log('state value', state)
-  console.log('dob value', state?.[DATE_OF_BIRTH])
-
+  console.log('state value', state);
+  console.log('dob value', state?.[DATE_OF_BIRTH]);
 
   return (
     <Modal>
@@ -144,12 +140,12 @@ function SignUpModal({ onClose }) {
           <div className="horizontal-align justify-between items-center px-3">
             <h1 className="font-bold font-secondary text-[32px] text-black">
               Sign Up
-          </h1>
+            </h1>
             <img src={Close} alt="close" onClick={onClose} />
           </div>
           <div className="text-[15px] text-[#606770] font-secondary px-3">
             Its quick and easy.
-        </div>
+          </div>
           <hr className="mt-2" />
           <div className="p-[16px]">
             <div className=" horizontal-align mb-3">
@@ -158,8 +154,9 @@ function SignUpModal({ onClose }) {
                 type="text"
                 placeholder="First Name"
                 value={getFieldValue(FIRST_NAME)}
-                onChange={(event) => setFieldValue(FIRST_NAME, event.target.value)}
-
+                onChange={(event) =>
+                  setFieldValue(FIRST_NAME, event.target.value)
+                }
               />
               <TextInput
                 className={inputClassNames}
@@ -174,18 +171,25 @@ function SignUpModal({ onClose }) {
               type="text"
               placeholder="Mobile number or email address"
               value={getFieldValue(MOBILE_NUMBER_EMAIL)}
-              onChange={(event) => setFieldValue(MOBILE_NUMBER_EMAIL, event.target.value)}
+              onChange={(event) =>
+                setFieldValue(MOBILE_NUMBER_EMAIL, event.target.value)
+              }
             />
             <TextInput
               className={inputClassNames + ' w-full mb-3'}
               type="password"
               placeholder="New password"
               value={getFieldValue(NEW_PASSWORD)}
-              onChange={(event) => setFieldValue(NEW_PASSWORD, event.target.value)}
+              onChange={(event) =>
+                setFieldValue(NEW_PASSWORD, event.target.value)
+              }
             />
             <div className="horizontal-align justify-start items-center font-secondary text-[12px] text-[#606770]">
               Date of birth
-            <GoQuestion className="ml-1 cursor-pointer" title="Click for more information" />
+              <GoQuestion
+                className="ml-1 cursor-pointer"
+                title="Click for more information"
+              />
             </div>
             <div className="horizontal-align mb-3 justify-between">
               <DropDown
@@ -212,7 +216,10 @@ function SignUpModal({ onClose }) {
             </div>
             <div className="horizontal-align justify-start items-center font-secondary text-[12px] text-[#606770]">
               Gender
-            <GoQuestion className="ml-1 cursor-pointer bg-red" title="Click for more information" />
+              <GoQuestion
+                className="ml-1 cursor-pointer bg-red"
+                title="Click for more information"
+              />
             </div>
             <div className="mb-3">
               <MultiRadio
@@ -235,36 +242,45 @@ function SignUpModal({ onClose }) {
                 />
                 <p className="mt-1 mb-2 text-[12px] text-[#606770]">
                   Your pronoun is visible to everyone.
-              </p>
+                </p>
                 <TextInput
                   className={inputClassNames + ' w-full mb-3'}
                   type="text"
                   placeholder="Gender (optional)"
                   value={getFieldValue(GENDER_OPTIONAL)}
-                  onChange={(event) => setFieldValue(GENDER_OPTIONAL, event.target.value)}
+                  onChange={(event) =>
+                    setFieldValue(GENDER_OPTIONAL, event.target.value)
+                  }
                 />
               </>
             )}{' '}
             <p className="text-[11px] text-[#777]">
               People who use our service may have uploaded your contact
-            information to Facebook. <a href="learn more">Learn more</a>
+              information to Facebook. <a href="learn more">Learn more</a>
             </p>
             <p className="text-[11px] text-[#777] my-[11px]">
               By clicking Sign Up, you agree to our
-            <a href="terms" className={anchorClassNames}>
+              <a href="terms" className={anchorClassNames}>
                 {' '}
-              Terms,{' '}
+                Terms,{' '}
               </a>
               <a href="privacy" className={anchorClassNames}>
                 Privacy Policy{' '}
               </a>
-            and <a href="cookies">Cookies Policy. </a>You may receive SMS
-            notifications from us and can opt out at any time.
-          </p>
+              and{' '}
+              <a href="cookies" className={anchorClassNames}>
+                Cookies Policy.{' '}
+              </a>
+              You may receive SMS notifications from us and can opt out at any
+              time.
+            </p>
             <div className="flex justify-center items-center">
-              <button onClick={handleSubmit} className="text-[#fff] text-[18px] font-bold font-secondary w-[194px] h-[36px] bg-green px-[32px] rounded-[6px] border-green">
+              <button
+                onClick={handleSubmit}
+                className="text-[#fff] text-[18px] font-bold font-secondary w-[194px] h-[36px] bg-green px-[32px] rounded-[6px] border-green"
+              >
                 Sign Up
-            </button>
+              </button>
             </div>
           </div>
         </div>
