@@ -8,6 +8,7 @@ import { GoQuestion } from 'react-icons/go';
 import MultiRadio from '../../../../components/MultiRadio';
 import './SignUpModal.css';
 import { produce } from 'immer';
+import { validator } from './SignUpModalValidator';
 
 const FIRST_NAME = 'firstName';
 const SURNAME = 'surName';
@@ -128,6 +129,8 @@ function SignUpModal({ onClose }) {
       event.preventDefault();
     }
     console.log('form submitted', state);
+   const valid =  validator(state); 
+   console.log('valid',valid)
   };
 
   console.log('state value', state);
@@ -277,7 +280,7 @@ function SignUpModal({ onClose }) {
             <div className="flex justify-center items-center">
               <button
                 onClick={handleSubmit}
-                className="text-[#fff] text-[18px] font-bold font-secondary w-[194px] h-[36px] bg-green px-[32px] rounded-[6px] border-green"
+                className="text-[#fff] text-[18px] font-bold font-secondary w-[194px] h-[36px] bg-[#00a400] hover:bg-gradient-to-r hover:from-[#79bc64] hover:to-[#578843] px-[32px] rounded-[6px] border-green"
               >
                 Sign Up
               </button>
