@@ -1,3 +1,30 @@
 {
-  "users": []
+  "users": [
+    {
+      "email": "arunansh98@gmail.com",
+      "password": "$2a$10$3Fy.2iYQlw8aFNdAt4xeQeH4uqplCWqoPL8O2lEP4vez71P6mH5ke",
+      "firstName": "Arunansh",
+      "surName": "Srivastava",
+      "dateOfBirth": 15,
+      "month": 1,
+      "year": 26,
+      "gender": "male",
+      "pronoun": "",
+      "genderOptional": "",
+      "id": 1
+    },
+    {
+      "email": "kushagragsps@gmail.com",
+      "password": "$2a$10$qpYYDGzWPmawShgwbdAFAO0FcIY3cPPfEdMW.FR09N9hM01khrYq6",
+      "firstName": "Kushagra",
+      "surName": "Srivastava",
+      "dateOfBirth": 28,
+      "month": 10,
+      "year": 23,
+      "gender": "male",
+      "pronoun": "",
+      "genderOptional": "",
+      "id": 2
+    }
+  ]
 }

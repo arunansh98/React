@@ -54,7 +54,7 @@ function DropDown({ ...props }) {
         <GoChevronDown />
       </button>
       {showOptions && (
-        <div className="z-[1] absolute border w-full max-h-[199px] overflow-y-auto bg-[#fff] cursor-pointer">
+        <div className="z-[1] absolute border w-full max-h-[199px] overflow-y-auto bg-[#fff] cursor-pointer font-secondary text-[15px]">
           <div className="vertical-align" onClick={() => setShowOptions(false)}>
             {contentOptions}
           </div>

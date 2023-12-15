@@ -1,22 +1,40 @@
-import { useState } from "react";
-import TextInput from "../../../../components/TextInput";
-import SignUpModal from "../SignUpModal/SignUpModal";
-import classNames from "classnames";
-import "./Login.css";
+import { useState } from 'react';
+import TextInput from '../../../../components/TextInput';
+import SignUpModal from '../SignUpModal/SignUpModal';
+import classNames from 'classnames';
+import './Login.css';
+import axios from 'axios';
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
   const textInputClassNames = classNames(
-    "w-[364px] rounded-[6px] mb-4 py-[14px] px-[16px]",
-    "border-not-focused",
-    "focus-within:border-blue",
-    "focus-within:caret-blue",
-    "focus-within:outline-none",
-    "focus-within:box-shadow"
+    'w-[364px] rounded-[6px] mb-4 py-[14px] px-[16px]',
+    'border-not-focused',
+    'focus-within:border-blue',
+    'focus-within:caret-blue',
+    'focus-within:outline-none',
+    'focus-within:box-shadow'
   );
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    axios
+      .post('http://localhost:3005/login', {
+        email,
+        password,
+      })
+      .then((res) => {
+        console.log('login successful!');
+        console.log('res', res);
+      })
+      .catch((err) => {
+        console.log('login failed!');
+        console.log('err', err);
+      });
+  };
 
   return (
     <div id="home" className="login-container">
@@ -35,7 +53,10 @@ function Login() {
           placeholder="Password"
           type="password"
         />
-        <button className="text-[#fff] text-[20px] font-bold bg-blue border-blue w-[364px] py-[11px] px-[16px] rounded-[6px] mb-4">
+        <button
+          onClick={handleLogin}
+          className="text-[#fff] text-[20px] font-bold bg-blue border-blue w-[364px] py-[11px] px-[16px] rounded-[6px] mb-4"
+        >
           Log in
         </button>
       </form>
