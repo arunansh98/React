@@ -25,6 +25,45 @@
       "pronoun": "",
       "genderOptional": "",
       "id": 2
+    },
+    {
+      "email": "newUser@gmail.com",
+      "password": "$2a$10$eMiOWhBJe6gBPryMcwv4reLszgg8oWqK0r5c7Y6aXG0i4XLuXJ4EK",
+      "firstName": "New ",
+      "surName": "User",
+      "dateOfBirth": 1,
+      "month": 1,
+      "year": 16,
+      "gender": "male",
+      "pronoun": "",
+      "genderOptional": "",
+      "id": 3
+    },
+    {
+      "email": "new1User@gmail.com",
+      "password": "$2a$10$aQrhT2Jf7cPQ2o7iFcwoAuJjTKd2MGAcgCPy/b0cxZ52zamum0A.m",
+      "firstName": "new1",
+      "surName": "Uswer",
+      "dateOfBirth": 1,
+      "month": 3,
+      "year": 4,
+      "gender": "male",
+      "pronoun": "",
+      "genderOptional": "",
+      "id": 4
+    },
+    {
+      "email": "ruchiaug@gmail.com",
+      "password": "$2a$10$msvaxBwGK61mTBf/OpxHhuRamotV.aQW3Q/isW6PV.AIkHBJEsRh2",
+      "firstName": "Ruchi",
+      "surName": "Srivastava",
+      "dateOfBirth": 1,
+      "month": 1,
+      "year": 39,
+      "gender": "female",
+      "pronoun": "",
+      "genderOptional": "",
+      "id": 5
     }
   ]
 }

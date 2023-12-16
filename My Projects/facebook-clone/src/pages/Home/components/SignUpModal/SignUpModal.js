@@ -10,7 +10,8 @@ import './SignUpModal.css';
 import { produce } from 'immer';
 import { validator } from './SignUpModalValidator';
 import { options } from './SignUpModalOptions';
-import axios from 'axios';
+import { useSignupMutation } from '../../../../store';
+import useNavigateHook from '../../hooks/use-navigate-hook';
 
 const FIRST_NAME = 'firstName';
 const SURNAME = 'surName';
@@ -70,6 +71,11 @@ function SignUpModal({ onClose }) {
     pronounOptions,
   } = options();
 
+  const [signup, results] = useSignupMutation();
+
+  // handle navigation once signup is successful
+  useNavigateHook(results);
+
   const getFieldValue = (id) => {
     return state?.[id];
   };
@@ -87,16 +93,7 @@ function SignUpModal({ onClose }) {
     }
     // call sign up api
     if (validator(state)) {
-      axios
-        .post('http://localhost:3005/register', { ...state })
-        .then((response) => {
-          console.log('sign up successful !');
-          console.log('response', response);
-        })
-        .catch((err) => {
-          console.log('sign up failed !');
-          console.log('error', err);
-        });
+      signup({ ...state });
     }
   };
 

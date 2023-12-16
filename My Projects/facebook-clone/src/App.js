@@ -1,15 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/Home/Home";
-import PostsPage from "./pages/Posts/Posts";
-import ProfilePage from "./pages/Profile/Profile";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/Home/Home';
+import PostsPage from './pages/Posts/Posts';
+import ProfilePage from './pages/Profile/Profile';
+import { HOME, POSTS, PROFILE } from './constants/routeConstants';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/posts" element={<PostsPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path={'/' + HOME} element={<HomePage />} />
+        <Route path={'/' + POSTS} element={<PostsPage />} />
+        <Route path={'/' + PROFILE} element={<ProfilePage />} />
       </Routes>
     </BrowserRouter>
   );

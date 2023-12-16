@@ -6,7 +6,9 @@ function SignUpModalValidator(state) {
     console.log(state?.[fieldKey]);
     if (!state?.[fieldKey].toString().trim()) {
       if (fieldKey === 'pronoun') {
-        valid = state.gender !== 'custom';
+        if (state.gender === 'custom') {
+          valid = false;
+        }
       } else if (fieldKey !== 'genderOptional') {
         valid = false;
       }

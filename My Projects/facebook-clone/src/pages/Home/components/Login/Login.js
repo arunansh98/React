@@ -3,12 +3,19 @@ import TextInput from '../../../../components/TextInput';
 import SignUpModal from '../SignUpModal/SignUpModal';
 import classNames from 'classnames';
 import './Login.css';
-import axios from 'axios';
+import { useLoginMutation } from '../../../../store';
+import useNavigateHook from '../../hooks/use-navigate-hook';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [login, results] = useLoginMutation();
+
+  console.log('results', results);
+
+  // handle navigation once login is successful
+  useNavigateHook(results);
 
   const textInputClassNames = classNames(
     'w-[364px] rounded-[6px] mb-4 py-[14px] px-[16px]',
@@ -21,19 +28,11 @@ function Login() {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    axios
-      .post('http://localhost:3005/login', {
-        email,
-        password,
-      })
-      .then((res) => {
-        console.log('login successful!');
-        console.log('res', res);
-      })
-      .catch((err) => {
-        console.log('login failed!');
-        console.log('err', err);
-      });
+    const body = {
+      email,
+      password,
+    };
+    login(body);
   };
 
   return (
