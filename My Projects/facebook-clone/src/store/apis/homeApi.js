@@ -1,4 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { getAccessToken, getUserId } from '../../utils/sessionStorageUtils';
+import { LOGIN, REGISTER, POSTS } from '../../constants/apiConstants';
 
 const homeApi = createApi({
   reducerPath: 'home',
@@ -8,9 +10,10 @@ const homeApi = createApi({
   endpoints(builder) {
     return {
       login: builder.mutation({
+        invalidatesTags: ['fetchPosts'],
         query: (body) => {
           return {
-            url: 'login',
+            url: LOGIN,
             method: 'POST',
             body: { ...body },
           };
@@ -19,9 +22,24 @@ const homeApi = createApi({
       signup: builder.mutation({
         query: (body) => {
           return {
-            url: 'register',
+            url: REGISTER,
             method: 'POST',
             body: { ...body },
+          };
+        },
+      }),
+      fetchPosts: builder.query({
+        providesTags: ['fetchPosts'],
+        query: () => {
+          return {
+            url: POSTS,
+            method: 'GET',
+            headers: {
+              Authorization: 'Bearer ' + getAccessToken(),
+            },
+            params: {
+              userId: getUserId(),
+            },
           };
         },
       }),
@@ -29,5 +47,6 @@ const homeApi = createApi({
   },
 });
 
-export const { useLoginMutation, useSignupMutation } = homeApi;
+export const { useLoginMutation, useSignupMutation, useFetchPostsQuery } =
+  homeApi;
 export { homeApi };

@@ -91,7 +91,7 @@ function SignUpModal({ onClose }) {
     if (event) {
       event.preventDefault();
     }
-    // call sign up api
+    // call sign up api if form is valid
     if (validator(state)) {
       signup({ ...state });
     }

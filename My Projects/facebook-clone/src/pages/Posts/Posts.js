@@ -1,5 +1,9 @@
+import { useFetchPostsQuery } from '../../store';
+
 function Posts() {
-  return "Posts works!";
+  const { data, error, isFetching } = useFetchPostsQuery();
+  console.log('data', data);
+  return 'Posts works!';
 }
 
 export default Posts;
