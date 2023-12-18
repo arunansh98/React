@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { homeApi } from './apis/homeApi';
+import { postsApi } from './apis/postsApi';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 export const store = configureStore({
@@ -14,8 +15,7 @@ export const store = configureStore({
 setupListeners(store.dispatch);
 
 export { homeApi };
-export {
-  useLoginMutation,
-  useSignupMutation,
-  useFetchPostsQuery,
-} from './apis/homeApi';
+export { useLoginMutation, useSignupMutation } from './apis/homeApi';
+
+export { useFetchPostsQuery } from './apis/postsApi';
+export { postsApi };

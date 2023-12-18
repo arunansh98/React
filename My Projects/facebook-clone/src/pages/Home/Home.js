@@ -1,5 +1,5 @@
-import Login from "./components/Login/Login";
-import Logo from "./components/Logo";
+import Login from './components/Login/Login';
+import Logo from './components/Logo';
 
 function Home() {
   return (
@@ -11,7 +11,7 @@ function Home() {
             <Login className="w-3/6" />
             <span className="mt-6 text-[14px] flex justify-center">
               <a className="font-bold mr-1" href="##">
-                Create a Page {"  "}
+                Create a Page {'  '}
               </a>
               for a celebrity, brand or business.
             </span>

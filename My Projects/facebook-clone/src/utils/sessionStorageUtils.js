@@ -9,9 +9,13 @@ function getAccessToken() {
   return sessionStorage.getItem(ACCESS_TOKEN);
 }
 
+function getBearerToken() {
+  return 'Bearer ' + sessionStorage.getItem(ACCESS_TOKEN);
+}
+
 function getUserId() {
   const decoded = jwtDecode(getAccessToken());
   return decoded.sub;
 }
 
-export { setAccessToken, getAccessToken, getUserId };
+export { setAccessToken, getAccessToken, getUserId, getBearerToken };
