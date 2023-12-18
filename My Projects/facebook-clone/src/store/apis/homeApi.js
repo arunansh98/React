@@ -19,6 +19,7 @@ const homeApi = createApi({
         },
       }),
       signup: builder.mutation({
+        invalidatesTags: ['fetchPosts'],
         query: (body) => {
           return {
             url: REGISTER,

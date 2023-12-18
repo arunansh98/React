@@ -64,6 +64,19 @@
       "pronoun": "",
       "genderOptional": "",
       "id": 5
+    },
+    {
+      "email": "rohan@gmail.com",
+      "password": "$2a$10$WLKVpIkph8MQY1TUStqUmuP1GiIJliKKd4yL5D6NMPP3/qAYSyXcC",
+      "firstName": "Rohan",
+      "surName": "Mishra",
+      "dateOfBirth": 2,
+      "month": 3,
+      "year": 3,
+      "gender": "male",
+      "pronoun": "",
+      "genderOptional": "",
+      "id": 6
     }
   ],
   "posts": [
