@@ -2,28 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .vertical-align {
+    @apply flex flex-col;
+  }
+
+  .horizontal-align {
+    @apply flex flex-row;
+  }
+}
+
 * {
   @apply font-primary;
 }
 
-.vertical-align {
-  @apply flex flex-col;
-}
-
-.horizontal-align {
-  @apply flex flex-row;
-}
-
-input[type="text"],
-input[type="password"] {
+input[type='text'],
+input[type='password'] {
   @apply border-none outline-none w-full;
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    transition: background-color 5000s ease-in-out 0s;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 hr {
