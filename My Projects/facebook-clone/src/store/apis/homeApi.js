@@ -1,36 +1,29 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { LOGIN, REGISTER } from '../../constants/apiConstants';
+import { POSTS } from '../../constants/apiConstants';
+import { getBearerToken, getUserId } from '../../utils/sessionStorageUtils';
+import { landingApi } from './landingApi';
 
-const homeApi = createApi({
-  reducerPath: 'home',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3005',
-  }),
+const homeApi = landingApi.injectEndpoints({
   endpoints(builder) {
     return {
-      login: builder.mutation({
-        invalidatesTags: ['fetchPosts'],
-        query: (body) => {
+      fetchPosts: builder.query({
+        providesTags: ['fetchPosts'],
+        query: () => {
           return {
-            url: LOGIN,
-            method: 'POST',
-            body: { ...body },
-          };
-        },
-      }),
-      signup: builder.mutation({
-        invalidatesTags: ['fetchPosts'],
-        query: (body) => {
-          return {
-            url: REGISTER,
-            method: 'POST',
-            body: { ...body },
+            url: POSTS,
+            method: 'GET',
+            headers: {
+              Authorization: getBearerToken(),
+            },
+            params: {
+              userId: getUserId(),
+            },
           };
         },
       }),
     };
   },
+  overrideExisting: false,
 });
 
-export const { useLoginMutation, useSignupMutation } = homeApi;
+export const { useFetchPostsQuery } = homeApi;
 export { homeApi };

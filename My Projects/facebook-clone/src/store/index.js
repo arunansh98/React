@@ -1,21 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { landingApi } from './apis/landingApi';
 import { homeApi } from './apis/homeApi';
-import { postsApi } from './apis/postsApi';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 export const store = configureStore({
   reducer: {
-    [homeApi.reducerPath]: homeApi.reducer,
+    [landingApi.reducerPath]: landingApi.reducer,
   },
   middleware: (getDefaultMiddleWare) => {
-    return getDefaultMiddleWare().concat(homeApi.middleware);
+    return getDefaultMiddleWare().concat(landingApi.middleware);
   },
 });
 
 setupListeners(store.dispatch);
 
-export { homeApi };
-export { useLoginMutation, useSignupMutation } from './apis/homeApi';
+export { landingApi };
+export { useLoginMutation, useSignupMutation } from './apis/landingApi';
 
-export { useFetchPostsQuery } from './apis/postsApi';
-export { postsApi };
+export { homeApi };
+export { useFetchPostsQuery } from './apis/homeApi';
