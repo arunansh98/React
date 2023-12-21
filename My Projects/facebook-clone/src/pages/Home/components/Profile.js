@@ -1,5 +1,5 @@
 function Profile() {
-  return "Profile  works!";
+  return 'Profile component works !';
 }
 
 export default Profile;

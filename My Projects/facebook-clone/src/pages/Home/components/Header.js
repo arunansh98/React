@@ -1,10 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import FacebookLogo from '../../../assets/images/facebook.png';
 import '../Home.css';
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <div className="header">
-      <img src={FacebookLogo} alt="facebook" />
+      <img
+        className="cursor-pointer"
+        src={FacebookLogo}
+        alt="facebook"
+        onClick={() => navigate('./')}
+      />
     </div>
   );
 }
