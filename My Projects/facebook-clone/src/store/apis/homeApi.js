@@ -1,4 +1,4 @@
-import { POSTS } from '../../constants/apiConstants';
+import { FETCH_POSTS } from '../../constants/apiConstants';
 import { getBearerToken, getUserId } from '../../utils/sessionStorageUtils';
 import { landingApi } from './landingApi';
 
@@ -9,7 +9,7 @@ const homeApi = landingApi.injectEndpoints({
         providesTags: ['fetchPosts'],
         query: () => {
           return {
-            url: POSTS,
+            url: FETCH_POSTS,
             method: 'GET',
             headers: {
               Authorization: getBearerToken(),
