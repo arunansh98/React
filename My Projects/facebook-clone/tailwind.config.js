@@ -11,7 +11,7 @@ module.exports = {
       fontFamily: {
         primary: 'Helvetica, Arial, sans-serif',
         secondary: 'SFProDisplay-Regular, Helvetica, Arial, sans-serif;',
-        postsPrimary:
+        homePrimary:
           'Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif',
       },
     },

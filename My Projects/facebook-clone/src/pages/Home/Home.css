@@ -1,14 +1,19 @@
 .header {
-  @apply h-[56px] horizontal-align justify-between;
+  @apply h-[56px] w-[100%] horizontal-align justify-between relative bg-[#fff];
+  box-shadow: 2px 2px 2px #e5e5e5;
+}
+
+.home {
+  @apply font-homePrimary;
+}
+
+.home * {
+  @apply font-[inherit];
 }
 
 .footer {
-  @apply bg-[#F0F2F5] font-postsPrimary;
+  @apply bg-[#F0F2F5];
   min-height: calc(100vh - 56px);
-}
-
-.footer * {
-  @apply font-[inherit];
 }
 
 li {

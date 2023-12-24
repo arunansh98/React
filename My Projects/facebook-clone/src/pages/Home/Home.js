@@ -6,10 +6,10 @@ function Home() {
   const { data, error, isFetching } = useFetchPostsQuery();
   console.log('data', data);
   return (
-    <>
+    <div className="home">
       <Header />
       <Outlet />
-    </>
+    </div>
   );
 }
 
