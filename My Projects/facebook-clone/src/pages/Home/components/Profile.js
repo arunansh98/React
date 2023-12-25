@@ -1,12 +1,90 @@
-import '../Home.css';
+import { getUserId } from "../../../utils/sessionStorageUtils";
+import "../Home.css";
+import Files from "react-files";
+import classNames from "classnames";
+import {
+  useAddPostMutation,
+  useFetchPostsQuery,
+  useUpdatePostMutation,
+} from "../../../store";
+import { BACKGROUND_PHOTO } from "../../../constants/postTypesConstants";
 
 function Profile() {
+  const { data, error, isFetching } = useFetchPostsQuery();
+
+  const [addPost, addPostResults] = useAddPostMutation();
+
+  const [updatePost, updatePostResults] = useUpdatePostMutation();
+
+  const backGroundPhoto = data?.find((item) => item.type === BACKGROUND_PHOTO);
+
+  const getBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function () {
+        console.log(reader.result);
+        resolve(reader.result);
+      };
+      reader.onerror = function (error) {
+        console.log("Error: ", error);
+        resolve(error);
+      };
+    });
+  };
+
+  const handleBackgroundChange = async (files) => {
+    console.log("files", files);
+    const base64 = await getBase64(files[0]);
+    console.log("base64", base64);
+
+    if (!backGroundPhoto?.url) {
+      // if no background photo is set
+      const body = {
+        type: BACKGROUND_PHOTO,
+        userId: getUserId(),
+        url: base64,
+      };
+      addPost({
+        ...body,
+      });
+    } else {
+      const body = {
+        ...backGroundPhoto,
+        url: base64,
+      };
+      updatePost({
+        ...body,
+      });
+    }
+  };
+
+  const backClassName = classNames(
+    "flex items-end justify-end mx-auto cursor-pointer w-[80%] h-[23rem] rounded-bl-[6px] rounded-br-[6px] !bg-repeat-round"
+  );
+
   return (
     <div className="profile">
-      <div className="flex items-end justify-end mx-auto cursor-pointer w-[80%] h-[23rem] bg-[#f3f3f3] rounded-bl-[6px] rounded-br-[6px]">
-        <div className="mr-8 mb-4 rounded-[6px] px-[12px] text-[white] bg-[#00000066] border-[red] border-[1px]">
-          <div>Edit cover photo</div>
-        </div>
+      <div>
+        <Files
+          className="cursor-pointer"
+          onChange={handleBackgroundChange}
+          accepts={["image/*"]}
+          clickable
+        >
+          <div
+            style={{
+              background: backGroundPhoto?.url
+                ? `url("${backGroundPhoto?.url}")`
+                : "#f3f3f3",
+            }}
+            className={backClassName}
+          >
+            <div className="mr-8 mb-4 rounded-[6px] px-[12px] text-[white] bg-[#00000066] border-[inherit] border-[1px] font-bold">
+              Edit cover photo
+            </div>
+          </div>
+        </Files>
       </div>
       <img
         className="mt-[-5rem] ml-[14%] cursor-pointer rounded-[100px] inline-block h-[168px] w-[168px] mr-2"

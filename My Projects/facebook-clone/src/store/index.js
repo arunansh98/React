@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { landingApi } from './apis/landingApi';
-import { homeApi } from './apis/homeApi';
-import { setupListeners } from '@reduxjs/toolkit/query';
+import { configureStore } from "@reduxjs/toolkit";
+import { landingApi } from "./apis/landingApi";
+import { homeApi } from "./apis/homeApi";
+import { setupListeners } from "@reduxjs/toolkit/query";
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +15,12 @@ export const store = configureStore({
 setupListeners(store.dispatch);
 
 export { landingApi };
-export { useLoginMutation, useSignupMutation } from './apis/landingApi';
+export { useLoginMutation, useSignupMutation } from "./apis/landingApi";
 
 export { homeApi };
-export { useFetchPostsQuery } from './apis/homeApi';
+export {
+  useFetchPostsQuery,
+  useAddPostMutation,
+  useUpdatePostMutation,
+  useDeletePostMutation,
+} from "./apis/homeApi";

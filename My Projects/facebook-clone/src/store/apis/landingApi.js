@@ -1,29 +1,30 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { LOGIN, REGISTER } from '../../constants/apiConstants';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { LOGIN, REGISTER } from "../../constants/apiConstants";
+import { POST } from "../../constants/methodTypes";
 
 const landingApi = createApi({
-  reducerPath: 'landing',
+  reducerPath: "landing",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3005',
+    baseUrl: "http://localhost:3005",
   }),
   endpoints(builder) {
     return {
       login: builder.mutation({
-        invalidatesTags: ['fetchPosts'],
+        invalidatesTags: ["fetchPosts"],
         query: (body) => {
           return {
             url: LOGIN,
-            method: 'POST',
+            method: POST,
             body: { ...body },
           };
         },
       }),
       signup: builder.mutation({
-        invalidatesTags: ['fetchPosts'],
+        invalidatesTags: ["fetchPosts"],
         query: (body) => {
           return {
             url: REGISTER,
-            method: 'POST',
+            method: POST,
             body: { ...body },
           };
         },
