@@ -7,7 +7,11 @@ import {
   useFetchPostsQuery,
   useUpdatePostMutation,
 } from "../../../store";
-import { BACKGROUND_PHOTO } from "../../../constants/postTypesConstants";
+import {
+  BACKGROUND_PHOTO,
+  PROFILE_PHOTO,
+} from "../../../constants/postTypesConstants";
+import { handlePostChange } from "../hooks/use-handle-post";
 
 function Profile() {
   const { data, error, isFetching } = useFetchPostsQuery();
@@ -18,49 +22,14 @@ function Profile() {
 
   const backGroundPhoto = data?.find((item) => item.type === BACKGROUND_PHOTO);
 
-  const getBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      var reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = function () {
-        console.log(reader.result);
-        resolve(reader.result);
-      };
-      reader.onerror = function (error) {
-        console.log("Error: ", error);
-        resolve(error);
-      };
-    });
-  };
-
-  const handleBackgroundChange = async (files) => {
-    console.log("files", files);
-    const base64 = await getBase64(files[0]);
-    console.log("base64", base64);
-
-    if (!backGroundPhoto?.url) {
-      // if no background photo is set
-      const body = {
-        type: BACKGROUND_PHOTO,
-        userId: getUserId(),
-        url: base64,
-      };
-      addPost({
-        ...body,
-      });
-    } else {
-      const body = {
-        ...backGroundPhoto,
-        url: base64,
-      };
-      updatePost({
-        ...body,
-      });
-    }
-  };
+  const profilePhoto = data?.find((item) => item.type === PROFILE_PHOTO);
 
   const backClassName = classNames(
     "flex items-end justify-end mx-auto cursor-pointer w-[80%] h-[23rem] rounded-bl-[6px] rounded-br-[6px] !bg-repeat-round"
+  );
+
+  const profileClassName = classNames(
+    "mt-[-5rem] cursor-pointer rounded-[100px] inline-block h-[168px] w-[168px] mr-2 !bg-repeat-round"
   );
 
   return (
@@ -68,7 +37,14 @@ function Profile() {
       <div>
         <Files
           className="cursor-pointer"
-          onChange={handleBackgroundChange}
+          onChange={(files) =>
+            handlePostChange(
+              files,
+              backGroundPhoto,
+              BACKGROUND_PHOTO,
+              !backGroundPhoto?.url ? addPost : updatePost
+            )
+          }
           accepts={["image/*"]}
           clickable
         >
@@ -86,21 +62,40 @@ function Profile() {
           </div>
         </Files>
       </div>
-      <img
-        className="mt-[-5rem] ml-[14%] cursor-pointer rounded-[100px] inline-block h-[168px] w-[168px] mr-2"
-        src="https://scontent.fdel27-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=CO5dz350V7MAX9oEHkS&_nc_ht=scontent.fdel27-1.fna&oh=00_AfC2_i7ts-u27DsAmbCwU6ZTXuZL6B4htbCbjRlBlARbTg&oe=65AE49B8"
-        alt="profile"
-      />
-      <div className="inline-flex flex-col">
-        <h1 className="font-bold text-[#050505] text-[32px]">
-          Arunansh Srivastava
-        </h1>
-        <a
-          href=""
-          className="font-[600] text-[15px] text-[#65676B] hover:underline"
+      <div className="horizontal-align ml-[14%]">
+        <Files
+          className="cursor-pointer"
+          accepts={["image/*"]}
+          clickable
+          onChange={(files) =>
+            handlePostChange(
+              files,
+              profilePhoto,
+              PROFILE_PHOTO,
+              !profilePhoto?.url ? addPost : updatePost
+            )
+          }
         >
-          75 friends
-        </a>
+          <div
+            style={{
+              background: profilePhoto?.url
+                ? `url("${profilePhoto?.url}")`
+                : 'url("https://scontent.fdel27-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=CO5dz350V7MAX9oEHkS&_nc_ht=scontent.fdel27-1.fna&oh=00_AfC2_i7ts-u27DsAmbCwU6ZTXuZL6B4htbCbjRlBlARbTg&oe=65AE49B8")',
+            }}
+            className={profileClassName}
+          ></div>
+        </Files>
+        <div className="inline-flex flex-col">
+          <h1 className="font-bold text-[#050505] text-[32px]">
+            Arunansh Srivastava
+          </h1>
+          <a
+            href=""
+            className="font-[600] text-[15px] text-[#65676B] hover:underline"
+          >
+            75 friends
+          </a>
+        </div>
       </div>
     </div>
   );
