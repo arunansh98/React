@@ -2,6 +2,7 @@ import {
   FETCH_POSTS,
   UPDATE_POST,
   ADD_POST,
+  FETCH_USER_DETAILS,
 } from "../../constants/apiConstants";
 import { DELETE, GET, POST, PUT } from "../../constants/methodTypes";
 import { getBearerToken, getUserId } from "../../utils/sessionStorageUtils";
@@ -10,9 +11,22 @@ import { landingApi } from "./landingApi";
 const homeApi = landingApi.injectEndpoints({
   endpoints(builder) {
     return {
+      fetchUserDetails: builder.query({
+        providesTags: ["fetchUserDetails"],
+        query: (id) => {
+          console.log("id", id);
+          return {
+            url: `${FETCH_USER_DETAILS}/${id}`,
+            method: GET,
+            headers: {
+              Authorization: getBearerToken(),
+            },
+          };
+        },
+      }),
       fetchPosts: builder.query({
         providesTags: ["fetchPosts"],
-        query: () => {
+        query: (userId) => {
           return {
             url: FETCH_POSTS,
             method: GET,
@@ -20,7 +34,7 @@ const homeApi = landingApi.injectEndpoints({
               Authorization: getBearerToken(),
             },
             params: {
-              userId: getUserId(),
+              userId,
             },
           };
         },
@@ -75,9 +89,17 @@ const homeApi = landingApi.injectEndpoints({
 });
 
 export const {
+  useFetchUserDetailsQuery,
   useFetchPostsQuery,
   useAddPostMutation,
   useUpdatePostMutation,
   useDeletePostMutation,
 } = homeApi;
 export { homeApi };
+
+export const useFetchProfileDetailsQuery = (userId) => {
+  return {
+    userDetails: useFetchUserDetailsQuery(userId),
+    postDetails: useFetchPostsQuery(userId),
+  };
+};

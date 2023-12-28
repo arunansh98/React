@@ -23,3 +23,11 @@ li {
 li:hover {
   @apply bg-[#dbdee3];
 }
+
+.cover-photo {
+  @apply vertical-align text-[#050505] font-[500] cursor-pointer;
+}
+
+.cover-photo div {
+  @apply horizontal-align items-center !font-homePrimary mb-1 hover:bg-[#f3f3f3] rounded-[6px] px-1;
+}

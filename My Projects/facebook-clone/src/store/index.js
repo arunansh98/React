@@ -19,6 +19,8 @@ export { useLoginMutation, useSignupMutation } from "./apis/landingApi";
 
 export { homeApi };
 export {
+  useFetchProfileDetailsQuery,
+  useFetchUserDetailsQuery,
   useFetchPostsQuery,
   useAddPostMutation,
   useUpdatePostMutation,
