@@ -1,29 +1,35 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import ReactDOM from "react-dom";
 import "./AttachableModal.css";
 
 const AttachableModal = ({
-  targetElement,
+  targetElementRef,
   children,
   alignVertically,
   alignHorizontally,
 }) => {
   const calculatePosition = () => {
-    if (!targetElement) return null;
+    if (!targetElementRef?.current) return null;
 
-    const targetRect = targetElement.getBoundingClientRect();
+    const targetRect = targetElementRef?.current?.getBoundingClientRect();
 
     let modalStyle = {
       position: "absolute",
     };
 
     let horizontalStyle = {
-      left: {
+      right: {
         right: `${
-          window.innerWidth - targetRect.left - targetElement.offsetWidth
+          window.innerWidth -
+          targetRect.left -
+          targetElementRef?.current?.offsetWidth
         }px`,
       },
-      right: { left: `${targetRect.left + window.scrollX}px` },
+      left: { left: `${targetRect.left + window.scrollX}px` },
+      center: {
+        left: `${targetRect.left + targetRect.width / 2}px`,
+        transform: "translateX(-50%)",
+      },
     };
 
     let verticalStyle = {

@@ -28,10 +28,10 @@ function Profile() {
 
   let { userDetails, postDetails } = useFetchProfileDetailsQuery(getUserId());
 
-  const [showBackgroundPhotoModal, setShowBackgroundPhotoModal] = useState({
-    show: false,
-    targetElement: "",
-  });
+  const [showBackgroundPhotoModal, setShowBackgroundPhotoModal] =
+    useState(false);
+
+  const [showProfilePhotoModal, setShowProfilePhotoModal] = useState(false);
 
   userDetails = userDetails?.data;
   postDetails = postDetails?.data;
@@ -58,7 +58,9 @@ function Profile() {
 
   const editBackgroundModalEl = useRef();
 
-  console.log("showBackgroundPhotoModal", showBackgroundPhotoModal);
+  const editProfileEl = useRef();
+
+  const editProfileModalEl = useRef();
 
   useEffect(() => {
     const handler = (event) => {
@@ -67,10 +69,29 @@ function Profile() {
       }
 
       if (
-        !editBackgroundEl.current.contains(event.target) &&
-        !editBackgroundModalEl.current.contains(event.target)
+        !editBackgroundEl?.current?.contains(event?.target) &&
+        !editBackgroundModalEl?.current?.contains(event?.target)
       ) {
         setShowBackgroundPhotoModal(false);
+      }
+    };
+    document.addEventListener("click", handler, true);
+    return () => {
+      document.removeEventListener("click", handler);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handler = (event) => {
+      if (!editProfileEl.current) {
+        return;
+      }
+
+      if (
+        !editProfileEl?.current?.contains(event?.target) &&
+        !editProfileModalEl?.current?.contains(event?.target)
+      ) {
+        setShowProfilePhotoModal(false);
       }
     };
     document.addEventListener("click", handler, true);
@@ -91,15 +112,8 @@ function Profile() {
           className={backClassName}
         >
           <div
-            onClick={(event) => {
-              console.log("event", event);
-              setShowBackgroundPhotoModal({
-                show: true,
-                targetElement: event.target.element,
-              });
-            }}
+            onClick={() => setShowBackgroundPhotoModal(true)}
             ref={editBackgroundEl}
-            id="edit-background"
             className="mr-8 mb-4 rounded-[6px] px-[12px] py-[6px] text-[white] bg-[#00000066] border-[inherit] border-[1px] font-bold pointer-events-auto"
           >
             <div className="horizontal-align items-center">
@@ -107,11 +121,11 @@ function Profile() {
               Edit cover photo
             </div>
           </div>
-          {showBackgroundPhotoModal?.show && (
+          {showBackgroundPhotoModal && (
             <AttachableModal
-              targetElement={document.getElementById("edit-background")}
+              targetElementRef={editBackgroundEl}
               alignVertically={"below"}
-              alignHorizontally={"left"}
+              alignHorizontally={"right"}
             >
               <div className="cover-photo" ref={editBackgroundModalEl}>
                 <div>
@@ -154,28 +168,46 @@ function Profile() {
         </div>
       </div>
       <div className="horizontal-align ml-[14%]">
-        <Files
-          className="cursor-pointer"
-          accepts={["image/*"]}
-          clickable
-          onChange={(files) =>
-            handlePostChange(
-              files,
-              profilePhoto,
-              PROFILE_PHOTO,
-              !profilePhoto?.url ? addPost : updatePost
-            )
-          }
-        >
-          <div
-            style={{
-              background: profilePhoto?.url
-                ? `url("${profilePhoto?.url}")`
-                : 'url("https://scontent.fdel27-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=CO5dz350V7MAX9oEHkS&_nc_ht=scontent.fdel27-1.fna&oh=00_AfC2_i7ts-u27DsAmbCwU6ZTXuZL6B4htbCbjRlBlARbTg&oe=65AE49B8")',
-            }}
-            className={profileClassName}
-          ></div>
-        </Files>
+        <div
+          ref={editProfileEl}
+          style={{
+            background: profilePhoto?.url
+              ? `url("${profilePhoto?.url}")`
+              : 'url("https://scontent.fdel27-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=CO5dz350V7MAX9oEHkS&_nc_ht=scontent.fdel27-1.fna&oh=00_AfC2_i7ts-u27DsAmbCwU6ZTXuZL6B4htbCbjRlBlARbTg&oe=65AE49B8")',
+          }}
+          className={profileClassName}
+          onClick={() => setShowProfilePhotoModal(true)}
+        ></div>
+        {showProfilePhotoModal && (
+          <AttachableModal
+            targetElementRef={editProfileEl}
+            alignVertically={"above"}
+            alignHorizontally={"center"}
+          >
+            <div ref={editProfileModalEl} className="profile-photo">
+              <Files
+                clickable
+                accepts={["image/*"]}
+                onChange={(files) => {
+                  handlePostChange(
+                    files,
+                    profilePhoto,
+                    PROFILE_PHOTO,
+                    !profilePhoto?.url ? addPost : updatePost
+                  );
+                  setShowProfilePhotoModal(false);
+                }}
+              >
+                <BsCamera className="mr-2" />
+                Choose Profile Picture
+              </Files>
+              <div>
+                <RxAvatar className="mr-2" />
+                Create avatar profile picture
+              </div>
+            </div>
+          </AttachableModal>
+        )}
         <div className="inline-flex flex-col">
           <h1 className="font-bold text-[#050505] text-[32px]">{fullName}</h1>
           <a
