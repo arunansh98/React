@@ -4,6 +4,7 @@ import Files from "react-files";
 import classNames from "classnames";
 import {
   useAddPostMutation,
+  useDeletePostMutation,
   useFetchProfileDetailsQuery,
   useUpdatePostMutation,
 } from "../../../store";
@@ -15,16 +16,20 @@ import { handlePostChange } from "../hooks/use-handle-post";
 import { BsCamera } from "react-icons/bs";
 import { useRef, useState, useEffect } from "react";
 import AttachableModal from "../../../components/AttachableModal";
+import Modal from "../../../components/Modal";
 import { BsFileEarmarkImageFill } from "react-icons/bs";
 import { MdUpload } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
 import { RiDragMove2Fill } from "react-icons/ri";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { ImCross } from "react-icons/im";
 
 function Profile() {
   const [addPost, addPostResults] = useAddPostMutation();
 
   const [updatePost, updatePostResults] = useUpdatePostMutation();
+
+  const [deletePost, deletePhotoResults] = useDeletePostMutation();
 
   let { userDetails, postDetails } = useFetchProfileDetailsQuery(getUserId());
 
@@ -32,6 +37,9 @@ function Profile() {
     useState(false);
 
   const [showProfilePhotoModal, setShowProfilePhotoModal] = useState(false);
+
+  const [showDeleteBackgroundPhotoModal, setShowDeleteBackgroundPhotoModal] =
+    useState(false);
 
   userDetails = userDetails?.data;
   postDetails = postDetails?.data;
@@ -100,6 +108,12 @@ function Profile() {
     };
   }, []);
 
+  const handleDeleteBackgroundPhoto = () => {
+    deletePost({
+      id: backGroundPhoto?.id,
+    });
+  };
+
   return (
     <div className="profile">
       <div>
@@ -158,12 +172,55 @@ function Profile() {
                   Reposition
                 </div>
                 <hr className="mb-1 mt-1 px-1" />
-                <div>
+                <div
+                  onClick={() => {
+                    setShowDeleteBackgroundPhotoModal(true);
+                    setShowBackgroundPhotoModal(false);
+                  }}
+                >
                   <RiDeleteBin5Line className="mr-3" />
                   Remove
                 </div>
               </div>
             </AttachableModal>
+          )}
+          {showDeleteBackgroundPhotoModal && (
+            <Modal>
+              <div className="remove-cover-photo">
+                <div>
+                  <h1 className="inline-flex w-[90%] justify-center text-[20px] font-[700]">
+                    Remove cover photo
+                  </h1>
+                  <div
+                    className="inline-flex p-2 border-[1px] rounded-[100px] bg-[silver] cursor-pointer"
+                    onClick={() => setShowDeleteBackgroundPhotoModal(false)}
+                  >
+                    <ImCross />
+                  </div>
+                </div>
+                <hr className="mt-2" />
+                <div className="mb-8 ml-2 mt-1">
+                  Are you sure you want to remove your cover photo?
+                </div>
+                <div className="flex flex-row justify-end">
+                  <button
+                    className="hover:bg-[#f3f3f3] py-2 px-8 rounded-[6px] text-blue text-[15px] mr-2"
+                    onClick={() => setShowDeleteBackgroundPhotoModal(false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className="bg-blue text-white rounded-[6px] text-[15px] py-2 px-8"
+                    onClick={() => {
+                      setShowDeleteBackgroundPhotoModal(false);
+                      handleDeleteBackgroundPhoto();
+                    }}
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            </Modal>
           )}
         </div>
       </div>

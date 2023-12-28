@@ -39,3 +39,11 @@ li:hover {
 .profile-photo div {
   @apply horizontal-align items-center !font-homePrimary mb-1 hover:bg-[#f3f3f3] rounded-[6px] px-1;
 }
+
+.remove-cover-photo {
+  @apply vertical-align text-[#050505] p-2;
+}
+
+.remove-cover-photo * {
+  @apply !font-homePrimary;
+}
