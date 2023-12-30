@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import TextInput from '../../../../components/TextInput';
-import SignUpModal from '../SignUpModal/SignUpModal';
-import classNames from 'classnames';
-import './Login.css';
-import { useLoginMutation } from '../../../../store';
-import useNavigateHook from '../../hooks/use-navigate-hook';
+import { useState } from "react";
+import TextInput from "../../../../shared/components/TextInput";
+import SignUpModal from "../SignUpModal/SignUpModal";
+import classNames from "classnames";
+import "./Login.css";
+import { useLoginMutation } from "../../../../store";
+import useNavigateHook from "../../hooks/use-navigate-hook";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [login, results] = useLoginMutation();
 
-  console.log('results', results);
+  console.log("results", results);
 
   // handle navigation once login is successful
   useNavigateHook(results);
 
   const textInputClassNames = classNames(
-    'w-[364px] rounded-[6px] mb-4 py-[14px] px-[16px]',
-    'border-not-focused',
-    'focus-within:border-blue',
-    'focus-within:caret-blue',
-    'focus-within:outline-none',
-    'focus-within:box-shadow'
+    "w-[364px] rounded-[6px] mb-4 py-[14px] px-[16px]",
+    "border-not-focused",
+    "focus-within:border-blue",
+    "focus-within:caret-blue",
+    "focus-within:outline-none",
+    "focus-within:box-shadow"
   );
 
   const handleLogin = (event) => {

@@ -1,4 +1,4 @@
-import Header from "./components/Header";
+import Header from "../../shared/view/Header/Header";
 import { useNavigate } from "react-router-dom";
 import { useFetchUserDetailsQuery } from "../../store";
 import "./Home.css";

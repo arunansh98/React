@@ -1,5 +1,5 @@
-import { getUserId } from "../../../utils/sessionStorageUtils";
-import "../Home.css";
+import { getUserId } from "../../utils/sessionStorageUtils";
+import "./Profile.css";
 import Files from "react-files";
 import classNames from "classnames";
 import {
@@ -7,16 +7,16 @@ import {
   useDeletePostMutation,
   useFetchProfileDetailsQuery,
   useUpdatePostMutation,
-} from "../../../store";
+} from "../../store";
 import {
   BACKGROUND_PHOTO,
   PROFILE_PHOTO,
-} from "../../../constants/postTypesConstants";
-import { handlePostChange } from "../hooks/use-handle-post";
+} from "../../constants/postTypesConstants";
+import { handlePostChange } from "./hooks/use-handle-post";
 import { BsCamera } from "react-icons/bs";
 import { useRef, useState, useEffect } from "react";
-import AttachableModal from "../../../components/AttachableModal";
-import Modal from "../../../components/Modal";
+import AttachableModal from "../../shared/components/AttachableModal";
+import Modal from "../../shared/components/Modal";
 import { BsFileEarmarkImageFill } from "react-icons/bs";
 import { MdUpload } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
@@ -25,7 +25,6 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { ImCross } from "react-icons/im";
 import { HiPencil } from "react-icons/hi2";
 import { IoIosArrowDown } from "react-icons/io";
-import Header from "./Header";
 
 function Profile() {
   const [addPost, addPostResults] = useAddPostMutation();
@@ -230,7 +229,6 @@ function Profile() {
 
   return (
     <div className="profile">
-      {/* <Header /> */}
       <div>
         <div
           style={{

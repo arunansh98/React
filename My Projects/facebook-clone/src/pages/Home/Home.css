@@ -1,21 +1,8 @@
-.header {
-  @apply h-[56px] w-[100%] horizontal-align justify-between relative bg-[#fff];
-  box-shadow: 2px 2px 2px #e5e5e5;
-}
-
 .home {
   @apply font-homePrimary;
 }
 
 .home * {
-  @apply font-[inherit];
-}
-
-.profile {
-  @apply font-homePrimary;
-}
-
-.profile * {
   @apply font-[inherit];
 }
 
@@ -30,33 +17,4 @@ li {
 
 li:hover {
   @apply bg-[#dbdee3];
-}
-
-.cover-photo {
-  @apply vertical-align text-[#050505] font-[500] cursor-pointer;
-}
-
-.cover-photo div {
-  @apply horizontal-align items-center !font-homePrimary mb-1 hover:bg-[#f3f3f3] rounded-[6px] px-1;
-}
-
-.profile-photo {
-  @apply vertical-align text-[#050505] font-[500] cursor-pointer;
-}
-
-.profile-photo div {
-  @apply horizontal-align items-center !font-homePrimary mb-1 hover:bg-[#f3f3f3] rounded-[6px] px-1;
-}
-
-.remove-cover-photo {
-  @apply vertical-align text-[#050505] p-2;
-}
-
-.remove-cover-photo * {
-  @apply !font-homePrimary;
-}
-
-.profile-photo-section {
-  @apply flex flex-row justify-between;
-  width: calc(80% - 117px);
 }

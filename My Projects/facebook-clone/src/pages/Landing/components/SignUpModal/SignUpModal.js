@@ -1,28 +1,28 @@
-import Modal from '../../../../components/Modal';
-import Close from '../../../../assets/images/close.png';
-import classNames from 'classnames';
-import TextInput from '../../../../components/TextInput';
-import DropDown from '../../../../components/DropDown';
-import { useReducer } from 'react';
-import { GoQuestion } from 'react-icons/go';
-import MultiRadio from '../../../../components/MultiRadio';
-import './SignUpModal.css';
-import { produce } from 'immer';
-import { validator } from './SignUpModalValidator';
-import { options } from './SignUpModalOptions';
-import { useSignupMutation } from '../../../../store';
-import useNavigateHook from '../../hooks/use-navigate-hook';
+import Modal from "../../../../shared/components/Modal";
+import Close from "../../../../assets/images/close.png";
+import classNames from "classnames";
+import TextInput from "../../../../shared/components/TextInput";
+import DropDown from "../../../../shared/components/DropDown";
+import { useReducer } from "react";
+import { GoQuestion } from "react-icons/go";
+import MultiRadio from "../../../../shared/components/MultiRadio";
+import "./SignUpModal.css";
+import { produce } from "immer";
+import { validator } from "./SignUpModalValidator";
+import { options } from "./SignUpModalOptions";
+import { useSignupMutation } from "../../../../store";
+import useNavigateHook from "../../hooks/use-navigate-hook";
 
-const FIRST_NAME = 'firstName';
-const SURNAME = 'surName';
-const MOBILE_NUMBER_EMAIL = 'email';
-const NEW_PASSWORD = 'password';
-const DATE_OF_BIRTH = 'dateOfBirth';
-const MONTH = 'month';
-const YEAR = 'year';
-const GENDER = 'gender';
-const PRONOUN = 'pronoun';
-const GENDER_OPTIONAL = 'genderOptional';
+const FIRST_NAME = "firstName";
+const SURNAME = "surName";
+const MOBILE_NUMBER_EMAIL = "email";
+const NEW_PASSWORD = "password";
+const DATE_OF_BIRTH = "dateOfBirth";
+const MONTH = "month";
+const YEAR = "year";
+const GENDER = "gender";
+const PRONOUN = "pronoun";
+const GENDER_OPTIONAL = "genderOptional";
 
 const reducer = (state, action) => {
   state[action?.type] = action?.payload;
@@ -31,37 +31,37 @@ const reducer = (state, action) => {
 
 function SignUpModal({ onClose }) {
   const inputClassNames = classNames(
-    'rounded-[5px] w-[194px] h-[40px] p-[11px] font-secondary text-[15px]',
-    'border bg-[#f5f6f7]',
-    'focus-within:outline-none'
+    "rounded-[5px] w-[194px] h-[40px] p-[11px] font-secondary text-[15px]",
+    "border bg-[#f5f6f7]",
+    "focus-within:outline-none"
   );
 
   const dropDownClassNames = classNames(
-    'horizontal-align border items-center font-secondary text-[15px]',
-    'w-[125px] h-[36px] justify-between rounded-[5px]'
+    "horizontal-align border items-center font-secondary text-[15px]",
+    "w-[125px] h-[36px] justify-between rounded-[5px]"
   );
 
   const radioClassNames = classNames(
-    'horizontal-align border items-center font-secondary text-[15px]',
-    'w-[125px] h-[36px] justify-between rounded-[5px] px-[10px]'
+    "horizontal-align border items-center font-secondary text-[15px]",
+    "w-[125px] h-[36px] justify-between rounded-[5px] px-[10px]"
   );
 
-  const anchorClassNames = classNames('text-[#385898] no-underline');
+  const anchorClassNames = classNames("text-[#385898] no-underline");
 
   const [state, dispatch] = useReducer(produce(reducer), {
-    [FIRST_NAME]: '',
-    [SURNAME]: '',
-    [MOBILE_NUMBER_EMAIL]: '',
-    [NEW_PASSWORD]: '',
-    [DATE_OF_BIRTH]: '',
-    [MONTH]: '',
-    [YEAR]: '',
-    [GENDER]: '',
-    [PRONOUN]: '',
-    [GENDER_OPTIONAL]: '',
+    [FIRST_NAME]: "",
+    [SURNAME]: "",
+    [MOBILE_NUMBER_EMAIL]: "",
+    [NEW_PASSWORD]: "",
+    [DATE_OF_BIRTH]: "",
+    [MONTH]: "",
+    [YEAR]: "",
+    [GENDER]: "",
+    [PRONOUN]: "",
+    [GENDER_OPTIONAL]: "",
   });
 
-  const showPronounSection = state.gender === 'custom';
+  const showPronounSection = state.gender === "custom";
 
   const {
     dateOfBirthOptions,
@@ -113,7 +113,7 @@ function SignUpModal({ onClose }) {
         <div className="p-[16px]">
           <div className=" horizontal-align mb-3">
             <TextInput
-              className={inputClassNames + ' mr-2'}
+              className={inputClassNames + " mr-2"}
               type="text"
               placeholder="First Name"
               value={getFieldValue(FIRST_NAME)}
@@ -130,7 +130,7 @@ function SignUpModal({ onClose }) {
             />
           </div>
           <TextInput
-            className={inputClassNames + ' w-full mb-3'}
+            className={inputClassNames + " w-full mb-3"}
             type="text"
             placeholder="Mobile number or email address"
             value={getFieldValue(MOBILE_NUMBER_EMAIL)}
@@ -139,7 +139,7 @@ function SignUpModal({ onClose }) {
             }
           />
           <TextInput
-            className={inputClassNames + ' w-full mb-3'}
+            className={inputClassNames + " w-full mb-3"}
             type="password"
             placeholder="New password"
             value={getFieldValue(NEW_PASSWORD)}
@@ -196,7 +196,7 @@ function SignUpModal({ onClose }) {
           {showPronounSection && (
             <>
               <DropDown
-                className={dropDownClassNames + ' w-full'}
+                className={dropDownClassNames + " w-full"}
                 id={PRONOUN}
                 options={pronounOptions}
                 selected={getFieldValue(PRONOUN)}
@@ -207,7 +207,7 @@ function SignUpModal({ onClose }) {
                 Your pronoun is visible to everyone.
               </p>
               <TextInput
-                className={inputClassNames + ' w-full mb-3'}
+                className={inputClassNames + " w-full mb-3"}
                 type="text"
                 placeholder="Gender (optional)"
                 value={getFieldValue(GENDER_OPTIONAL)}
@@ -216,7 +216,7 @@ function SignUpModal({ onClose }) {
                 }
               />
             </>
-          )}{' '}
+          )}{" "}
           <p className="text-[11px] text-[#777]">
             People who use our service may have uploaded your contact
             information to Facebook. <a href="learn more">Learn more</a>
@@ -224,15 +224,15 @@ function SignUpModal({ onClose }) {
           <p className="text-[11px] text-[#777] my-[11px]">
             By clicking Sign Up, you agree to our
             <a href="terms" className={anchorClassNames}>
-              {' '}
-              Terms,{' '}
+              {" "}
+              Terms,{" "}
             </a>
             <a href="privacy" className={anchorClassNames}>
-              Privacy Policy{' '}
+              Privacy Policy{" "}
             </a>
-            and{' '}
+            and{" "}
             <a href="cookies" className={anchorClassNames}>
-              Cookies Policy.{' '}
+              Cookies Policy.{" "}
             </a>
             You may receive SMS notifications from us and can opt out at any
             time.

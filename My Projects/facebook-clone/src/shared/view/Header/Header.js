@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import FacebookLogo from "../../../assets/images/facebook.png";
-import "../Home.css";
 import { HOME } from "../../../constants/routeConstants";
+import "./Header.css";
 
 function Header() {
   const navigate = useNavigate();

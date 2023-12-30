@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import LandingPage from "./pages/Landing/Landing";
 import HomePage from "./pages/Home/Home";
 import { LANDING, HOME, PROFILE } from "./constants/routeConstants";
-import Profile from "./pages/Home/components/Profile";
-import Header from "./pages/Home/components/Header";
+import Profile from "./pages/Profile/Profile";
+import Header from "./shared/view/Header/Header";
 
 function App() {
   return (
