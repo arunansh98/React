@@ -11,6 +11,14 @@
   @apply font-[inherit];
 }
 
+.profile {
+  @apply font-homePrimary;
+}
+
+.profile * {
+  @apply font-[inherit];
+}
+
 .footer {
   @apply bg-[#F0F2F5];
   min-height: calc(100vh - 56px);
@@ -46,4 +54,9 @@ li:hover {
 
 .remove-cover-photo * {
   @apply !font-homePrimary;
+}
+
+.profile-photo-section {
+  @apply flex flex-row justify-between;
+  width: calc(80% - 117px);
 }

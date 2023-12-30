@@ -23,6 +23,9 @@ import { RxAvatar } from "react-icons/rx";
 import { RiDragMove2Fill } from "react-icons/ri";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { ImCross } from "react-icons/im";
+import { HiPencil } from "react-icons/hi2";
+import { IoIosArrowDown } from "react-icons/io";
+import Header from "./Header";
 
 function Profile() {
   const [addPost, addPostResults] = useAddPostMutation();
@@ -227,6 +230,7 @@ function Profile() {
 
   return (
     <div className="profile">
+      {/* <Header /> */}
       <div>
         <div
           style={{
@@ -262,14 +266,29 @@ function Profile() {
           onClick={() => setShowProfilePhotoModal(true)}
         ></div>
         {showProfilePhotoModal && profilePhotoModal}
-        <div className="inline-flex flex-col">
-          <h1 className="font-bold text-[#050505] text-[32px]">{fullName}</h1>
-          <a
-            href=""
-            className="font-[600] text-[15px] text-[#65676B] hover:underline"
-          >
-            75 friends
-          </a>
+        <div className="profile-photo-section">
+          <div className="flex flex-col">
+            <h1 className="font-bold text-[#050505] text-[32px]">{fullName}</h1>
+            <a
+              href=""
+              className="font-[600] text-[15px] text-[#65676B] hover:underline"
+            >
+              75 friends
+            </a>
+          </div>
+          <div className="flex flex-row items-center">
+            <button className="bg-blue text-white rounded-[6px] text-[15px] py-2 px-4 flex flex-row justify-between font-[600] mr-2">
+              <label className="mr-2 cursor-pointer">+</label>
+              <label className="cursor-pointer">Add to story</label>
+            </button>
+            <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-2 px-4 flex flex-row justify-between items-center font-[600] mr-2">
+              <HiPencil className="mr-2 cursor-pointer" />
+              <label className="cursor-pointer">Edit profile</label>
+            </button>
+            <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-3 px-4 flex flex-row justify-between items-center font-[600]">
+              <IoIosArrowDown className="cursor-pointer" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

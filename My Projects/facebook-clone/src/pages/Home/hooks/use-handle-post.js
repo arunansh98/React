@@ -1,19 +1,5 @@
+import { getBase64 } from "../../../utils/Utils";
 import { getUserId } from "../../../utils/sessionStorageUtils";
-
-const getBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      console.log(reader.result);
-      resolve(reader.result);
-    };
-    reader.onerror = function (error) {
-      console.log("Error: ", error);
-      resolve(error);
-    };
-  });
-};
 
 const handlePostChange = async (files, photo, type, handlePost) => {
   console.log("files", files);
@@ -38,4 +24,4 @@ const handlePostChange = async (files, photo, type, handlePost) => {
   });
 };
 
-export { getBase64, handlePostChange };
+export { handlePostChange };

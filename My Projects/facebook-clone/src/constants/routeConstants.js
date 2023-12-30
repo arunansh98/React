@@ -1,7 +1,5 @@
-export const LANDING = '';
+export const LANDING = "";
 
-export const HOME = 'home';
+export const HOME = "home";
 
-export const POSTS = '';
-
-export const PROFILE = 'profile';
+export const PROFILE = "profile";
