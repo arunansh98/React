@@ -26,85 +26,76 @@ import { ImCross } from "react-icons/im";
 
 function Profile() {
   const [addPost, addPostResults] = useAddPostMutation();
-
   const [updatePost, updatePostResults] = useUpdatePostMutation();
-
   const [deletePost, deletePhotoResults] = useDeletePostMutation();
 
   let { userDetails, postDetails } = useFetchProfileDetailsQuery(getUserId());
+  userDetails = userDetails?.data;
+  postDetails = postDetails?.data;
 
   const [showBackgroundPhotoModal, setShowBackgroundPhotoModal] =
     useState(false);
-
   const [showProfilePhotoModal, setShowProfilePhotoModal] = useState(false);
-
   const [showDeleteBackgroundPhotoModal, setShowDeleteBackgroundPhotoModal] =
     useState(false);
-
-  userDetails = userDetails?.data;
-  postDetails = postDetails?.data;
 
   console.log("userDetails", userDetails);
 
   const backGroundPhoto = postDetails?.find(
     (item) => item.type === BACKGROUND_PHOTO
   );
-
   const profilePhoto = postDetails?.find((item) => item.type === PROFILE_PHOTO);
 
   const fullName = userDetails?.firstName + " " + userDetails?.surName;
 
   const backClassName = classNames(
-    "flex items-end justify-end mx-auto cursor-pointer w-[80%] h-[23rem] rounded-bl-[6px] rounded-br-[6px] !bg-repeat-round"
+    "flex items-end justify-end mx-auto w-[80%] h-[23rem] rounded-bl-[6px] rounded-br-[6px] !bg-repeat-round"
   );
-
   const profileClassName = classNames(
     "mt-[-5rem] cursor-pointer rounded-[100px] inline-block h-[168px] w-[168px] mr-2 !bg-repeat-round"
   );
 
   const editBackgroundEl = useRef();
-
   const editBackgroundModalEl = useRef();
-
   const editProfileEl = useRef();
-
   const editProfileModalEl = useRef();
 
   useEffect(() => {
-    const handler = (event) => {
-      if (!editBackgroundEl.current) {
-        return;
-      }
+    const handleClickOutside = (event, targetEl, modalEl, setShowModal) => {
+      if (!targetEl?.current) return;
 
       if (
-        !editBackgroundEl?.current?.contains(event?.target) &&
-        !editBackgroundModalEl?.current?.contains(event?.target)
+        !targetEl?.current?.contains(event?.target) &&
+        !modalEl?.current?.contains(event?.target)
       ) {
-        setShowBackgroundPhotoModal(false);
+        setShowModal(false);
       }
     };
-    document.addEventListener("click", handler, true);
-    return () => {
-      document.removeEventListener("click", handler);
-    };
-  }, []);
 
-  useEffect(() => {
-    const handler = (event) => {
-      if (!editProfileEl.current) {
-        return;
-      }
-
-      if (
-        !editProfileEl?.current?.contains(event?.target) &&
-        !editProfileModalEl?.current?.contains(event?.target)
-      ) {
-        setShowProfilePhotoModal(false);
-      }
+    const handleBackgroundClick = (event) => {
+      handleClickOutside(
+        event,
+        editBackgroundEl,
+        editBackgroundModalEl,
+        setShowBackgroundPhotoModal
+      );
     };
-    document.addEventListener("click", handler, true);
+
+    const handleProfileClick = (event) => {
+      handleClickOutside(
+        event,
+        editProfileEl,
+        editProfileModalEl,
+        setShowProfilePhotoModal
+      );
+    };
+
+    document.addEventListener("click", handleBackgroundClick, true);
+    document.addEventListener("click", handleProfileClick, true);
+
     return () => {
-      document.removeEventListener("click", handler);
+      document.removeEventListener("click", handleBackgroundClick);
+      document.removeEventListener("click", handleProfileClick);
     };
   }, []);
 
@@ -113,6 +104,126 @@ function Profile() {
       id: backGroundPhoto?.id,
     });
   };
+
+  const backGroundPhotoModal = (
+    <AttachableModal
+      targetElementRef={editBackgroundEl}
+      alignVertically={"below"}
+      alignHorizontally={"right"}
+    >
+      <div className="cover-photo" ref={editBackgroundModalEl}>
+        <div>
+          <BsFileEarmarkImageFill className="mr-3" />
+          Choose cover photo
+        </div>
+        <Files
+          className="cursor-pointer"
+          clickable
+          accepts={["image/*"]}
+          onChange={(files) => {
+            handlePostChange(
+              files,
+              backGroundPhoto,
+              BACKGROUND_PHOTO,
+              !backGroundPhoto?.url ? addPost : updatePost
+            );
+            setShowBackgroundPhotoModal(false);
+          }}
+        >
+          <MdUpload className="mr-3" />
+          Upload photo
+        </Files>
+        <div>
+          <RxAvatar className="mr-3" />
+          Create avatar cover photo
+        </div>
+        <div>
+          <RiDragMove2Fill className="mr-3" />
+          Reposition
+        </div>
+        <hr className="mb-1 mt-1 px-1" />
+        <div
+          onClick={() => {
+            setShowDeleteBackgroundPhotoModal(true);
+            setShowBackgroundPhotoModal(false);
+          }}
+        >
+          <RiDeleteBin5Line className="mr-3" />
+          Remove
+        </div>
+      </div>
+    </AttachableModal>
+  );
+
+  const profilePhotoModal = (
+    <AttachableModal
+      targetElementRef={editProfileEl}
+      alignVertically={"above"}
+      alignHorizontally={"center"}
+    >
+      <div ref={editProfileModalEl} className="profile-photo">
+        <Files
+          clickable
+          accepts={["image/*"]}
+          onChange={(files) => {
+            handlePostChange(
+              files,
+              profilePhoto,
+              PROFILE_PHOTO,
+              !profilePhoto?.url ? addPost : updatePost
+            );
+            setShowProfilePhotoModal(false);
+          }}
+        >
+          <BsCamera className="mr-2" />
+          Choose Profile Picture
+        </Files>
+        <div>
+          <RxAvatar className="mr-2" />
+          Create avatar profile picture
+        </div>
+      </div>
+    </AttachableModal>
+  );
+
+  const deleteBackgroundPhotoModal = (
+    <Modal>
+      <div className="remove-cover-photo">
+        <div>
+          <h1 className="inline-flex w-[90%] justify-center text-[20px] font-[700]">
+            Remove cover photo
+          </h1>
+          <div
+            className="inline-flex p-2 border-[1px] rounded-[100px] bg-[silver] cursor-pointer"
+            onClick={() => setShowDeleteBackgroundPhotoModal(false)}
+          >
+            <ImCross />
+          </div>
+        </div>
+        <hr className="mt-2" />
+        <div className="mb-8 ml-2 mt-1">
+          Are you sure you want to remove your cover photo?
+        </div>
+        <div className="flex flex-row justify-end">
+          <button
+            className="hover:bg-[#f3f3f3] py-2 px-8 rounded-[6px] text-blue text-[15px] mr-2"
+            onClick={() => setShowDeleteBackgroundPhotoModal(false)}
+          >
+            Cancel
+          </button>
+          <button
+            className="bg-blue text-white rounded-[6px] text-[15px] py-2 px-8"
+            onClick={() => {
+              setShowDeleteBackgroundPhotoModal(false);
+              handleDeleteBackgroundPhoto();
+            }}
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </Modal>
+  );
 
   return (
     <div className="profile">
@@ -128,100 +239,15 @@ function Profile() {
           <div
             onClick={() => setShowBackgroundPhotoModal(true)}
             ref={editBackgroundEl}
-            className="mr-8 mb-4 rounded-[6px] px-[12px] py-[6px] text-[white] bg-[#00000066] border-[inherit] border-[1px] font-bold pointer-events-auto"
+            className="mr-8 mb-4 rounded-[6px] px-[12px] py-[6px] text-[white] bg-[#00000066] border-[inherit] border-[1px] font-bold pointer-events-auto cursor-pointer"
           >
             <div className="horizontal-align items-center">
               <BsCamera className="mr-2 text-[15px]" />
               Edit cover photo
             </div>
           </div>
-          {showBackgroundPhotoModal && (
-            <AttachableModal
-              targetElementRef={editBackgroundEl}
-              alignVertically={"below"}
-              alignHorizontally={"right"}
-            >
-              <div className="cover-photo" ref={editBackgroundModalEl}>
-                <div>
-                  <BsFileEarmarkImageFill className="mr-3" />
-                  Choose cover photo
-                </div>
-                <Files
-                  className="cursor-pointer"
-                  clickable
-                  accepts={["image/*"]}
-                  onChange={(files) => {
-                    handlePostChange(
-                      files,
-                      backGroundPhoto,
-                      BACKGROUND_PHOTO,
-                      !backGroundPhoto?.url ? addPost : updatePost
-                    );
-                    setShowBackgroundPhotoModal(false);
-                  }}
-                >
-                  <MdUpload className="mr-3" />
-                  Upload photo
-                </Files>
-                <div>
-                  <RxAvatar className="mr-3" />
-                  Create avatar cover photo
-                </div>
-                <div>
-                  <RiDragMove2Fill className="mr-3" />
-                  Reposition
-                </div>
-                <hr className="mb-1 mt-1 px-1" />
-                <div
-                  onClick={() => {
-                    setShowDeleteBackgroundPhotoModal(true);
-                    setShowBackgroundPhotoModal(false);
-                  }}
-                >
-                  <RiDeleteBin5Line className="mr-3" />
-                  Remove
-                </div>
-              </div>
-            </AttachableModal>
-          )}
-          {showDeleteBackgroundPhotoModal && (
-            <Modal>
-              <div className="remove-cover-photo">
-                <div>
-                  <h1 className="inline-flex w-[90%] justify-center text-[20px] font-[700]">
-                    Remove cover photo
-                  </h1>
-                  <div
-                    className="inline-flex p-2 border-[1px] rounded-[100px] bg-[silver] cursor-pointer"
-                    onClick={() => setShowDeleteBackgroundPhotoModal(false)}
-                  >
-                    <ImCross />
-                  </div>
-                </div>
-                <hr className="mt-2" />
-                <div className="mb-8 ml-2 mt-1">
-                  Are you sure you want to remove your cover photo?
-                </div>
-                <div className="flex flex-row justify-end">
-                  <button
-                    className="hover:bg-[#f3f3f3] py-2 px-8 rounded-[6px] text-blue text-[15px] mr-2"
-                    onClick={() => setShowDeleteBackgroundPhotoModal(false)}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    className="bg-blue text-white rounded-[6px] text-[15px] py-2 px-8"
-                    onClick={() => {
-                      setShowDeleteBackgroundPhotoModal(false);
-                      handleDeleteBackgroundPhoto();
-                    }}
-                  >
-                    Confirm
-                  </button>
-                </div>
-              </div>
-            </Modal>
-          )}
+          {showBackgroundPhotoModal && backGroundPhotoModal}
+          {showDeleteBackgroundPhotoModal && deleteBackgroundPhotoModal}
         </div>
       </div>
       <div className="horizontal-align ml-[14%]">
@@ -235,36 +261,7 @@ function Profile() {
           className={profileClassName}
           onClick={() => setShowProfilePhotoModal(true)}
         ></div>
-        {showProfilePhotoModal && (
-          <AttachableModal
-            targetElementRef={editProfileEl}
-            alignVertically={"above"}
-            alignHorizontally={"center"}
-          >
-            <div ref={editProfileModalEl} className="profile-photo">
-              <Files
-                clickable
-                accepts={["image/*"]}
-                onChange={(files) => {
-                  handlePostChange(
-                    files,
-                    profilePhoto,
-                    PROFILE_PHOTO,
-                    !profilePhoto?.url ? addPost : updatePost
-                  );
-                  setShowProfilePhotoModal(false);
-                }}
-              >
-                <BsCamera className="mr-2" />
-                Choose Profile Picture
-              </Files>
-              <div>
-                <RxAvatar className="mr-2" />
-                Create avatar profile picture
-              </div>
-            </div>
-          </AttachableModal>
-        )}
+        {showProfilePhotoModal && profilePhotoModal}
         <div className="inline-flex flex-col">
           <h1 className="font-bold text-[#050505] text-[32px]">{fullName}</h1>
           <a
