@@ -25,6 +25,9 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { ImCross } from "react-icons/im";
 import { HiPencil } from "react-icons/hi2";
 import { IoIosArrowDown } from "react-icons/io";
+import { TiArrowSortedDown } from "react-icons/ti";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import Tabs from "../../shared/components/Tabs";
 
 function Profile() {
   const [addPost, addPostResults] = useAddPostMutation();
@@ -61,6 +64,100 @@ function Profile() {
   const editBackgroundModalEl = useRef();
   const editProfileEl = useRef();
   const editProfileModalEl = useRef();
+
+  const [activeMenu, setActiveMenu] = useState();
+
+  const renderHeader = (tab) => {
+    return (
+      <div className="px-4 py-3 hover:bg-[#f3f3f3] text-[#65676B] font-[600] cursor-pointer rounded-[6px]">
+        {tab.label}
+      </div>
+    );
+  };
+
+  const renderMoreHeader = (tab) => {
+    return (
+      <div className="px-4 py-3 hover:bg-[#f3f3f3] text-[#65676B] font-[600] cursor-pointer rounded-[6px] flex flex-row items-center">
+        <label className="mr-2">{tab.label}</label>
+        <TiArrowSortedDown />
+      </div>
+    );
+  };
+
+  const renderActiveHeader = (tab) => {
+    return (
+      <>
+        <div className="px-4 py-3 text-blue font-[600] cursor-pointer rounded-[6px] flex flex-col">
+          {tab.label}
+        </div>
+        <hr className="border-blue border-[2px]" />
+      </>
+    );
+  };
+
+  const renderActiveMoreHeader = (tab) => {
+    return (
+      <>
+        <div className="px-4 py-3 text-blue font-[600] cursor-pointer rounded-[6px] flex flex-row items-center">
+          <label className="mr-2">{tab.label}</label>
+          <TiArrowSortedDown />
+        </div>
+        <hr className="border-blue border-[2px]" />
+      </>
+    );
+  };
+
+  const tabOptions = [
+    {
+      id: "posts",
+      label: "Posts",
+      renderHeader,
+      renderActiveHeader,
+      content: "Posts content in progress!",
+    },
+    {
+      id: "about",
+      label: "About",
+      renderHeader,
+      renderActiveHeader,
+      content: "About content in progress!",
+    },
+    {
+      id: "friends",
+      label: "Friends",
+      renderHeader,
+      renderActiveHeader,
+      content: "Friends content in progress!",
+    },
+    {
+      id: "photos",
+      label: "Photos",
+      renderHeader,
+      renderActiveHeader,
+      content: "Photos content in progress!",
+    },
+    {
+      id: "videos",
+      label: "Videos",
+      renderHeader,
+      renderActiveHeader,
+      content: "Videos content in progress!",
+    },
+    {
+      id: "sports",
+      label: "Sports",
+      renderHeader,
+      renderActiveHeader,
+      content: "Sports content in progress!",
+    },
+    {
+      id: "more",
+      label: "More",
+      renderHeader: (tab) => renderMoreHeader(tab),
+      renderActiveHeader: (tab) => renderActiveMoreHeader(tab),
+      content: "More content in progress!",
+    },
+  ];
 
   useEffect(() => {
     const handleClickOutside = (event, targetEl, modalEl, setShowModal) => {
@@ -287,6 +384,15 @@ function Profile() {
               <IoIosArrowDown className="cursor-pointer" />
             </button>
           </div>
+        </div>
+      </div>
+      <div className="footer-section">
+        <hr className="mx-auto mt-4 mb-1" />
+        <div className="mx-auto">
+          <Tabs tabs={tabOptions} className="inline-flex flex-col" />
+          <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-2 px-4 font-[600] inline-block float-right mt-2">
+            <HiOutlineDotsHorizontal />
+          </button>
         </div>
       </div>
     </div>

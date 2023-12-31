@@ -34,3 +34,7 @@
   @apply flex flex-row justify-between;
   width: calc(80% - 117px);
 }
+
+.footer-section > * {
+  @apply w-[75%];
+}
