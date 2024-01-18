@@ -1,4 +1,3 @@
-import Header from "../../shared/view/Header/Header";
 import { useNavigate } from "react-router-dom";
 import { useFetchUserDetailsQuery } from "../../store";
 import "./Home.css";
@@ -11,7 +10,6 @@ function Home() {
   const fullName = data?.firstName + " " + data?.surName;
   return (
     <div className="home">
-      {/* <Header /> */}
       <div className="footer ml-1">
         <ul className="text-[#050505] text-[15px] font-[600]">
           <li onClick={() => navigate("./" + PROFILE)}>

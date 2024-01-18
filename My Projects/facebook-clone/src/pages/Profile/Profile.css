@@ -32,9 +32,8 @@
 
 .profile-photo-section {
   @apply flex flex-row justify-between;
-  width: calc(80% - 117px);
 }
 
-.footer-section > * {
-  @apply w-[75%];
+.profile > * {
+  @apply max-w-[1250px] mx-auto;
 }

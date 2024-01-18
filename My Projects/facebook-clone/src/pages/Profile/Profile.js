@@ -54,7 +54,7 @@ function Profile() {
   const fullName = userDetails?.firstName + " " + userDetails?.surName;
 
   const backClassName = classNames(
-    "flex items-end justify-end mx-auto w-[80%] h-[23rem] rounded-bl-[6px] rounded-br-[6px] !bg-repeat-round"
+    "flex items-end justify-end h-[30rem] rounded-bl-[6px] rounded-br-[6px] !bg-repeat-round"
   );
   const profileClassName = classNames(
     "mt-[-5rem] cursor-pointer rounded-[100px] inline-block h-[168px] w-[168px] mr-2 !bg-repeat-round"
@@ -64,8 +64,6 @@ function Profile() {
   const editBackgroundModalEl = useRef();
   const editProfileEl = useRef();
   const editProfileModalEl = useRef();
-
-  const [activeMenu, setActiveMenu] = useState();
 
   const renderHeader = (tab) => {
     return (
@@ -326,42 +324,40 @@ function Profile() {
 
   return (
     <div className="profile">
-      <div>
+      <div
+        style={{
+          background: backGroundPhoto?.url
+            ? `url("${backGroundPhoto?.url}")`
+            : "#f3f3f3",
+        }}
+        className={backClassName}
+      >
         <div
-          style={{
-            background: backGroundPhoto?.url
-              ? `url("${backGroundPhoto?.url}")`
-              : "#f3f3f3",
-          }}
-          className={backClassName}
+          onClick={() => setShowBackgroundPhotoModal(true)}
+          ref={editBackgroundEl}
+          className="mr-8 mb-4 rounded-[6px] px-[12px] py-[6px] text-[white] bg-[#00000066] border-[inherit] border-[1px] font-bold pointer-events-auto cursor-pointer"
         >
-          <div
-            onClick={() => setShowBackgroundPhotoModal(true)}
-            ref={editBackgroundEl}
-            className="mr-8 mb-4 rounded-[6px] px-[12px] py-[6px] text-[white] bg-[#00000066] border-[inherit] border-[1px] font-bold pointer-events-auto cursor-pointer"
-          >
-            <div className="horizontal-align items-center">
-              <BsCamera className="mr-2 text-[15px]" />
-              Edit cover photo
-            </div>
+          <div className="horizontal-align items-center">
+            <BsCamera className="mr-2 text-[15px]" />
+            Edit cover photo
           </div>
-          {showBackgroundPhotoModal && backGroundPhotoModal}
-          {showDeleteBackgroundPhotoModal && deleteBackgroundPhotoModal}
         </div>
+        {showBackgroundPhotoModal && backGroundPhotoModal}
+        {showDeleteBackgroundPhotoModal && deleteBackgroundPhotoModal}
       </div>
-      <div className="horizontal-align ml-[14%]">
-        <div
-          ref={editProfileEl}
-          style={{
-            background: profilePhoto?.url
-              ? `url("${profilePhoto?.url}")`
-              : 'url("https://scontent.fdel27-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=CO5dz350V7MAX9oEHkS&_nc_ht=scontent.fdel27-1.fna&oh=00_AfC2_i7ts-u27DsAmbCwU6ZTXuZL6B4htbCbjRlBlARbTg&oe=65AE49B8")',
-          }}
-          className={profileClassName}
-          onClick={() => setShowProfilePhotoModal(true)}
-        ></div>
-        {showProfilePhotoModal && profilePhotoModal}
-        <div className="profile-photo-section">
+      <div className="horizontal-align justify-between px-[2rem]">
+        <div className="flex flex-row">
+          <div
+            ref={editProfileEl}
+            style={{
+              background: profilePhoto?.url
+                ? `url("${profilePhoto?.url}")`
+                : 'url("https://scontent.fdel27-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=CO5dz350V7MAX9oEHkS&_nc_ht=scontent.fdel27-1.fna&oh=00_AfC2_i7ts-u27DsAmbCwU6ZTXuZL6B4htbCbjRlBlARbTg&oe=65AE49B8")',
+            }}
+            className={profileClassName}
+            onClick={() => setShowProfilePhotoModal(true)}
+          ></div>
+          {showProfilePhotoModal && profilePhotoModal}
           <div className="flex flex-col">
             <h1 className="font-bold text-[#050505] text-[32px]">{fullName}</h1>
             <a
@@ -371,6 +367,8 @@ function Profile() {
               75 friends
             </a>
           </div>
+        </div>
+        <div className="profile-photo-section">
           <div className="flex flex-row items-center">
             <button className="bg-blue text-white rounded-[6px] text-[15px] py-2 px-4 flex flex-row justify-between font-[600] mr-2">
               <label className="mr-2 cursor-pointer">+</label>
@@ -386,7 +384,7 @@ function Profile() {
           </div>
         </div>
       </div>
-      <div className="footer-section">
+      <div className="px-[2rem]">
         <hr className="mx-auto mt-4 mb-1" />
         <div className="mx-auto">
           <Tabs tabs={tabOptions} className="inline-flex flex-col" />
