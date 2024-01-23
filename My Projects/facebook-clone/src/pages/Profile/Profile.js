@@ -54,8 +54,9 @@ function Profile() {
   const fullName = userDetails?.firstName + " " + userDetails?.surName;
 
   const backClassName = classNames(
-    "flex items-end justify-end h-[30rem] rounded-bl-[6px] rounded-br-[6px] !bg-repeat-round"
+    "flex items-end justify-end h-[30rem] rounded-bl-[6px] rounded-br-[6px] !bg-no-repeat"
   );
+
   const profileClassName = classNames(
     "mt-[-5rem] cursor-pointer rounded-[100px] inline-block h-[168px] w-[168px] mr-2 !bg-repeat-round"
   );
@@ -326,9 +327,10 @@ function Profile() {
     <div className="profile">
       <div
         style={{
-          background: backGroundPhoto?.url
+          backgroundImage: backGroundPhoto?.url
             ? `url("${backGroundPhoto?.url}")`
             : "#f3f3f3",
+          backgroundSize: "100% 100%",
         }}
         className={backClassName}
       >
@@ -361,7 +363,7 @@ function Profile() {
           <div className="flex flex-col">
             <h1 className="font-bold text-[#050505] text-[32px]">{fullName}</h1>
             <a
-              href=""
+              href="fgh"
               className="font-[600] text-[15px] text-[#65676B] hover:underline"
             >
               75 friends
