@@ -37,3 +37,7 @@
 .profile > * {
   @apply max-w-[1250px] mx-auto;
 }
+
+.tab-container {
+  @apply px-[2rem] mx-auto;
+}

@@ -28,6 +28,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import Tabs from "../../shared/components/Tabs";
+import Posts from "./Posts/Posts";
 
 function Profile() {
   const [addPost, addPostResults] = useAddPostMutation();
@@ -106,17 +107,23 @@ function Profile() {
     );
   };
 
+  const handleOnClick = (button) => {
+    console.log("button clicked !");
+  };
+
   const tabOptions = [
     {
       id: "posts",
       label: "Posts",
+      type: "tab",
       renderHeader,
       renderActiveHeader,
-      content: "Posts content in progress!",
+      content: <Posts />,
     },
     {
       id: "about",
       label: "About",
+      type: "tab",
       renderHeader,
       renderActiveHeader,
       content: "About content in progress!",
@@ -124,6 +131,7 @@ function Profile() {
     {
       id: "friends",
       label: "Friends",
+      type: "tab",
       renderHeader,
       renderActiveHeader,
       content: "Friends content in progress!",
@@ -131,6 +139,7 @@ function Profile() {
     {
       id: "photos",
       label: "Photos",
+      type: "tab",
       renderHeader,
       renderActiveHeader,
       content: "Photos content in progress!",
@@ -138,6 +147,7 @@ function Profile() {
     {
       id: "videos",
       label: "Videos",
+      type: "tab",
       renderHeader,
       renderActiveHeader,
       content: "Videos content in progress!",
@@ -145,6 +155,7 @@ function Profile() {
     {
       id: "sports",
       label: "Sports",
+      type: "tab",
       renderHeader,
       renderActiveHeader,
       content: "Sports content in progress!",
@@ -152,9 +163,23 @@ function Profile() {
     {
       id: "more",
       label: "More",
+      type: "tab",
       renderHeader: (tab) => renderMoreHeader(tab),
       renderActiveHeader: (tab) => renderActiveMoreHeader(tab),
       content: "More content in progress!",
+    },
+    {
+      id: "button",
+      label: "",
+      type: "button",
+      renderButton: (_button) => {
+        return (
+          <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-2 px-4 font-[600] inline-block float-right mt-2">
+            <HiOutlineDotsHorizontal />
+          </button>
+        );
+      },
+      onClick: (button) => handleOnClick(button),
     },
   ];
 
@@ -324,78 +349,77 @@ function Profile() {
   );
 
   return (
-    <div className="profile">
-      <div
-        style={{
-          backgroundImage: backGroundPhoto?.url
-            ? `url("${backGroundPhoto?.url}")`
-            : "#f3f3f3",
-          backgroundSize: "100% 100%",
-        }}
-        className={backClassName}
-      >
+    <>
+      <div className="profile">
         <div
-          onClick={() => setShowBackgroundPhotoModal(true)}
-          ref={editBackgroundEl}
-          className="mr-8 mb-4 rounded-[6px] px-[12px] py-[6px] text-[white] bg-[#00000066] border-[inherit] border-[1px] font-bold pointer-events-auto cursor-pointer"
+          style={{
+            backgroundImage: backGroundPhoto?.url
+              ? `url("${backGroundPhoto?.url}")`
+              : "#f3f3f3",
+            backgroundSize: "100% 100%",
+          }}
+          className={backClassName}
         >
-          <div className="horizontal-align items-center">
-            <BsCamera className="mr-2 text-[15px]" />
-            Edit cover photo
-          </div>
-        </div>
-        {showBackgroundPhotoModal && backGroundPhotoModal}
-        {showDeleteBackgroundPhotoModal && deleteBackgroundPhotoModal}
-      </div>
-      <div className="horizontal-align justify-between px-[2rem]">
-        <div className="flex flex-row">
           <div
-            ref={editProfileEl}
-            style={{
-              background: profilePhoto?.url
-                ? `url("${profilePhoto?.url}")`
-                : 'url("https://scontent.fdel27-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=CO5dz350V7MAX9oEHkS&_nc_ht=scontent.fdel27-1.fna&oh=00_AfC2_i7ts-u27DsAmbCwU6ZTXuZL6B4htbCbjRlBlARbTg&oe=65AE49B8")',
-            }}
-            className={profileClassName}
-            onClick={() => setShowProfilePhotoModal(true)}
-          ></div>
-          {showProfilePhotoModal && profilePhotoModal}
-          <div className="flex flex-col">
-            <h1 className="font-bold text-[#050505] text-[32px]">{fullName}</h1>
-            <a
-              href="fgh"
-              className="font-[600] text-[15px] text-[#65676B] hover:underline"
-            >
-              75 friends
-            </a>
+            onClick={() => setShowBackgroundPhotoModal(true)}
+            ref={editBackgroundEl}
+            className="mr-8 mb-4 rounded-[6px] px-[12px] py-[6px] text-[white] bg-[#00000066] border-[inherit] border-[1px] font-bold pointer-events-auto cursor-pointer"
+          >
+            <div className="horizontal-align items-center">
+              <BsCamera className="mr-2 text-[15px]" />
+              Edit cover photo
+            </div>
+          </div>
+          {showBackgroundPhotoModal && backGroundPhotoModal}
+          {showDeleteBackgroundPhotoModal && deleteBackgroundPhotoModal}
+        </div>
+        <div className="horizontal-align justify-between px-[2rem]">
+          <div className="flex flex-row">
+            <div
+              ref={editProfileEl}
+              style={{
+                background: profilePhoto?.url
+                  ? `url("${profilePhoto?.url}")`
+                  : 'url("https://scontent.fdel27-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=CO5dz350V7MAX9oEHkS&_nc_ht=scontent.fdel27-1.fna&oh=00_AfC2_i7ts-u27DsAmbCwU6ZTXuZL6B4htbCbjRlBlARbTg&oe=65AE49B8")',
+              }}
+              className={profileClassName}
+              onClick={() => setShowProfilePhotoModal(true)}
+            ></div>
+            {showProfilePhotoModal && profilePhotoModal}
+            <div className="flex flex-col">
+              <h1 className="font-bold text-[#050505] text-[32px]">
+                {fullName}
+              </h1>
+              <a
+                href="fgh"
+                className="font-[600] text-[15px] text-[#65676B] hover:underline"
+              >
+                75 friends
+              </a>
+            </div>
+          </div>
+          <div className="profile-photo-section">
+            <div className="flex flex-row items-center">
+              <button className="bg-blue text-white rounded-[6px] text-[15px] py-2 px-4 flex flex-row justify-between font-[600] mr-2">
+                <label className="mr-2 cursor-pointer">+</label>
+                <label className="cursor-pointer">Add to story</label>
+              </button>
+              <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-2 px-4 flex flex-row justify-between items-center font-[600] mr-2">
+                <HiPencil className="mr-2 cursor-pointer" />
+                <label className="cursor-pointer">Edit profile</label>
+              </button>
+              <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-3 px-4 flex flex-row justify-between items-center font-[600]">
+                <IoIosArrowDown className="cursor-pointer" />
+              </button>
+            </div>
           </div>
         </div>
-        <div className="profile-photo-section">
-          <div className="flex flex-row items-center">
-            <button className="bg-blue text-white rounded-[6px] text-[15px] py-2 px-4 flex flex-row justify-between font-[600] mr-2">
-              <label className="mr-2 cursor-pointer">+</label>
-              <label className="cursor-pointer">Add to story</label>
-            </button>
-            <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-2 px-4 flex flex-row justify-between items-center font-[600] mr-2">
-              <HiPencil className="mr-2 cursor-pointer" />
-              <label className="cursor-pointer">Edit profile</label>
-            </button>
-            <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-3 px-4 flex flex-row justify-between items-center font-[600]">
-              <IoIosArrowDown className="cursor-pointer" />
-            </button>
-          </div>
+        <div className="tab-container">
+          <hr className="mx-auto mt-4 mb-1" />
+          <Tabs tabs={tabOptions} />
         </div>
       </div>
-      <div className="px-[2rem]">
-        <hr className="mx-auto mt-4 mb-1" />
-        <div className="mx-auto">
-          <Tabs tabs={tabOptions} className="inline-flex flex-col" />
-          <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-2 px-4 font-[600] inline-block float-right mt-2">
-            <HiOutlineDotsHorizontal />
-          </button>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 
