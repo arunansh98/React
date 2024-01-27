@@ -118,7 +118,7 @@ function Profile() {
       type: "tab",
       renderHeader,
       renderActiveHeader,
-      content: <Posts />,
+      content: <Posts userDetails={userDetails} />,
     },
     {
       id: "about",

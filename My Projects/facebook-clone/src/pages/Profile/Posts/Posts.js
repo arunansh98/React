@@ -1,34 +1,46 @@
 import Card from "../../../shared/components/Card";
 import TextAreaInput from "../../../shared/components/TextAreaInput";
+import { useUpdateUserDetailsMutation } from "../../../store";
 import "./Posts.css";
 import { useState } from "react";
 import { MdOutlinePublic } from "react-icons/md";
 
-function Posts() {
-  const [showAddBio, setShowAddBio] = useState(false);
+function Posts({ userDetails }) {
+  const [showBioInput, setShowBioInput] = useState(false);
 
-  const [bio, setBio] = useState("");
+  const [updateUserDetails, updateUserDetailsResults] =
+    useUpdateUserDetailsMutation();
 
-  console.log("bio", bio);
+  const bio = userDetails?.bio ? userDetails?.bio : "";
+
+  const [bioInput, setBioInput] = useState(bio);
 
   const leftCards = (
     <div className="left-cards">
       <Card className="p-[15px]">
         <h1>Intro</h1>
-        {!showAddBio && (
-          <button className="grey-button" onClick={() => setShowAddBio(true)}>
-            Add Bio
+        {bio && <span className="block text-center">{bio}</span>}
+        {!showBioInput && (
+          <button
+            className="grey-button"
+            onClick={() => {
+              setBioInput(bio);
+              setShowBioInput(true);
+            }}
+          >
+            {bio ? "Edit Bio" : "Add Bio"}
           </button>
         )}
-        {showAddBio && (
+        {showBioInput && (
           <>
             <TextAreaInput
               placeholder="Describe who you are"
-              value={bio}
-              onChange={(event) => setBio(event.target.value)}
+              maxLength="101"
+              value={bioInput}
+              onChange={(event) => setBioInput(event.target.value)}
             />
             <div className="flex flex-row justify-end text-[13px] text-[#65676B]">
-              101 characters remaining
+              {101 - bioInput.length} characters remaining
             </div>
             <div className="flex flex-row justify-between items-center mt-2">
               <h1 className="!text-[15px] !font-normal flex flex-row items-center">
@@ -39,15 +51,22 @@ function Posts() {
                 <button
                   className="grey-button !w-[fit-content] mr-2 !px-4 !mt-[0px]"
                   onClick={() => {
-                    setBio("");
-                    setShowAddBio(false);
+                    setBioInput("");
+                    setShowBioInput(false);
                   }}
                 >
                   Cancel
                 </button>
                 <button
-                  disabled={!bio}
-                  className="grey-button !w-[fit-content] !px-4 !mt-[0px]"
+                  disabled={bioInput === bio}
+                  className="save grey-button !w-[fit-content] !px-4 !mt-[0px]"
+                  onClick={() => {
+                    setShowBioInput(false);
+                    updateUserDetails({
+                      id: userDetails.id,
+                      bio: bioInput,
+                    });
+                  }}
                 >
                   Save
                 </button>

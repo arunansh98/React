@@ -14,8 +14,14 @@
   @apply hover:bg-[#e3e5e7] rounded-[6px] font-[600] text-[15px] text-[#050505] bg-[#f0f2f5] px-12 py-2 w-[100%] mt-3;
 }
 
-button[disabled] {
+.posts button.save {
+  @apply text-white bg-blue hover:bg-blue;
+}
+
+.posts button[disabled].save {
   opacity: 40%;
+  @apply text-[#050505] bg-[#f0f2f5];
+  cursor: not-allowed;
 }
 
 .posts textarea {

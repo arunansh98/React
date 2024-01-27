@@ -4,8 +4,8 @@ import {
   ADD_POST,
   FETCH_USER_DETAILS,
 } from "../../constants/apiConstants";
-import { DELETE, GET, POST, PUT } from "../../constants/methodTypes";
-import { getBearerToken, getUserId } from "../../utils/sessionStorageUtils";
+import { DELETE, GET, POST, PUT, PATCH } from "../../constants/methodTypes";
+import { getBearerToken } from "../../utils/sessionStorageUtils";
 import { landingApi } from "./landingApi";
 
 const homeApi = landingApi.injectEndpoints({
@@ -20,6 +20,22 @@ const homeApi = landingApi.injectEndpoints({
             method: GET,
             headers: {
               Authorization: getBearerToken(),
+            },
+          };
+        },
+      }),
+      updateUserDetails: builder.mutation({
+        invalidatesTags: ["fetchUserDetails"],
+        query: (userDetails) => {
+          const { id, ...rest } = userDetails;
+          return {
+            url: `${FETCH_USER_DETAILS}/${id}`,
+            method: PATCH,
+            headers: {
+              Authorization: getBearerToken(),
+            },
+            body: {
+              ...rest,
             },
           };
         },
@@ -90,6 +106,7 @@ const homeApi = landingApi.injectEndpoints({
 
 export const {
   useFetchUserDetailsQuery,
+  useUpdateUserDetailsMutation,
   useFetchPostsQuery,
   useAddPostMutation,
   useUpdatePostMutation,
