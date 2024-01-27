@@ -14,6 +14,30 @@
   @apply hover:bg-[#e3e5e7] rounded-[6px] font-[600] text-[15px] text-[#050505] bg-[#f0f2f5] px-12 py-2 w-[100%] mt-3;
 }
 
+button[disabled] {
+  opacity: 40%;
+}
+
+.posts textarea {
+  @apply rounded-[6px] mt-2 w-[100%] bg-[#f0f2f5] h-[70px] text-center text-[15px] font-bold pt-[10px];
+  border: 1px solid aliceblue;
+  resize: none;
+  color: rgb(100, 99, 99);
+}
+
+.posts textarea:focus {
+  outline: none;
+  @apply !border-blue !border-[1px] !border-solid bg-[white];
+}
+
+.posts textarea:hover {
+  @apply bg-[#f0f2f5];
+}
+
+.posts textarea::placeholder {
+  @apply text-center text-[#666666] font-bold  text-[15px];
+}
+
 .left-cards {
   @apply w-[40%] flex flex-col mr-4;
 }
