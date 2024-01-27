@@ -45,17 +45,17 @@ function Profile() {
   const [showDeleteBackgroundPhotoModal, setShowDeleteBackgroundPhotoModal] =
     useState(false);
 
-  console.log("userDetails", userDetails);
-
   const backGroundPhoto = postDetails?.find(
     (item) => item.type === BACKGROUND_PHOTO
   );
+
   const profilePhoto = postDetails?.find((item) => item.type === PROFILE_PHOTO);
 
   const fullName = userDetails?.firstName + " " + userDetails?.surName;
 
   const backClassName = classNames(
-    "flex items-end justify-end h-[30rem] rounded-bl-[6px] rounded-br-[6px] !bg-no-repeat"
+    "flex items-end justify-end h-[30rem] rounded-bl-[6px] rounded-br-[6px]",
+    backGroundPhoto && backGroundPhoto?.url && "!bg-no-repeat"
   );
 
   const profileClassName = classNames(
@@ -264,16 +264,20 @@ function Profile() {
           <RiDragMove2Fill className="mr-3" />
           Reposition
         </div>
-        <hr className="mb-1 mt-1 px-1" />
-        <div
-          onClick={() => {
-            setShowDeleteBackgroundPhotoModal(true);
-            setShowBackgroundPhotoModal(false);
-          }}
-        >
-          <RiDeleteBin5Line className="mr-3" />
-          Remove
-        </div>
+        {backGroundPhoto && backGroundPhoto?.url && (
+          <>
+            <hr className="mb-1 mt-1 px-1" />
+            <div
+              onClick={() => {
+                setShowDeleteBackgroundPhotoModal(true);
+                setShowBackgroundPhotoModal(false);
+              }}
+            >
+              <RiDeleteBin5Line className="mr-3" />
+              Remove
+            </div>
+          </>
+        )}
       </div>
     </AttachableModal>
   );
@@ -353,9 +357,10 @@ function Profile() {
       <div className="profile">
         <div
           style={{
-            backgroundImage: backGroundPhoto?.url
+            backgroundImage: backGroundPhoto
               ? `url("${backGroundPhoto?.url}")`
-              : "#f3f3f3",
+              : undefined,
+            backgroundColor: !backGroundPhoto ? "#f3f3f3" : "transparent",
             backgroundSize: "100% 100%",
           }}
           className={backClassName}
@@ -367,7 +372,7 @@ function Profile() {
           >
             <div className="horizontal-align items-center">
               <BsCamera className="mr-2 text-[15px]" />
-              Edit cover photo
+              {!backGroundPhoto?.url ? "Add Cover Photo" : "Edit Cover Photo"}
             </div>
           </div>
           {showBackgroundPhotoModal && backGroundPhotoModal}
