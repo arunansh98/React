@@ -1,3 +1,31 @@
 .posts {
-  @apply py-2;
+  @apply py-5 flex flex-row;
+}
+
+.posts h1 {
+  @apply text-[20px] font-bold;
+}
+
+.posts button.transparent-button {
+  @apply hover:bg-[#f3f3f3] text-blue text-[17px] rounded-[6px] p-2;
+}
+
+.posts button.grey-button {
+  @apply hover:bg-[#e3e5e7] rounded-[6px] font-[600] text-[15px] text-[#050505] bg-[#f0f2f5] px-12 py-2 w-[100%] mt-3;
+}
+
+.left-cards {
+  @apply w-[40%] flex flex-col mr-4;
+}
+
+.left-cards > * {
+  @apply mb-4;
+}
+
+.right-cards {
+  @apply w-[60%] flex flex-col;
+}
+
+.right-cards > * {
+  @apply mb-4;
 }
