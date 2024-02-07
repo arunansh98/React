@@ -12,7 +12,7 @@
 }
 
 li {
-  @apply horizontal-align items-center cursor-pointer mb-2 w-[20%] p-[0.5rem] rounded-[6px];
+  @apply flex flex-row items-center cursor-pointer mb-2 w-[20%] p-[0.5rem] rounded-[6px];
 }
 
 li:hover {

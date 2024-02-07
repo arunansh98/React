@@ -1,15 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
-import { GoChevronDown } from 'react-icons/go';
+import { useEffect, useRef, useState } from "react";
+import { GoChevronDown } from "react-icons/go";
 
 function DropDown({ ...props }) {
-  const {
-    className,
-    options,
-    selected,
-    onChange,
-    placeholder,
-    ...rest
-  } = props;
+  const { className, options, selected, onChange, placeholder, ...rest } =
+    props;
   const [showOptions, setShowOptions] = useState(false);
   const dropDownEl = useRef();
 
@@ -37,9 +31,9 @@ function DropDown({ ...props }) {
         setShowOptions(false);
       }
     };
-    document.addEventListener('click', handler, true);
+    document.addEventListener("click", handler, true);
     return () => {
-      document.removeEventListener('click', handler);
+      document.removeEventListener("click", handler);
     };
   }, []);
 
@@ -49,13 +43,13 @@ function DropDown({ ...props }) {
       ref={dropDownEl}
       onClick={() => setShowOptions(!showOptions)}
     >
-      <button className={className + ' p-[10px]'}>
-        <div>{label || placeholder || 'Select'}</div>
+      <button className={className + " p-[10px]"}>
+        <div>{label || placeholder || "Select"}</div>
         <GoChevronDown />
       </button>
       {showOptions && (
         <div className="z-[1] absolute border w-full max-h-[199px] overflow-y-auto bg-[#fff] cursor-pointer font-secondary text-[15px]">
-          <div className="vertical-align" onClick={() => setShowOptions(false)}>
+          <div className="flex flex-col" onClick={() => setShowOptions(false)}>
             {contentOptions}
           </div>
         </div>

@@ -3,12 +3,16 @@
 @tailwind utilities;
 
 @layer components {
-  .vertical-align {
-    @apply flex flex-col;
+  .btn-primary {
+    @apply bg-blue py-2 text-white text-[15px] font-[600] rounded-[6px] flex flex-row items-center;
   }
 
-  .horizontal-align {
-    @apply flex flex-row;
+  .btn-secondary {
+    @apply bg-grey py-2 text-black text-[15px] font-[600] rounded-[6px] flex flex-row items-center hover:bg-[#e3e5e7];
+  }
+
+  .btn-transparent {
+    @apply bg-transparent py-2 text-[15px] font-[600] rounded-[6px] hover:bg-[#f3f3f3];
   }
 }
 
@@ -16,8 +20,8 @@
   @apply font-primary;
 }
 
-input[type='text'],
-input[type='password'] {
+input[type="text"],
+input[type="password"] {
   @apply border-none outline-none w-full;
 }
 
@@ -36,6 +40,11 @@ hr {
 }
 
 .login-container {
-  @apply vertical-align h-[456px] w-[396px] items-center p-4 bg-[#fff] rounded-[6px] h-fit;
+  @apply flex flex-col h-[456px] w-[396px] items-center p-4 bg-[#fff] rounded-[6px] h-fit;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+button[disabled] {
+  opacity: 40%;
+  cursor: not-allowed;
 }

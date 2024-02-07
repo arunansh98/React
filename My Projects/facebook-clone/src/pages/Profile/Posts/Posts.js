@@ -4,6 +4,9 @@ import { useUpdateUserDetailsMutation } from "../../../store";
 import "./Posts.css";
 import { useState } from "react";
 import { MdOutlinePublic } from "react-icons/md";
+import Modal from "../../../shared/components/Modal";
+import { VscClose } from "react-icons/vsc";
+import { AiOutlinePlus } from "react-icons/ai";
 
 function Posts({ userDetails }) {
   const [showBioInput, setShowBioInput] = useState(false);
@@ -15,6 +18,53 @@ function Posts({ userDetails }) {
 
   const [bioInput, setBioInput] = useState(bio);
 
+  const [showEditDetailsModal, setShowEditDetailsModal] = useState(false);
+
+  const blueOutline = (
+    <AiOutlinePlus className="h-[28px] w-[28px] mr-2 p-[4px] border-blue border-solid border-[2px] rounded-[100px]" />
+  );
+
+  const editDetailsFields = [
+    {
+      id: "pronouns",
+      label: "Pronouns",
+      values: [
+        {
+          label: "Add pronouns to your profile",
+          href: "pronouns",
+        },
+      ],
+    },
+    {
+      id: "work",
+      label: "Work",
+      values: [{ label: "Add a workplace", href: "work" }],
+    },
+    {
+      id: "education",
+      label: "Education",
+      values: [
+        { label: "Add secondary school", href: "secondary" },
+        { label: "Add university", href: "university" },
+      ],
+    },
+    {
+      id: "current",
+      label: "Current town/city",
+      values: [{ label: "Add current city", href: "current" }],
+    },
+    {
+      id: "home",
+      label: "Home town",
+      values: [{ label: "Add home town", href: "home" }],
+    },
+    {
+      id: "relation",
+      label: "Relationship",
+      values: [{ label: "Add relationship status", href: "relation" }],
+    },
+  ];
+
   const leftCards = (
     <div className="left-cards">
       <Card className="p-[15px]">
@@ -22,7 +72,7 @@ function Posts({ userDetails }) {
         {bio && <span className="block text-center">{bio}</span>}
         {!showBioInput && (
           <button
-            className="grey-button"
+            className="btn-wide"
             onClick={() => {
               setBioInput(bio);
               setShowBioInput(true);
@@ -47,9 +97,9 @@ function Posts({ userDetails }) {
                 <MdOutlinePublic className="mr-1 text-[23px]" />
                 Public
               </h1>
-              <div>
+              <div className="flex">
                 <button
-                  className="grey-button !w-[fit-content] mr-2 !px-4 !mt-[0px]"
+                  className="btn-secondary btn-small mr-2"
                   onClick={() => {
                     setBioInput("");
                     setShowBioInput(false);
@@ -59,7 +109,7 @@ function Posts({ userDetails }) {
                 </button>
                 <button
                   disabled={bioInput === bio}
-                  className="save grey-button !w-[fit-content] !px-4 !mt-[0px]"
+                  className="btn-small save"
                   onClick={() => {
                     setShowBioInput(false);
                     updateUserDetails({
@@ -74,8 +124,13 @@ function Posts({ userDetails }) {
             </div>
           </>
         )}
-        <button className="grey-button">Edit details</button>
-        <button className="grey-button">Add Featured</button>
+        <button
+          className="btn-wide"
+          onClick={() => setShowEditDetailsModal(true)}
+        >
+          Edit details
+        </button>
+        <button className="btn-wide">Add Featured</button>
       </Card>
       <Card className="p-[15px] flex flex-row justify-between items-center">
         <h1>Photos</h1>
@@ -95,10 +150,91 @@ function Posts({ userDetails }) {
     </div>
   );
 
+  function renderEditDetailsFields(fields) {
+    console.log("fields", fields);
+    return fields.map((field) => {
+      console.log(field);
+      return (
+        <h1 key={field.id}>
+          {field.label}
+          {field.values.map((value) => {
+            return (
+              <a
+                className="text-[15px] font-[400] block hover:underline cursor-pointer text-blue flex flex-row items-center mt-3"
+                key={value.href}
+                href={value.href}
+              >
+                {blueOutline}
+                {value.label}
+              </a>
+            );
+          })}
+        </h1>
+      );
+    });
+  }
+
+  const editDetailsModal = showEditDetailsModal && (
+    <Modal className="w-[700px]" onClose={() => setShowEditDetailsModal(false)}>
+      <div className="edit-details-modal">
+        <div className="edit-details-modal-header">
+          <span className="ml-auto !font-bold !text-[20px]">Edit details</span>
+          <VscClose
+            className="ml-auto text-[#6d6b6b] p-[1px] bg-[#f3f3f3] rounded-[100px] h-[36px] w-[36px] cursor-pointer"
+            onClick={() => setShowEditDetailsModal(false)}
+          />
+        </div>
+        <hr />
+        <div className="edit-details-modal-body">
+          <h1>
+            Customise your Intro
+            <span>Details you select will be public.</span>
+          </h1>
+          {renderEditDetailsFields(editDetailsFields)}
+          <div className="flex flex-row justify-between items-center">
+            <h1>
+              Websites
+              <span className="text-[#65676B] !text-[13px]">
+                To feature links on your Profile, set the audience to{" "}
+                <b>Public.</b>
+              </span>
+            </h1>
+            <button className="btn-secondary px-4">
+              Public <MdOutlinePublic className="ml-1" />
+            </button>
+          </div>
+          <div className="flex flex-row justify-between items-center">
+            <h1>
+              Social links
+              <span className="text-[#65676B] !text-[13px]">
+                To feature links on your Profile, set the audience to{" "}
+                <b>Public.</b>
+              </span>
+            </h1>
+            <button className="btn-secondary px-4">
+              Public <MdOutlinePublic className="ml-1" />
+            </button>
+          </div>
+        </div>
+        <hr />
+        <div className="edit-details-modal-footer">
+          <button className="btn-transparent px-4 text-blue">
+            Update your information
+          </button>
+          <div className="flex">
+            <button className="btn-secondary px-4 mr-2">Cancel</button>
+            <button className="btn-primary px-10">Save</button>
+          </div>
+        </div>
+      </div>
+    </Modal>
+  );
+
   return (
     <div className="posts">
       {leftCards}
       {rightCards}
+      {editDetailsModal}
     </div>
   );
 }

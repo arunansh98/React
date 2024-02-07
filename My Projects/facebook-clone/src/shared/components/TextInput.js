@@ -9,7 +9,7 @@ function TextInput({ ...rest }) {
     "!bg-transparent",
     isPassword && "!w-[93%] mr-1"
   );
-  const divClassName = classNames("horizontal-align", className);
+  const divClassName = classNames("flex flex-row", className);
   const [showPassword, setShowPassword] = useState(false);
   const type = isPassword ? (showPassword ? "text" : "password") : rest.type;
   return (

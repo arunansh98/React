@@ -10,18 +10,16 @@
   @apply hover:bg-[#f3f3f3] text-blue text-[17px] rounded-[6px] p-2;
 }
 
-.posts button.grey-button {
-  @apply hover:bg-[#e3e5e7] rounded-[6px] font-[600] text-[15px] text-[#050505] bg-[#f0f2f5] px-12 py-2 w-[100%] mt-3;
+button.btn-wide {
+  @apply btn-secondary px-12 w-[100%] mt-3 justify-center;
 }
 
-.posts button.save {
-  @apply text-white bg-blue hover:bg-blue;
+button.btn-small {
+  @apply px-4 w-[fit-content];
 }
 
-.posts button[disabled].save {
-  opacity: 40%;
-  @apply text-[#050505] bg-[#f0f2f5];
-  cursor: not-allowed;
+button.save {
+  @apply btn-primary disabled:text-black disabled:bg-grey;
 }
 
 .posts textarea {
@@ -58,4 +56,37 @@
 
 .right-cards > * {
   @apply mb-4;
+}
+
+.edit-details-modal * {
+  @apply font-homePrimary;
+}
+
+.edit-details-modal h1 {
+  @apply text-[17px] font-[600] text-[#050505] mb-6;
+}
+
+.edit-details-modal h1 > span {
+  @apply text-[#65676B] block !font-[400] text-[15px];
+}
+
+.edit-details-modal-header {
+  @apply flex flex-row items-center py-3 px-3;
+}
+
+.edit-details-modal-body {
+  @apply px-6 py-3 h-[35rem] overflow-y-auto;
+}
+
+.edit-details-modal-footer {
+  @apply flex flex-row justify-between p-4;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ced0d4;
+  border-radius: 6px;
 }

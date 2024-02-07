@@ -174,7 +174,7 @@ function Profile() {
       type: "button",
       renderButton: (_button) => {
         return (
-          <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-2 px-4 font-[600] inline-block float-right mt-2">
+          <button className="btn-secondary px-4 inline-block float-right mt-2">
             <HiOutlineDotsHorizontal />
           </button>
         );
@@ -370,7 +370,7 @@ function Profile() {
             ref={editBackgroundEl}
             className="mr-8 mb-4 rounded-[6px] px-[12px] py-[6px] text-[white] bg-[#00000066] border-[inherit] border-[1px] font-bold pointer-events-auto cursor-pointer"
           >
-            <div className="horizontal-align items-center">
+            <div className="flex flex-row items-center">
               <BsCamera className="mr-2 text-[15px]" />
               {!backGroundPhoto?.url ? "Add Cover Photo" : "Edit Cover Photo"}
             </div>
@@ -378,7 +378,7 @@ function Profile() {
           {showBackgroundPhotoModal && backGroundPhotoModal}
           {showDeleteBackgroundPhotoModal && deleteBackgroundPhotoModal}
         </div>
-        <div className="horizontal-align justify-between px-[2rem]">
+        <div className="flex flex-row justify-between px-[2rem]">
           <div className="flex flex-row">
             <div
               ref={editProfileEl}
@@ -405,15 +405,15 @@ function Profile() {
           </div>
           <div className="profile-photo-section">
             <div className="flex flex-row items-center">
-              <button className="bg-blue text-white rounded-[6px] text-[15px] py-2 px-4 flex flex-row justify-between font-[600] mr-2">
+              <button className="btn-primary px-4 justify-between mr-2">
                 <label className="mr-2 cursor-pointer">+</label>
                 <label className="cursor-pointer">Add to story</label>
               </button>
-              <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-2 px-4 flex flex-row justify-between items-center font-[600] mr-2">
+              <button className="btn-secondary px-4 justify-between mr-2">
                 <HiPencil className="mr-2 cursor-pointer" />
                 <label className="cursor-pointer">Edit profile</label>
               </button>
-              <button className="bg-[#f3f3f3] text-[#050505] rounded-[6px] text-[15px] py-3 px-4 flex flex-row justify-between items-center font-[600]">
+              <button className="btn-secondary py-3 px-4 justify-between">
                 <IoIosArrowDown className="cursor-pointer" />
               </button>
             </div>

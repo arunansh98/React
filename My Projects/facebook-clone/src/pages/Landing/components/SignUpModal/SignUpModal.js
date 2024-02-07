@@ -37,12 +37,12 @@ function SignUpModal({ onClose }) {
   );
 
   const dropDownClassNames = classNames(
-    "horizontal-align border items-center font-secondary text-[15px]",
+    "flex flex-row border items-center font-secondary text-[15px]",
     "w-[125px] h-[36px] justify-between rounded-[5px]"
   );
 
   const radioClassNames = classNames(
-    "horizontal-align border items-center font-secondary text-[15px]",
+    "flex flex-row border items-center font-secondary text-[15px]",
     "w-[125px] h-[36px] justify-between rounded-[5px] px-[10px]"
   );
 
@@ -99,8 +99,8 @@ function SignUpModal({ onClose }) {
 
   return (
     <Modal>
-      <div className="vertical-align">
-        <div className="horizontal-align justify-between items-center px-3">
+      <div className="flex flex-col">
+        <div className="flex flex-row justify-between items-center px-3">
           <h1 className="font-bold font-secondary text-[32px] text-black">
             Sign Up
           </h1>
@@ -111,7 +111,7 @@ function SignUpModal({ onClose }) {
         </div>
         <hr className="mt-2" />
         <div className="p-[16px]">
-          <div className=" horizontal-align mb-3">
+          <div className="flex flex-row mb-3">
             <TextInput
               className={inputClassNames + " mr-2"}
               type="text"
@@ -147,14 +147,14 @@ function SignUpModal({ onClose }) {
               setFieldValue(NEW_PASSWORD, event.target.value)
             }
           />
-          <div className="horizontal-align justify-start items-center font-secondary text-[12px] text-[#606770]">
+          <div className="flex flex-row justify-start items-center font-secondary text-[12px] text-[#606770]">
             Date of birth
             <GoQuestion
               className="ml-1 cursor-pointer"
               title="Click for more information"
             />
           </div>
-          <div className="horizontal-align mb-3 justify-between">
+          <div className="flex flex-row mb-3 justify-between">
             <DropDown
               className={dropDownClassNames}
               id={DATE_OF_BIRTH}
@@ -177,7 +177,7 @@ function SignUpModal({ onClose }) {
               onChange={(value) => setFieldValue(YEAR, value)}
             />
           </div>
-          <div className="horizontal-align justify-start items-center font-secondary text-[12px] text-[#606770]">
+          <div className="flex flex-row justify-start items-center font-secondary text-[12px] text-[#606770]">
             Gender
             <GoQuestion
               className="ml-1 cursor-pointer bg-red"

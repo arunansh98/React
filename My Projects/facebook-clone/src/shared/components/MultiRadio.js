@@ -12,7 +12,7 @@ function MultiRadio({ ...rest }) {
     </div>
   ));
   return (
-    <div className="horizontal-align mb-3 justify-between cursor-default">
+    <div className="flex flex-row mb-3 justify-between cursor-default">
       {radioOptions}
     </div>
   );

@@ -7,23 +7,23 @@
 }
 
 .cover-photo {
-  @apply vertical-align text-[#050505] font-[500] cursor-pointer;
+  @apply flex flex-col text-[#050505] font-[500] cursor-pointer;
 }
 
 .cover-photo div {
-  @apply horizontal-align items-center !font-homePrimary mb-1 hover:bg-[#f3f3f3] rounded-[6px] px-1;
+  @apply flex flex-row items-center !font-homePrimary mb-1 hover:bg-[#f3f3f3] rounded-[6px] px-1;
 }
 
 .profile-photo {
-  @apply vertical-align text-[#050505] font-[500] cursor-pointer;
+  @apply flex flex-col text-[#050505] font-[500] cursor-pointer;
 }
 
 .profile-photo div {
-  @apply horizontal-align items-center !font-homePrimary mb-1 hover:bg-[#f3f3f3] rounded-[6px] px-1;
+  @apply flex flex-row items-center !font-homePrimary mb-1 hover:bg-[#f3f3f3] rounded-[6px] px-1;
 }
 
 .remove-cover-photo {
-  @apply vertical-align text-[#050505] p-2;
+  @apply flex flex-col text-[#050505] p-2;
 }
 
 .remove-cover-photo * {
