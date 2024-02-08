@@ -208,17 +208,31 @@ function Posts({ userDetails }) {
         </div>
         <hr />
         <div className="edit-details-modal-footer">
-          <button className="btn-transparent px-4 text-blue">
+          <button
+            className="btn-transparent px-4 text-blue"
+            onClick={() => handleUpdateInformation()}
+          >
             Update your information
           </button>
           <div className="flex">
-            <button className="btn-secondary px-4 mr-2">Cancel</button>
+            <button
+              className="btn-secondary px-4 mr-2"
+              onClick={() => setShowEditDetailsModal(false)}
+            >
+              Cancel
+            </button>
             <button className="btn-primary px-10">Save</button>
           </div>
         </div>
       </div>
     </Modal>
   );
+
+  const handleUpdateInformation = () => {
+    setShowEditDetailsModal(false);
+    setActiveTab("about");
+    setActiveVerticalTab("overview");
+  };
 
   return (
     <div className="posts">
