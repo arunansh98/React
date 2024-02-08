@@ -29,6 +29,7 @@ import { TiArrowSortedDown } from "react-icons/ti";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import Tabs from "../../shared/components/Tabs";
 import Posts from "./Posts/Posts";
+import About from "./About/About";
 
 function Profile() {
   const [addPost, addPostResults] = useAddPostMutation();
@@ -126,7 +127,7 @@ function Profile() {
       type: "tab",
       renderHeader,
       renderActiveHeader,
-      content: "About content in progress!",
+      content: <About />,
     },
     {
       id: "friends",

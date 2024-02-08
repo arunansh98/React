@@ -6,7 +6,7 @@ import { useState } from "react";
 import { MdOutlinePublic } from "react-icons/md";
 import Modal from "../../../shared/components/Modal";
 import { VscClose } from "react-icons/vsc";
-import { AiOutlinePlus } from "react-icons/ai";
+import BlueOutlineAnchor from "../../../shared/components/BlueOutlineAnchor";
 
 function Posts({ userDetails }) {
   const [showBioInput, setShowBioInput] = useState(false);
@@ -19,10 +19,6 @@ function Posts({ userDetails }) {
   const [bioInput, setBioInput] = useState(bio);
 
   const [showEditDetailsModal, setShowEditDetailsModal] = useState(false);
-
-  const blueOutline = (
-    <AiOutlinePlus className="h-[28px] w-[28px] mr-2 p-[4px] border-blue border-solid border-[2px] rounded-[100px]" />
-  );
 
   const editDetailsFields = [
     {
@@ -51,7 +47,7 @@ function Posts({ userDetails }) {
     {
       id: "current",
       label: "Current town/city",
-      values: [{ label: "Add current city", href: "current" }],
+      values: [{ label: "Add current city", href: "current11" }],
     },
     {
       id: "home",
@@ -159,14 +155,11 @@ function Posts({ userDetails }) {
           {field.label}
           {field.values.map((value) => {
             return (
-              <a
-                className="text-[15px] font-[400] block hover:underline cursor-pointer text-blue flex flex-row items-center mt-3"
-                key={value.href}
+              <BlueOutlineAnchor
+                label={value.label}
                 href={value.href}
-              >
-                {blueOutline}
-                {value.label}
-              </a>
+                className="mt-3"
+              />
             );
           })}
         </h1>
