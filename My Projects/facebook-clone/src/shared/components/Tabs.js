@@ -1,14 +1,11 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { useState } from "react";
 import "./Tabs.css";
 
-function Tabs({ tabs, activeTab, className }) {
+function Tabs({ tabs, activeTab, setActiveTab, className }) {
   if (activeTab === undefined) {
     activeTab = tabs?.[0]?.id;
   }
-
-  const [active, setActive] = useState(activeTab);
 
   const hasButton = tabs.filter((tab) => tab.type === "button").length > 0;
 
@@ -54,9 +51,9 @@ function Tabs({ tabs, activeTab, className }) {
         <div
           className={tabClassName}
           key={tab?.id}
-          onClick={() => setActive(tab?.id)}
+          onClick={() => setActiveTab(tab?.id)}
         >
-          {tab?.id === active ? getActiveHeader(tab) : getHeader(tab)}
+          {tab?.id === activeTab ? getActiveHeader(tab) : getHeader(tab)}
         </div>
       );
     } else if (tab.type === "button") {
@@ -74,7 +71,7 @@ function Tabs({ tabs, activeTab, className }) {
     }
   });
 
-  const content = tabs?.find((tab) => tab.id === active)?.content;
+  const content = tabs?.find((tab) => tab.id === activeTab)?.content;
 
   return (
     <div className={className}>

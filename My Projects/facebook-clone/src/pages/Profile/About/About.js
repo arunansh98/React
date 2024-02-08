@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Card from "../../../shared/components/Card";
 import VerticalTabs from "../../../shared/components/VerticalTabs";
 import "./About.css";
@@ -6,8 +6,11 @@ import BlueOutlineAnchor from "../../../shared/components/BlueOutlineAnchor";
 import { FaLock } from "react-icons/fa6";
 import { VscEdit } from "react-icons/vsc";
 import { IoCall } from "react-icons/io5";
+import { TabsContext } from "../Profile";
 
 function About() {
+  const { activeVerticalTab, setActiveVerticalTab } = useContext(TabsContext);
+
   const renderTab = (tab) => {
     return (
       <button className="btn-transparent !text-[#65676B] pl-2 flex flex-start w-full">
@@ -36,7 +39,6 @@ function About() {
       <div className="flex flex-row justify-between items-center w-full pt-8 pr-4">
         <h1 className="flex flex-row items-center">
           <IoCall className="h-[24px] w-[24px] mr-3 text-[#65676B]" />
-          {/* 6370907287 */}
           <span className="flex flex-col">
             <span>6370907287</span>
             Mobile
@@ -102,14 +104,12 @@ function About() {
     },
   ];
 
-  const [activeTab, setActiveTab] = useState("overview");
-
   return (
     <div className="about">
       <Card>
         <VerticalTabs
-          activeTab={activeTab}
-          onTabClick={setActiveTab}
+          activeTab={activeVerticalTab}
+          setActiveTab={setActiveVerticalTab}
           tabOptions={tabOptions}
           tabHeader={<h1 className="font-bold text-[20px] pl-2 py-2">About</h1>}
         />

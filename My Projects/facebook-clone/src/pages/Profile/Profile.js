@@ -14,7 +14,7 @@ import {
 } from "../../constants/postTypesConstants";
 import { handlePostChange } from "./hooks/use-handle-post";
 import { BsCamera } from "react-icons/bs";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, createContext } from "react";
 import AttachableModal from "../../shared/components/AttachableModal";
 import Modal from "../../shared/components/Modal";
 import { BsFileEarmarkImageFill } from "react-icons/bs";
@@ -30,6 +30,8 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import Tabs from "../../shared/components/Tabs";
 import Posts from "./Posts/Posts";
 import About from "./About/About";
+
+const TabsContext = createContext();
 
 function Profile() {
   const [addPost, addPostResults] = useAddPostMutation();
@@ -111,6 +113,10 @@ function Profile() {
   const handleOnClick = (button) => {
     console.log("button clicked !");
   };
+
+  const [activeTab, setActiveTab] = useState("about");
+
+  const [activeVerticalTab, setActiveVerticalTab] = useState("overview");
 
   const tabOptions = [
     {
@@ -422,7 +428,20 @@ function Profile() {
         </div>
         <div className="tab-container">
           <hr className="mx-auto mt-4 mb-1" />
-          <Tabs tabs={tabOptions} />
+          <TabsContext.Provider
+            value={{
+              activeTab,
+              setActiveTab,
+              activeVerticalTab,
+              setActiveVerticalTab,
+            }}
+          >
+            <Tabs
+              tabs={tabOptions}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
+          </TabsContext.Provider>
         </div>
       </div>
     </>
@@ -430,3 +449,4 @@ function Profile() {
 }
 
 export default Profile;
+export { TabsContext };

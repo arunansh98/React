@@ -2,13 +2,16 @@ import Card from "../../../shared/components/Card";
 import TextAreaInput from "../../../shared/components/TextAreaInput";
 import { useUpdateUserDetailsMutation } from "../../../store";
 import "./Posts.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdOutlinePublic } from "react-icons/md";
 import Modal from "../../../shared/components/Modal";
 import { VscClose } from "react-icons/vsc";
 import BlueOutlineAnchor from "../../../shared/components/BlueOutlineAnchor";
+import { TabsContext } from "../Profile";
 
 function Posts({ userDetails }) {
+  const { setActiveTab, setActiveVerticalTab } = useContext(TabsContext);
+
   const [showBioInput, setShowBioInput] = useState(false);
 
   const [updateUserDetails, updateUserDetailsResults] =
@@ -22,16 +25,6 @@ function Posts({ userDetails }) {
 
   const editDetailsFields = [
     {
-      id: "pronouns",
-      label: "Pronouns",
-      values: [
-        {
-          label: "Add pronouns to your profile",
-          href: "pronouns",
-        },
-      ],
-    },
-    {
       id: "work",
       label: "Work",
       values: [{ label: "Add a workplace", href: "work" }],
@@ -40,24 +33,24 @@ function Posts({ userDetails }) {
       id: "education",
       label: "Education",
       values: [
-        { label: "Add secondary school", href: "secondary" },
-        { label: "Add university", href: "university" },
+        { label: "Add secondary school", href: "work" },
+        { label: "Add university", href: "work" },
       ],
     },
     {
       id: "current",
       label: "Current town/city",
-      values: [{ label: "Add current city", href: "current11" }],
+      values: [{ label: "Add current city", href: "places" }],
     },
     {
       id: "home",
       label: "Home town",
-      values: [{ label: "Add home town", href: "home" }],
+      values: [{ label: "Add home town", href: "places" }],
     },
     {
       id: "relation",
       label: "Relationship",
-      values: [{ label: "Add relationship status", href: "relation" }],
+      values: [{ label: "Add relationship status", href: "family" }],
     },
   ];
 
@@ -146,10 +139,14 @@ function Posts({ userDetails }) {
     </div>
   );
 
-  function renderEditDetailsFields(fields) {
-    console.log("fields", fields);
+  let handleBlueAnchorClick = (value) => {
+    setShowEditDetailsModal(false);
+    setActiveTab("about");
+    setActiveVerticalTab(value?.href);
+  };
+
+  let renderEditDetailsFields = (fields) => {
     return fields.map((field) => {
-      console.log(field);
       return (
         <h1 key={field.id}>
           {field.label}
@@ -157,15 +154,15 @@ function Posts({ userDetails }) {
             return (
               <BlueOutlineAnchor
                 label={value.label}
-                href={value.href}
                 className="mt-3"
+                onClick={() => handleBlueAnchorClick(value)}
               />
             );
           })}
         </h1>
       );
     });
-  }
+  };
 
   const editDetailsModal = showEditDetailsModal && (
     <Modal className="w-[700px]" onClose={() => setShowEditDetailsModal(false)}>

@@ -5,7 +5,7 @@ function VerticalTabs({
   tabOptions,
   tabHeader,
   activeTab,
-  onTabClick,
+  setActiveTab,
   className,
 }) {
   className = classNames(className, "flex flex-row");
@@ -34,7 +34,7 @@ function VerticalTabs({
     return (
       <div
         className="tab"
-        onClick={() => onTabClick(option.id)}
+        onClick={() => setActiveTab(option.id)}
         key={option.id}
       >
         {renderTab(option)}
