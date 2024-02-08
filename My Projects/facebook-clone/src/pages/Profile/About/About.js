@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import Card from "../../../shared/components/Card";
-import VerticalTabs from "../../../shared/components/VerticalTabs";
+import Card from "../../../shared/components/Card/Card";
+import VerticalTabs from "../../../shared/components/VerticalTabs/VerticalTabs";
 import "./About.css";
-import BlueOutlineAnchor from "../../../shared/components/BlueOutlineAnchor";
+import BlueOutlineAnchor from "../../../shared/components/BlueOutlineAnchor/BlueOutlineAnchor";
 import { FaLock } from "react-icons/fa6";
 import { VscEdit } from "react-icons/vsc";
 import { IoCall } from "react-icons/io5";

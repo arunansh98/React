@@ -1,12 +1,12 @@
-import Card from "../../../shared/components/Card";
-import TextAreaInput from "../../../shared/components/TextAreaInput";
+import Card from "../../../shared/components/Card/Card";
+import TextAreaInput from "../../../shared/components/TextAreaInput/TextAreaInput";
 import { useUpdateUserDetailsMutation } from "../../../store";
 import "./Posts.css";
 import { useContext, useState } from "react";
 import { MdOutlinePublic } from "react-icons/md";
-import Modal from "../../../shared/components/Modal";
+import Modal from "../../../shared/components/Modal/Modal";
 import { VscClose } from "react-icons/vsc";
-import BlueOutlineAnchor from "../../../shared/components/BlueOutlineAnchor";
+import BlueOutlineAnchor from "../../../shared/components/BlueOutlineAnchor/BlueOutlineAnchor";
 import { TabsContext } from "../Profile";
 
 function Posts({ userDetails }) {

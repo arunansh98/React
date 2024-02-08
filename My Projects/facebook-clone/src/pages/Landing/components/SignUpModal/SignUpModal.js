@@ -1,11 +1,11 @@
-import Modal from "../../../../shared/components/Modal";
+import Modal from "../../../../shared/components/Modal/Modal";
 import Close from "../../../../assets/images/close.png";
 import classNames from "classnames";
-import TextInput from "../../../../shared/components/TextInput";
-import DropDown from "../../../../shared/components/DropDown";
+import TextInput from "../../../../shared/components/TextInput/TextInput";
+import DropDown from "../../../../shared/components/DropDown/DropDown";
 import { useReducer } from "react";
 import { GoQuestion } from "react-icons/go";
-import MultiRadio from "../../../../shared/components/MultiRadio";
+import MultiRadio from "../../../../shared/components/MultiRadio/MultiRadio";
 import "./SignUpModal.css";
 import { produce } from "immer";
 import { validator } from "./SignUpModalValidator";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TextInput from "../../../../shared/components/TextInput";
+import TextInput from "../../../../shared/components/TextInput/TextInput";
 import SignUpModal from "../SignUpModal/SignUpModal";
 import classNames from "classnames";
 import "./Login.css";

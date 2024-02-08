@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PasswordHide from "../../assets/images/eye-password-hide.svg";
+import PasswordHide from "../../../assets/images/eye-password-hide.svg";
 import classNames from "classnames";
 
 function TextInput({ ...rest }) {

@@ -15,8 +15,8 @@ import {
 import { handlePostChange } from "./hooks/use-handle-post";
 import { BsCamera } from "react-icons/bs";
 import { useRef, useState, useEffect, createContext } from "react";
-import AttachableModal from "../../shared/components/AttachableModal";
-import Modal from "../../shared/components/Modal";
+import AttachableModal from "../../shared/components/AttachableModal/AttachableModal";
+import Modal from "../../shared/components/Modal/Modal";
 import { BsFileEarmarkImageFill } from "react-icons/bs";
 import { MdUpload } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
@@ -27,7 +27,7 @@ import { HiPencil } from "react-icons/hi2";
 import { IoIosArrowDown } from "react-icons/io";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import Tabs from "../../shared/components/Tabs";
+import Tabs from "../../shared/components/Tabs/Tabs";
 import Posts from "./Posts/Posts";
 import About from "./About/About";
 
@@ -114,7 +114,7 @@ function Profile() {
     console.log("button clicked !");
   };
 
-  const [activeTab, setActiveTab] = useState("about");
+  const [activeTab, setActiveTab] = useState("posts");
 
   const [activeVerticalTab, setActiveVerticalTab] = useState("overview");
 
