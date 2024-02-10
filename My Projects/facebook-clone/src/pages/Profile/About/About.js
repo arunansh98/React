@@ -29,26 +29,50 @@ function About() {
 
   const overviewContent = (
     <div className="pt-5 pb-10">
-      <BlueOutlineAnchor label="Add a workplace" className="pt-5" />
-      <BlueOutlineAnchor label="Add secondary school" className="pt-8" />
-      <BlueOutlineAnchor label="Add university" className="pt-8" />
-      <BlueOutlineAnchor label="Add current city" className="pt-8" />
-      <BlueOutlineAnchor label="Add a workplace" className="pt-8" />
-      <BlueOutlineAnchor label="Add home town" className="pt-8" />
-      <BlueOutlineAnchor label="Add a relationship status" className="pt-8" />
+      <BlueOutlineAnchor value="Add a workplace" className="pt-5" />
+      <BlueOutlineAnchor value="Add secondary school" className="pt-8" />
+      <BlueOutlineAnchor value="Add university" className="pt-8" />
+      <BlueOutlineAnchor value="Add current city" className="pt-8" />
+      <BlueOutlineAnchor value="Add a workplace" className="pt-8" />
+      <BlueOutlineAnchor value="Add home town" className="pt-8" />
+      <BlueOutlineAnchor value="Add a relationship status" className="pt-8" />
       <div className="flex flex-row justify-between items-center w-full pt-8 pr-4">
-        <h1 className="flex flex-row items-center">
+        <div className="flex flex-row items-center">
           <IoCall className="h-[24px] w-[24px] mr-3 text-[#65676B]" />
           <span className="flex flex-col">
-            <span>6370907287</span>
-            Mobile
+            <span className="text-primary">6370907287</span>
+            <span className="text-[13px]">Mobile</span>
           </span>
-        </h1>
+        </div>
         <div className="flex items-center">
           <FaLock className="mr-1 cursor-pointer hover:bg-grey p-1 h-[22px] w-[22px] rounded-[10px]" />
           <VscEdit className="cursor-pointer btn-secondary p-[4px] h-[32px] w-[32px] rounded-[50px]" />
         </div>
       </div>
+    </div>
+  );
+
+  const workContent = (
+    <div className="pt-3 pb-10">
+      <BlueOutlineAnchor label="Work" value="Add a workplace" />
+      <BlueOutlineAnchor
+        label="University"
+        value="Add university"
+        className="pt-8"
+      />
+      <BlueOutlineAnchor
+        label="High School"
+        value="Add secondary school"
+        className="pt-8"
+      />
+    </div>
+  );
+
+  const placesContent = (
+    <div className="pt-3">
+      <BlueOutlineAnchor label="Places lived" value="Add current city" />
+      <BlueOutlineAnchor value="Add home town" className="pt-8" />
+      <BlueOutlineAnchor value="Add city" className="pt-8" />
     </div>
   );
 
@@ -65,14 +89,14 @@ function About() {
       label: "Work and education",
       renderTab,
       renderActiveTab,
-      content: "Work content",
+      content: workContent,
     },
     {
       id: "places",
       label: "Places lived",
       renderTab,
       renderActiveTab,
-      content: "Places content",
+      content: placesContent,
     },
     {
       id: "content",

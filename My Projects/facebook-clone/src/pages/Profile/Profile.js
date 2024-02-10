@@ -324,9 +324,9 @@ function Profile() {
     <Modal>
       <div className="remove-cover-photo">
         <div>
-          <h1 className="inline-flex w-[90%] justify-center text-[20px] font-[700]">
+          <h2 className="inline-flex w-[90%] justify-center">
             Remove cover photo
-          </h1>
+          </h2>
           <div
             className="inline-flex p-2 border-[1px] rounded-[100px] bg-[silver] cursor-pointer"
             onClick={() => setShowDeleteBackgroundPhotoModal(false)}
@@ -340,13 +340,13 @@ function Profile() {
         </div>
         <div className="flex flex-row justify-end">
           <button
-            className="hover:bg-[#f3f3f3] py-2 px-8 rounded-[6px] text-blue text-[15px] mr-2"
+            className="hover:bg-[#f3f3f3] py-2 px-8 rounded-[6px] text-blue text-primary mr-2"
             onClick={() => setShowDeleteBackgroundPhotoModal(false)}
           >
             Cancel
           </button>
           <button
-            className="bg-blue text-white rounded-[6px] text-[15px] py-2 px-8"
+            className="bg-blue text-white rounded-[6px] text-primary py-2 px-8"
             onClick={() => {
               setShowDeleteBackgroundPhotoModal(false);
               handleDeleteBackgroundPhoto();
@@ -378,7 +378,7 @@ function Profile() {
             className="mr-8 mb-4 rounded-[6px] px-[12px] py-[6px] text-[white] bg-[#00000066] border-[inherit] border-[1px] font-bold pointer-events-auto cursor-pointer"
           >
             <div className="flex flex-row items-center">
-              <BsCamera className="mr-2 text-[15px]" />
+              <BsCamera className="mr-2 text-primary" />
               {!backGroundPhoto?.url ? "Add Cover Photo" : "Edit Cover Photo"}
             </div>
           </div>
@@ -399,12 +399,10 @@ function Profile() {
             ></div>
             {showProfilePhotoModal && profilePhotoModal}
             <div className="flex flex-col">
-              <h1 className="font-bold text-[#050505] text-[32px]">
-                {fullName}
-              </h1>
+              <h1 className="text-[#050505]">{fullName}</h1>
               <a
                 href="fgh"
-                className="font-[600] text-[15px] text-[#65676B] hover:underline"
+                className="font-[600] text-primary text-[#65676B] hover:underline"
               >
                 75 friends
               </a>

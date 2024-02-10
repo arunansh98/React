@@ -57,7 +57,7 @@ function Posts({ userDetails }) {
   const leftCards = (
     <div className="left-cards">
       <Card className="p-[15px]">
-        <h1>Intro</h1>
+        <h2>Intro</h2>
         {bio && <span className="block text-center">{bio}</span>}
         {!showBioInput && (
           <button
@@ -82,10 +82,10 @@ function Posts({ userDetails }) {
               {101 - bioInput.length} characters remaining
             </div>
             <div className="flex flex-row justify-between items-center mt-2">
-              <h1 className="!text-[15px] !font-normal flex flex-row items-center">
+              <span className="text-primary font-normal flex flex-row items-center">
                 <MdOutlinePublic className="mr-1 text-[23px]" />
                 Public
-              </h1>
+              </span>
               <div className="flex">
                 <button
                   className="btn-secondary btn-small mr-2"
@@ -122,11 +122,11 @@ function Posts({ userDetails }) {
         <button className="btn-wide">Add Featured</button>
       </Card>
       <Card className="p-[15px] flex flex-row justify-between items-center">
-        <h1>Photos</h1>
+        <h2>Photos</h2>
         <button className="transparent-button">See All Photos</button>
       </Card>
       <Card className="p-[15px] flex flex-row justify-between items-center">
-        <h1>Friends</h1>
+        <h2>Friends</h2>
         <button className="transparent-button">See All Friends</button>
       </Card>
     </div>
@@ -148,18 +148,19 @@ function Posts({ userDetails }) {
   let renderEditDetailsFields = (fields) => {
     return fields.map((field) => {
       return (
-        <h1 key={field.id}>
-          {field.label}
-          {field.values.map((value) => {
+        <div key={field.id}>
+          {/* {field.label} */}
+          {field.values.map((value, index) => {
             return (
               <BlueOutlineAnchor
-                label={value.label}
-                className="mt-3"
+                className="mt-5"
+                label={index === 0 && field.label}
+                value={value.label}
                 onClick={() => handleBlueAnchorClick(value)}
               />
             );
           })}
-        </h1>
+        </div>
       );
     });
   };
@@ -168,7 +169,7 @@ function Posts({ userDetails }) {
     <Modal className="w-[700px]" onClose={() => setShowEditDetailsModal(false)}>
       <div className="edit-details-modal">
         <div className="edit-details-modal-header">
-          <span className="ml-auto !font-bold !text-[20px]">Edit details</span>
+          <h2 className="ml-auto">Edit details</h2>
           <VscClose
             className="ml-auto text-[#6d6b6b] p-[1px] bg-[#f3f3f3] rounded-[100px] h-[36px] w-[36px] cursor-pointer"
             onClick={() => setShowEditDetailsModal(false)}
@@ -176,31 +177,31 @@ function Posts({ userDetails }) {
         </div>
         <hr />
         <div className="edit-details-modal-body">
-          <h1>
+          <h3 className="font-[600]">
             Customise your Intro
-            <span>Details you select will be public.</span>
-          </h1>
+            <span className="">Details you select will be public.</span>
+          </h3>
           {renderEditDetailsFields(editDetailsFields)}
-          <div className="flex flex-row justify-between items-center">
-            <h1>
+          <div className="flex flex-row justify-between items-center mt-5">
+            <h3 className="font-[600]">
               Websites
-              <span className="text-[#65676B] !text-[13px]">
+              <span className="!text-[13px]">
                 To feature links on your Profile, set the audience to{" "}
                 <b>Public.</b>
               </span>
-            </h1>
+            </h3>
             <button className="btn-secondary px-4">
               Public <MdOutlinePublic className="ml-1" />
             </button>
           </div>
-          <div className="flex flex-row justify-between items-center">
-            <h1>
+          <div className="flex flex-row justify-between items-center mt-5">
+            <h3 className="font-[600]">
               Social links
-              <span className="text-[#65676B] !text-[13px]">
+              <span className="!text-[13px]">
                 To feature links on your Profile, set the audience to{" "}
                 <b>Public.</b>
               </span>
-            </h1>
+            </h3>
             <button className="btn-secondary px-4">
               Public <MdOutlinePublic className="ml-1" />
             </button>

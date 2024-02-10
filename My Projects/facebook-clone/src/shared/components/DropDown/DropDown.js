@@ -48,7 +48,7 @@ function DropDown({ ...props }) {
         <GoChevronDown />
       </button>
       {showOptions && (
-        <div className="z-[1] absolute border w-full max-h-[199px] overflow-y-auto bg-[#fff] cursor-pointer font-secondary text-[15px]">
+        <div className="z-[1] absolute border w-full max-h-[199px] overflow-y-auto bg-[#fff] cursor-pointer font-secondary text-primary">
           <div className="flex flex-col" onClick={() => setShowOptions(false)}>
             {contentOptions}
           </div>

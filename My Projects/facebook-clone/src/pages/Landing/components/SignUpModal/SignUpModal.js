@@ -31,22 +31,22 @@ const reducer = (state, action) => {
 
 function SignUpModal({ onClose }) {
   const inputClassNames = classNames(
-    "rounded-[5px] w-[194px] h-[40px] p-[11px] font-secondary text-[15px]",
+    "rounded-[5px] w-[194px] h-[40px] p-[11px] font-secondary text-primary",
     "border bg-[#f5f6f7]",
     "focus-within:outline-none"
   );
 
   const dropDownClassNames = classNames(
-    "flex flex-row border items-center font-secondary text-[15px]",
+    "flex flex-row border items-center font-secondary text-primary",
     "w-[125px] h-[36px] justify-between rounded-[5px]"
   );
 
   const radioClassNames = classNames(
-    "flex flex-row border items-center font-secondary text-[15px]",
+    "flex flex-row border items-center font-secondary text-primary",
     "w-[125px] h-[36px] justify-between rounded-[5px] px-[10px]"
   );
 
-  const anchorClassNames = classNames("text-[#385898] no-underline");
+  const anchorClassNames = classNames("text-[#385898] hover:underline");
 
   const [state, dispatch] = useReducer(produce(reducer), {
     [FIRST_NAME]: "",
@@ -101,12 +101,10 @@ function SignUpModal({ onClose }) {
     <Modal>
       <div className="flex flex-col">
         <div className="flex flex-row justify-between items-center px-3">
-          <h1 className="font-bold font-secondary text-[32px] text-black">
-            Sign Up
-          </h1>
+          <h1 className="font-secondary">Sign Up</h1>
           <img src={Close} alt="close" onClick={onClose} />
         </div>
-        <div className="text-[15px] text-[#606770] font-secondary px-3">
+        <div className="text-primary text-[#606770] font-secondary px-3">
           Its quick and easy.
         </div>
         <hr className="mt-2" />
@@ -219,7 +217,10 @@ function SignUpModal({ onClose }) {
           )}{" "}
           <p className="text-[11px] text-[#777]">
             People who use our service may have uploaded your contact
-            information to Facebook. <a href="learn more">Learn more</a>
+            information to Facebook.{" "}
+            <a className={anchorClassNames} href="learn more">
+              Learn more
+            </a>
           </p>
           <p className="text-[11px] text-[#777] my-[11px]">
             By clicking Sign Up, you agree to our

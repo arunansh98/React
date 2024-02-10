@@ -15,6 +15,12 @@ module.exports = {
         homePrimary:
           "Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif",
       },
+      fontSize: {
+        lg: "32px",
+        md: "20px",
+        sm: "17px",
+        primary: "15px",
+      },
     },
   },
   plugins: [],

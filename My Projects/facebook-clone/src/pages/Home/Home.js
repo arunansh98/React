@@ -11,7 +11,7 @@ function Home() {
   return (
     <div className="home">
       <div className="footer ml-1">
-        <ul className="text-[#050505] text-[15px] font-[600]">
+        <ul className="text-[#050505] text-primary font-[600]">
           <li onClick={() => navigate("./" + PROFILE)}>
             <img
               className="rounded-[38px] inline-block h-[28px] w-[28px] mr-2"

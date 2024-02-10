@@ -2,10 +2,6 @@
   @apply py-5 flex flex-row;
 }
 
-.posts h1 {
-  @apply text-[20px] font-bold;
-}
-
 .posts button.transparent-button {
   @apply hover:bg-[#f3f3f3] text-blue text-[17px] rounded-[6px] p-2;
 }
@@ -23,7 +19,7 @@ button.save {
 }
 
 .posts textarea {
-  @apply rounded-[6px] mt-2 w-[100%] bg-[#f0f2f5] h-[70px] text-center text-[15px] font-bold pt-[10px];
+  @apply rounded-[6px] mt-2 w-[100%] bg-[#f0f2f5] h-[70px] text-center text-primary font-bold pt-[10px];
   border: 1px solid aliceblue;
   resize: none;
   color: rgb(100, 99, 99);
@@ -39,7 +35,7 @@ button.save {
 }
 
 .posts textarea::placeholder {
-  @apply text-center text-[#666666] font-bold  text-[15px];
+  @apply text-center text-[#666666] font-bold  text-primary;
 }
 
 .left-cards {
@@ -62,12 +58,8 @@ button.save {
   @apply font-homePrimary;
 }
 
-.edit-details-modal h1 {
-  @apply text-[17px] font-[600] text-[#050505] mb-6;
-}
-
-.edit-details-modal h1 > span {
-  @apply text-[#65676B] block !font-[400] text-[15px];
+.edit-details-modal h3 > span {
+  @apply text-[#65676B] block !font-[400] text-primary;
 }
 
 .edit-details-modal-header {
