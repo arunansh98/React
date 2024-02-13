@@ -149,7 +149,6 @@ function Posts({ userDetails }) {
     return fields.map((field) => {
       return (
         <div key={field.id}>
-          {/* {field.label} */}
           {field.values.map((value, index) => {
             return (
               <BlueOutlineAnchor

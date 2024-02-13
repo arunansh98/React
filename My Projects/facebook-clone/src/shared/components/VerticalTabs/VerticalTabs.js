@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import "./VerticalTabs.css";
+import { useEffect, useState } from "react";
 
 function VerticalTabs({
   tabOptions,
@@ -10,9 +11,15 @@ function VerticalTabs({
 }) {
   className = classNames(className, "flex flex-row");
 
+  const [active, setActive] = useState(activeTab);
+
+  useEffect(() => {
+    setActive(activeTab);
+  }, [activeTab]);
+
   const renderTab = (tab) => {
     let { renderTab, label, id } = tab;
-    if (id !== activeTab) {
+    if (id !== active) {
       if (renderTab) {
         return renderTab(tab);
       }
@@ -34,7 +41,12 @@ function VerticalTabs({
     return (
       <div
         className="tab"
-        onClick={() => setActiveTab(option.id)}
+        onClick={() => {
+          setActive(option.id);
+          if (setActiveTab) {
+            setActiveTab(option.id);
+          }
+        }}
         key={option.id}
       >
         {renderTab(option)}
@@ -42,7 +54,7 @@ function VerticalTabs({
     );
   });
 
-  const tabsContent = tabOptions?.find((tab) => tab?.id === activeTab)?.content;
+  const tabsContent = tabOptions?.find((tab) => tab?.id === active)?.content;
 
   return (
     <>

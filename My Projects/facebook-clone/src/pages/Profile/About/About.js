@@ -13,6 +13,9 @@ import TextWithIcons from "../../../shared/components/TextWithIcons/TextWithIcon
 import { MdGroups2 } from "react-icons/md";
 import { BsCake2Fill } from "react-icons/bs";
 import { FaRegStar } from "react-icons/fa";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import Tabs from "../../../shared/components/Tabs/Tabs";
+import { LuPlus } from "react-icons/lu";
 
 function About() {
   const { activeVerticalTab, setActiveVerticalTab } = useContext(TabsContext);
@@ -238,16 +241,210 @@ function About() {
     },
   ];
 
+  const renderHeader = (tab) => {
+    return (
+      <div className="px-4 py-3 hover:bg-[#f3f3f3] text-[#65676B] font-[600] cursor-pointer rounded-[6px]">
+        {tab.label}
+      </div>
+    );
+  };
+
+  const renderActiveHeader = (tab) => {
+    return (
+      <>
+        <div className="px-4 py-3 text-blue font-[600] cursor-pointer rounded-[6px] flex flex-col">
+          {tab.label}
+        </div>
+        <hr className="border-blue border-[2px]" />
+      </>
+    );
+  };
+
+  const aboutCard = (
+    <Card>
+      <VerticalTabs
+        activeTab={activeVerticalTab}
+        setActiveTab={setActiveVerticalTab}
+        tabOptions={tabOptions}
+        tabHeader={<h1 className="font-bold text-[20px] pl-2 py-2">About</h1>}
+      />
+    </Card>
+  );
+
+  const albumsCard = (
+    <Card className="mt-5 px-4 py-2">
+      <div className="flex items-center justify-between">
+        <h2>Photos</h2>
+        <div className="flex items-center">
+          <button className="btn-transparent px-3 text-blue mr-2">
+            Add photos/video
+          </button>
+          <button className="btn-secondary px-4">
+            <HiOutlineDotsHorizontal />
+          </button>
+        </div>
+      </div>
+      <Tabs
+        tabs={[
+          {
+            id: "albums",
+            label: "Albums",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: (
+              <a
+                href="add"
+                className="text-black font-[600] flex flex-col mt-4"
+              >
+                <button className="p-[5rem] self-start bg-grey rounded-[10px] border-solid border-[1px] border-[#dddfe2] mb-2">
+                  <LuPlus className="h-[35px] w-[35px]" />
+                </button>
+                Create Album
+              </a>
+            ),
+          },
+        ]}
+      />
+    </Card>
+  );
+
+  const sportsCard = (
+    <Card className="mt-5 px-4 pt-2 pb-6">
+      <div className="flex items-center justify-between">
+        <h2>Sports</h2>
+        <button className="btn-secondary px-4">
+          <HiOutlineDotsHorizontal />
+        </button>
+      </div>
+      <Tabs
+        tabs={[
+          {
+            id: "sportsTeams",
+            label: "Sports Teams",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: "",
+          },
+          {
+            id: "sportsPeople",
+            label: "Sportspeople",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: "",
+          },
+        ]}
+      />
+    </Card>
+  );
+
+  const musicCard = (
+    <Card className="mt-5 px-4 pt-2 pb-9">
+      <div className="flex items-center justify-between">
+        <h2>Music</h2>
+        <button className="btn-secondary px-4">
+          <HiOutlineDotsHorizontal />
+        </button>
+      </div>
+      <Tabs
+        tabs={[
+          {
+            id: "artists",
+            label: "Artists",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: (
+              <h2 className="text-[#65676B] text-center">No Artists to show</h2>
+            ),
+          },
+        ]}
+      />
+    </Card>
+  );
+
+  const filmsCard = (
+    <Card className="mt-5 px-4 pt-2 pb-9">
+      <div className="flex items-center justify-between">
+        <h2>Films</h2>
+        <button className="btn-secondary px-4">
+          <HiOutlineDotsHorizontal />
+        </button>
+      </div>
+      <Tabs
+        tabs={[
+          {
+            id: "watched",
+            label: "Watched",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: (
+              <h2 className="text-[#65676B] text-center">No Watched to show</h2>
+            ),
+          },
+          {
+            id: "tvprogrammes",
+            label: "TV Programmes",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: (
+              <h2 className="text-[#65676B] text-center">
+                No TV Programmes to show
+              </h2>
+            ),
+          },
+        ]}
+      />
+    </Card>
+  );
+
+  const booksCard = (
+    <Card className="mt-5 px-4 pt-2 pb-9">
+      <div className="flex items-center justify-between">
+        <h2>Books</h2>
+        <button className="btn-secondary px-4">
+          <HiOutlineDotsHorizontal />
+        </button>
+      </div>
+      <Tabs
+        tabs={[
+          {
+            id: "read",
+            label: "Read",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: (
+              <h2 className="text-[#65676B] text-center">No Read to show</h2>
+            ),
+          },
+          {
+            id: "books",
+            label: "Books",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: (
+              <h2 className="text-[#65676B] text-center">No Books to show</h2>
+            ),
+          },
+        ]}
+      />
+    </Card>
+  );
+
   return (
     <div className="about">
-      <Card>
-        <VerticalTabs
-          activeTab={activeVerticalTab}
-          setActiveTab={setActiveVerticalTab}
-          tabOptions={tabOptions}
-          tabHeader={<h1 className="font-bold text-[20px] pl-2 py-2">About</h1>}
-        />
-      </Card>
+      {aboutCard}
+      {albumsCard}
+      {sportsCard}
+      {musicCard}
+      {filmsCard}
+      {booksCard}
     </div>
   );
 }

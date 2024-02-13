@@ -60,3 +60,7 @@ h2 {
 h3 {
   @apply text-sm font-bold;
 }
+
+a {
+  @apply hover:underline cursor-pointer;
+}
