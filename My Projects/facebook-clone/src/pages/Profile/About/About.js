@@ -437,6 +437,111 @@ function About() {
     </Card>
   );
 
+  const likesCard = (
+    <Card className="mt-5 px-4 pt-2 pb-9">
+      <div className="flex items-center justify-between">
+        <h2>Likes</h2>
+        <button className="btn-secondary px-4">
+          <HiOutlineDotsHorizontal />
+        </button>
+      </div>
+      <Tabs
+        tabs={[
+          {
+            id: "allLikes",
+            label: "All Likes",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: "",
+          },
+          {
+            id: "films",
+            label: "Films",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: (
+              <h2 className="text-[#65676B] text-center">No Films to show</h2>
+            ),
+          },
+          {
+            id: "tvprogrammes",
+            label: "TV Programmes",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: (
+              <h2 className="text-[#65676B] text-center">
+                No TV Programmes to show
+              </h2>
+            ),
+          },
+          {
+            id: "artists",
+            label: "Artists",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: (
+              <h2 className="text-[#65676B] text-center">No Artists to show</h2>
+            ),
+          },
+          {
+            id: "books",
+            label: "Books",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: (
+              <h2 className="text-[#65676B] text-center">No Books to show</h2>
+            ),
+          },
+          {
+            id: "sportsTeams",
+            label: "Sports Teams",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: "",
+          },
+          {
+            id: "sportsPeople",
+            label: "Sportspeople",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: "",
+          },
+          {
+            id: "people",
+            label: "People",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: "",
+          },
+          {
+            id: "restaurants",
+            label: "Restaurants",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: "",
+          },
+          {
+            id: "appsAndGames",
+            label: "Apps and Games",
+            renderHeader,
+            renderActiveHeader,
+            type: "tab",
+            content: "",
+          },
+        ]}
+      />
+    </Card>
+  );
+
   return (
     <div className="about">
       {aboutCard}
@@ -445,6 +550,7 @@ function About() {
       {musicCard}
       {filmsCard}
       {booksCard}
+      {likesCard}
     </div>
   );
 }
