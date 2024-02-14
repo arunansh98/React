@@ -30,6 +30,7 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import Tabs from "../../shared/components/Tabs/Tabs";
 import Posts from "./Posts/Posts";
 import About from "./About/About";
+import Avatar from "../../shared/view/Avatar/Avatar";
 
 const TabsContext = createContext();
 
@@ -62,7 +63,7 @@ function Profile() {
   );
 
   const profileClassName = classNames(
-    "mt-[-5rem] cursor-pointer rounded-[100px] inline-block h-[168px] w-[168px] mr-2 !bg-repeat-round"
+    "cursor-pointer rounded-[100px] inline-block h-[168px] w-[168px] mr-2 !bg-repeat-round"
   );
 
   const editBackgroundEl = useRef();
@@ -387,16 +388,23 @@ function Profile() {
         </div>
         <div className="flex flex-row justify-between px-[2rem]">
           <div className="flex flex-row">
-            <div
-              ref={editProfileEl}
-              style={{
-                background: profilePhoto?.url
-                  ? `url("${profilePhoto?.url}")`
-                  : 'url("https://scontent.fdel27-1.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=CO5dz350V7MAX9oEHkS&_nc_ht=scontent.fdel27-1.fna&oh=00_AfC2_i7ts-u27DsAmbCwU6ZTXuZL6B4htbCbjRlBlARbTg&oe=65AE49B8")',
-              }}
-              className={profileClassName}
-              onClick={() => setShowProfilePhotoModal(true)}
-            ></div>
+            <div className="mt-[-5rem]" ref={editProfileEl}>
+              {profilePhoto?.url && (
+                <div
+                  className={profileClassName}
+                  onClick={() => setShowProfilePhotoModal(true)}
+                  style={{
+                    background: `url("${profilePhoto?.url}")`,
+                  }}
+                ></div>
+              )}
+              {!profilePhoto?.url && (
+                <Avatar
+                  className={profileClassName + " !bg-[black]"}
+                  onClick={() => setShowProfilePhotoModal(true)}
+                />
+              )}
+            </div>
             {showProfilePhotoModal && profilePhotoModal}
             <div className="flex flex-col">
               <h1 className="text-[#050505]">{fullName}</h1>
