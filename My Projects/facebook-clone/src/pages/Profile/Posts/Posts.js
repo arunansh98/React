@@ -8,6 +8,10 @@ import Modal from "../../../shared/components/Modal/Modal";
 import { VscClose } from "react-icons/vsc";
 import BlueOutlineAnchor from "../../../shared/components/BlueOutlineAnchor/BlueOutlineAnchor";
 import { TabsContext } from "../Profile";
+import Avatar from "../../../shared/view/Avatar/Avatar";
+import { FaVideo } from "react-icons/fa6";
+import { MdPhotoLibrary } from "react-icons/md";
+import { FaFlag } from "react-icons/fa6";
 
 function Posts({ userDetails }) {
   const { setActiveTab, setActiveVerticalTab } = useContext(TabsContext);
@@ -134,7 +138,32 @@ function Posts({ userDetails }) {
 
   const rightCards = (
     <div className="right-cards">
-      <Card className="p-[15px]">Right card</Card>
+      <Card className="p-[15px]">
+        <div className="flex items-center mb-3">
+          <Avatar className="h-[40px] w-[40px]" />
+          <button
+            style={{ width: "calc(100% - 40px)" }}
+            className="text-left px-[1rem] py-[0.5rem] bg-[#F0F2F5] hover:bg-[#e3e5e7] rounded-[2rem] ml-2"
+          >
+            <h3 className="text-[#65676B] font-[400]">What's on your mind?</h3>
+          </button>
+        </div>
+        <hr />
+        <div className="flex items-center justify-around mt-[1rem]">
+          <span className="flex items-center">
+            <FaVideo className="text-[red] h-[24px] w-[24px] mr-2" />
+            <span className="text-[#65676B] font-[600]">Live video</span>
+          </span>
+          <span className="flex items-center">
+            <MdPhotoLibrary className="text-green h-[24px] w-[24px] mr-2" />
+            <span className="text-[#65676B] font-[600]">Photo/video</span>
+          </span>
+          <span className="flex items-center">
+            <FaFlag className="text-blue h-[24px] w-[24px] mr-2" />
+            <span className="text-[#65676B] font-[600]">Life event</span>
+          </span>
+        </div>
+      </Card>
       <Card className="p-[15px]">Another Right card!</Card>
     </div>
   );
