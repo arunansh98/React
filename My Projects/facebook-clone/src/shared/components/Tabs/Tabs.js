@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./Tabs.css";
 import { useEffect, useState } from "react";
 
-function Tabs({ tabs, activeTab, setActiveTab, className }) {
+function Tabs({ tabs, activeTab, setActiveTab, className, isFullWidth }) {
   if (activeTab === undefined) {
     activeTab = tabs?.[0]?.id;
   }
@@ -16,7 +16,7 @@ function Tabs({ tabs, activeTab, setActiveTab, className }) {
 
   const hasButton = tabs.filter((tab) => tab.type === "button").length > 0;
 
-  const tabClassName = classNames("", hasButton && "grow-0");
+  const tabClassName = classNames(isFullWidth && "grow", hasButton && "grow-0");
 
   const buttonClassName = "grow";
 
@@ -49,7 +49,9 @@ function Tabs({ tabs, activeTab, setActiveTab, className }) {
 
   const handleButtonClick = (button) => {
     const { onClick } = button;
-    onClick(button);
+    if (onClick) {
+      onClick(button);
+    }
   };
 
   const header = tabs?.map((tab) => {

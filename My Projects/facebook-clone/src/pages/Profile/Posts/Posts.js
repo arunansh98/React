@@ -12,6 +12,11 @@ import Avatar from "../../../shared/view/Avatar/Avatar";
 import { FaVideo } from "react-icons/fa6";
 import { MdPhotoLibrary } from "react-icons/md";
 import { FaFlag } from "react-icons/fa6";
+import { GiSettingsKnobs } from "react-icons/gi";
+import { IoMdSettings } from "react-icons/io";
+import { FaList } from "react-icons/fa";
+import Tabs from "../../../shared/components/Tabs/Tabs";
+import { RiLayoutGridFill } from "react-icons/ri";
 
 function Posts({ userDetails }) {
   const { setActiveTab, setActiveVerticalTab } = useContext(TabsContext);
@@ -136,6 +141,25 @@ function Posts({ userDetails }) {
     </div>
   );
 
+  const renderHeader = (tab) => {
+    return (
+      <button className="btn-transparent cursor-pointertext-[#65676B] flex items-center w-full justify-center">
+        {tab.label}
+      </button>
+    );
+  };
+
+  const renderActiveHeader = (tab) => {
+    return (
+      <>
+        <button className="btn-transparent cursor-pointer w-full text-blue flex items-center justify-center">
+          {tab.label}
+        </button>
+        <hr className="border-blue border-[2px]" />
+      </>
+    );
+  };
+
   const rightCards = (
     <div className="right-cards">
       <Card className="p-[15px]">
@@ -164,7 +188,53 @@ function Posts({ userDetails }) {
           </span>
         </div>
       </Card>
-      <Card className="p-[15px]">Another Right card!</Card>
+      <Card className="p-[15px]">
+        <div className="flex items-center justify-between mb-3">
+          <h2>Posts</h2>
+          <div className="flex items-center">
+            <button className="btn-secondary px-3 mr-2">
+              <GiSettingsKnobs className="rotate-90 mr-1" />
+              Filters
+            </button>
+            <button className="btn-secondary px-3">
+              <IoMdSettings className="mr-1" />
+              Manage posts
+            </button>
+          </div>
+        </div>
+        <hr />
+        <Tabs
+          tabs={[
+            {
+              id: "list",
+              label: (
+                <>
+                  <FaList className="mr-1" />
+                  List view
+                </>
+              ),
+              renderHeader,
+              renderActiveHeader,
+              type: "tab",
+              content: <Card>"List content"</Card>,
+            },
+            {
+              id: "grid",
+              label: (
+                <>
+                  <RiLayoutGridFill className="mr-1" />
+                  Grid view
+                </>
+              ),
+              renderHeader,
+              renderActiveHeader,
+              type: "tab",
+              content: "grid content",
+            },
+          ]}
+          isFullWidth
+        />
+      </Card>
     </div>
   );
 
