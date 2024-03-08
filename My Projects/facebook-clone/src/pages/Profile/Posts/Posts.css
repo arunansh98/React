@@ -82,3 +82,17 @@ button.save {
   background-color: #ced0d4;
   border-radius: 6px;
 }
+
+.posts-tabs-content {
+  @apply p-[15px];
+  width: 100%;
+}
+
+textarea.textarea {
+  @apply !h-[40px] !rounded-[50px] !text-left !mt-[0rem] !pt-[0.5rem] !pl-[0.8rem] !leading-normal !w-full;
+  padding-right: calc(130px + 0.8rem);
+}
+
+textarea.textarea::placeholder {
+  @apply text-left;
+}

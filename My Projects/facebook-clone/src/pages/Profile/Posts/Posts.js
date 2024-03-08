@@ -17,6 +17,18 @@ import { IoMdSettings } from "react-icons/io";
 import { FaList } from "react-icons/fa";
 import Tabs from "../../../shared/components/Tabs/Tabs";
 import { RiLayoutGridFill } from "react-icons/ri";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import { RiTimer2Fill } from "react-icons/ri";
+import { MdGroups2 } from "react-icons/md";
+import { FaBaby } from "react-icons/fa6";
+import { AiOutlineLike } from "react-icons/ai";
+import { FaRegComment } from "react-icons/fa6";
+import { BiShare } from "react-icons/bi";
+import { BsEmojiLaughing } from "react-icons/bs";
+import { GoSmiley } from "react-icons/go";
+import { CiCamera } from "react-icons/ci";
+import { HiOutlineGif } from "react-icons/hi2";
+import { LuSticker } from "react-icons/lu";
 
 function Posts({ userDetails }) {
   const { setActiveTab, setActiveVerticalTab } = useContext(TabsContext);
@@ -160,6 +172,84 @@ function Posts({ userDetails }) {
     );
   };
 
+  const listViewContent = (
+    <Card className="posts-tabs-content">
+      <div className="flex items-center justify-between">
+        <button className="flex items-center">
+          <Avatar className="h-[40px] w-[40px] mr-2" />
+          <div className="flex flex-col items-start">
+            <a className="font-[600]">Arunansh Srivastava</a>
+            <a className="text-[#65676B] text-[13px] flex items-center">
+              15 February 1998
+              <RiTimer2Fill className="h-[17px] w-[17px] ml-2 cursor-default" />
+              <MdGroups2 className="h-[17px] w-[17px] ml-2 cursor-default" />
+            </a>
+          </div>
+        </button>
+        <button className="btn-transparent p-3 rounded-[100px]">
+          <HiOutlineDotsHorizontal />
+        </button>
+      </div>
+      <h2 className="flex flex-col items-center font-[400] mb-4">
+        <FaBaby className="text-[white] bg-blue rounded-[100px] p-[0.35rem] h-[35px] w-[35px] mb-1" />
+        Born on 15 February 1998
+      </h2>
+      <hr className="mb-1" />
+      <div className="flex items-center mb-1">
+        <button className="btn-transparent text-[#65676B] w-[33%] flex items-center justify-center">
+          <AiOutlineLike className="mr-1" />
+          Like
+        </button>
+        <button className="btn-transparent text-[#65676B] w-[33%] flex items-center justify-center">
+          <FaRegComment className="mr-1" />
+          Comment
+        </button>
+        <button className="btn-transparent text-[#65676B] w-[33%] flex items-center justify-center">
+          <BiShare className="mr-1 rotate-[180deg]" />
+          Share
+        </button>
+      </div>
+      <hr className="mb-1" />
+      <div className="flex items-center">
+        <button className="mr-2">
+          <Avatar className="h-[32px] w-[32px]" />
+        </button>
+        <TextAreaInput className="textarea" placeholder="Write a comment..." />
+        <div className="absolute right-[1.7rem] flex items-center cursor-pointer w-[130px]">
+          <button className="btn-secondary mr-1 rounded-[10px] p-1 h-[2rem] w-[2rem]">
+            <BsEmojiLaughing />
+          </button>
+          <button className="btn-secondary mr-1 rounded-[10px] p-1 h-[2rem] w-[2rem]">
+            <GoSmiley />
+          </button>
+          <button className="btn-secondary mr-1 rounded-[10px] p-1 h-[2rem] w-[2rem]">
+            <CiCamera />
+          </button>
+          <button className="btn-secondary mr-1 rounded-[10px] p-1 h-[2rem] w-[2rem]">
+            <HiOutlineGif />
+          </button>
+          <button className="btn-secondary mr-1 rounded-[10px] p-1 h-[2rem] w-[2rem]">
+            <LuSticker />
+          </button>
+        </div>
+      </div>
+    </Card>
+  );
+
+  const gridViewContent = (
+    <Card className="posts-tabs-content">
+      <h2>February 1998</h2>
+      <Card className="w-[fit-content] flex flex-col items-center p-[1rem]">
+        <FaBaby className="text-[white] bg-blue rounded-[100px] p-[0.35rem] h-[35px] w-[35px] mb-1" />
+        <span className="font-bold">
+          Arunansh Srivastava was born on 15 February 1998
+        </span>
+      </Card>
+    </Card>
+  );
+
+  const [activePostsTab, setActivePostsTab] = useState("list");
+
   const rightCards = (
     <div className="right-cards">
       <Card className="p-[15px]">
@@ -174,18 +264,18 @@ function Posts({ userDetails }) {
         </div>
         <hr />
         <div className="flex items-center justify-around mt-[1rem]">
-          <span className="flex items-center">
+          <button className="flex items-center btn-transparent w-[33%] justify-center">
             <FaVideo className="text-[red] h-[24px] w-[24px] mr-2" />
             <span className="text-[#65676B] font-[600]">Live video</span>
-          </span>
-          <span className="flex items-center">
+          </button>
+          <button className="flex items-center btn-transparent w-[33%] justify-center">
             <MdPhotoLibrary className="text-green h-[24px] w-[24px] mr-2" />
             <span className="text-[#65676B] font-[600]">Photo/video</span>
-          </span>
-          <span className="flex items-center">
+          </button>
+          <button className="flex items-center btn-transparent w-[33%] justify-center">
             <FaFlag className="text-blue h-[24px] w-[24px] mr-2" />
             <span className="text-[#65676B] font-[600]">Life event</span>
-          </span>
+          </button>
         </div>
       </Card>
       <Card className="p-[15px]">
@@ -204,6 +294,8 @@ function Posts({ userDetails }) {
         </div>
         <hr />
         <Tabs
+          activeTab={activePostsTab}
+          setActiveTab={setActivePostsTab}
           tabs={[
             {
               id: "list",
@@ -216,7 +308,7 @@ function Posts({ userDetails }) {
               renderHeader,
               renderActiveHeader,
               type: "tab",
-              content: <Card>"List content"</Card>,
+              content: "",
             },
             {
               id: "grid",
@@ -229,12 +321,14 @@ function Posts({ userDetails }) {
               renderHeader,
               renderActiveHeader,
               type: "tab",
-              content: "grid content",
+              content: "",
             },
           ]}
           isFullWidth
         />
       </Card>
+      {activePostsTab === "list" && listViewContent}
+      {activePostsTab === "grid" && gridViewContent}
     </div>
   );
 
