@@ -239,11 +239,19 @@ function Posts({ userDetails }) {
   const gridViewContent = (
     <Card className="posts-tabs-content">
       <h2>February 1998</h2>
-      <Card className="w-[fit-content] flex flex-col items-center p-[1rem]">
+      <Card className="w-[fit-content] flex flex-col items-center mt-3 p-[1rem] hover:bg-grey cursor-pointer w-[29.9%]">
         <FaBaby className="text-[white] bg-blue rounded-[100px] p-[0.35rem] h-[35px] w-[35px] mb-1" />
-        <span className="font-bold">
+        <span className="font-bold text-center mb-8">
           Arunansh Srivastava was born on 15 February 1998
         </span>
+        <div className="flex items-center">
+          <Avatar className="mr-1 w-[36px] h-[36px]" />
+          <span className="text-[12px] text-[#65676B] mr-1">
+            27 January 1993
+          </span>
+          <RiTimer2Fill className="mr-1" />
+          <MdGroups2 />
+        </div>
       </Card>
     </Card>
   );
