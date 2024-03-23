@@ -31,6 +31,7 @@ import Tabs from "../../shared/components/Tabs/Tabs";
 import Posts from "./Posts/Posts";
 import About from "./About/About";
 import Avatar from "../../shared/view/Avatar/Avatar";
+import Friends from "./Friends/Friends";
 
 const TabsContext = createContext();
 
@@ -142,7 +143,7 @@ function Profile() {
       type: "tab",
       renderHeader,
       renderActiveHeader,
-      content: "Friends content in progress!",
+      content: <Friends />,
     },
     {
       id: "photos",
