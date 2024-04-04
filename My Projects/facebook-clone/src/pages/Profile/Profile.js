@@ -120,6 +120,55 @@ function Profile() {
 
   const [activeVerticalTab, setActiveVerticalTab] = useState("overview");
 
+  const [showMoreModal, setShowMoreModal] = useState(false);
+
+  const moreButtonRef = useRef(null);
+
+  const moreModalRef = useRef(null);
+
+  const moreButtonOptions = [
+    {
+      id: "sports",
+      label: "Sports",
+    },
+    {
+      id: "music",
+      label: "Music",
+    },
+    {
+      id: "films",
+      label: "Films",
+    },
+    {
+      id: "tv",
+      label: "TV programmes",
+    },
+    {
+      id: "books",
+      label: "Books",
+    },
+    {
+      id: "likes",
+      label: "Likes",
+    },
+    {
+      id: "events",
+      label: "Events",
+    },
+    {
+      id: "reviews",
+      label: "Reviews given",
+    },
+    {
+      id: "groups",
+      label: "Groups",
+    },
+    {
+      id: "sections",
+      label: "Manage Sections",
+    },
+  ];
+
   const tabOptions = [
     {
       id: "posts",
@@ -172,10 +221,26 @@ function Profile() {
     {
       id: "more",
       label: "More",
-      type: "tab",
+      type: "button",
       renderHeader: (tab) => renderMoreHeader(tab),
       renderActiveHeader: (tab) => renderActiveMoreHeader(tab),
       content: "More content in progress!",
+      renderButton: (button) => {
+        return (
+          <div className="w-[fit-content]">
+            <div
+              className="px-4 py-3 hover:bg-[#f3f3f3] text-[#65676B] font-[600] cursor-pointer rounded-[6px] flex flex-row items-center relative"
+              ref={moreButtonRef}
+            >
+              <label className="mr-2">{button.label}</label>
+              <TiArrowSortedDown />
+            </div>
+          </div>
+        );
+      },
+      onClick: (button) => {
+        setShowMoreModal(true);
+      },
     },
     {
       id: "button",
@@ -222,12 +287,18 @@ function Profile() {
       );
     };
 
+    const handleMoreModalClick = (event) => {
+      handleClickOutside(event, moreButtonRef, moreModalRef, setShowMoreModal);
+    };
+
     document.addEventListener("click", handleBackgroundClick, true);
     document.addEventListener("click", handleProfileClick, true);
+    document.addEventListener("click", handleMoreModalClick, true);
 
     return () => {
       document.removeEventListener("click", handleBackgroundClick);
       document.removeEventListener("click", handleProfileClick);
+      document.removeEventListener("click", handleMoreModalClick);
     };
   }, []);
 
@@ -364,6 +435,26 @@ function Profile() {
   return (
     <>
       <div className="profile">
+        {showMoreModal && (
+          <AttachableModal
+            className="w-[20rem]"
+            targetElementRef={moreButtonRef}
+            alignVertically={"below"}
+            alignHorizontally={"left"}
+            useRef={moreModalRef}
+          >
+            {moreButtonOptions.map((option) => {
+              return (
+                <button
+                  className="btn-transparent p-2 w-full text-left text-[#050505] font-homePrimary font-[600]"
+                  key={option.id}
+                >
+                  {option.label}
+                </button>
+              );
+            })}
+          </AttachableModal>
+        )}
         <div
           style={{
             backgroundImage: backGroundPhoto

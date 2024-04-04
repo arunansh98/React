@@ -1,13 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./AttachableModal.css";
+import classNames from "classnames";
 
 const AttachableModal = ({
   targetElementRef,
   children,
   alignVertically,
   alignHorizontally,
+  className,
 }) => {
+  className = classNames(className, "attachable-modal");
   const calculatePosition = () => {
     if (!targetElementRef?.current) return null;
 
@@ -55,7 +58,7 @@ const AttachableModal = ({
       {ReactDOM.createPortal(
         <div
           id="attachable-modal"
-          className="attachable-modal"
+          className={className}
           style={calculatePosition()}
         >
           <div className="modal-content">{children}</div>
