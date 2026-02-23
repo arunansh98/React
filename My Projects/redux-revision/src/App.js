@@ -5,27 +5,29 @@ import Counter from "./components/Counter";
 import store from "./store";
 import { Provider } from "react-redux";
 import CounterUsingContext from "./components/CounterUsingContext";
+import Users from "./components/Users";
 
 const CounterContext = createContext();
 
 function App() {
-  const [count, setCount] = useState(0);
-  const incrementCount = () => {
-    setCount(prev => prev + 1);
-  }
-  const decrementCount = () => {
-    setCount(prev => prev - 1);
-  }
-  const contextValue = {
-    count,
-    incrementCount,
-    decrementCount
-  }
+  // const [count, setCount] = useState(0);
+  // const incrementCount = () => {
+  //   setCount(prev => prev + 1);
+  // }
+  // const decrementCount = () => {
+  //   setCount(prev => prev - 1);
+  // }
+  // const contextValue = {
+  //   count,
+  //   incrementCount,
+  //   decrementCount
+  // }
   return (
     <Provider store={store}>
       <div className="App">
         <Counter />
         <Alert/>
+        <Users/>
       </div>
     </Provider>
   //  <CounterContext.Provider value={contextValue}>
