@@ -1,15 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <title>Task Manager</title>
-    </head>
-    <body>
-        <div id="tasks">
+  <head>
+    <title>Task Manager</title>
+  </head>
+  <body>
+    <!-- <div id="tasks">
             <h1>All Tasks:</h1> 
         </div>
         <button id="create-task">Create Task</button>
         <button id="update-task">Update Task</button>
-        <button id="delete-task">Delete Task</button>
-    </body>
-    <script src="client.js"></script>
+        <button id="delete-task">Delete Task</button> -->
+    <dl>
+      <dt>What is React ?</dt>
+      <dd>React is a library for building user interfaces.</dd>
+    </dl>
+    <input
+      type="text"
+      tabindex="2"
+      placeholder="Input 2"
+      aria-expanded="false"
+    />
+    <input type="text" tabindex="1" placeholder="Input 1" hidden />
+    <form
+      id="file-upload-form"
+      action="/your-server-endpoint"
+      method="POST"
+      style="border: 1px solid black; margin-top: 1rem; padding: 1rem"
+      draggable="true"
+    >
+      <h1 contenteditable="true" lang="en">Edit Me!</h1>
+      <fieldset>
+        <legend>Personal Information</legend>
+        <label for="first-name">First Name</label>
+        <input
+          type="text"
+          id="first-name"
+          required
+          placeholder="Enter first name"
+        />
+
+        <label for="last-name">Last Name</label>
+        <input
+          type="text"
+          id="last-name"
+          required
+          placeholder="Enter last name"
+        />
+      </fieldset>
+      <div style="display: flex; flex-direction: column; margin-top: 1rem">
+        <label for="file">File Upload</label>
+        <input
+          style="margin-top: 0.5rem; width: fit-content"
+          id="file"
+          type="file"
+          required
+        />
+      </div>
+      <button style="margin-top: 1rem" id="submit" type="submit">Submit</button>
+    </form>
+    <iframe src="http://localhost:3001/" width="100%">Iframe</iframe>
+  </body>
+  <script src="client.js"></script>
 </html>
