@@ -4,7 +4,7 @@ import { UsersContext } from "./App";
 import usePage from "./hooks/usePage";
 
 export default function Table() {
-  const { users, page, pageSize, setPage } = useContext(UsersContext);
+  const { users, page, pageSize } = useContext(UsersContext);
 
   const pageItems = usePage(page, pageSize, users);
 

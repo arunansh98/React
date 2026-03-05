@@ -30,17 +30,12 @@ export default function App() {
   };
 
   return (
-    <UsersContext value={ctxValue}>
+    <UsersContext.Provider value={ctxValue}>
       <div className="App">
         <h1>Users</h1>
-        <Table
-          users={users}
-          page={page}
-          pageSize={pageSize}
-          setPage={setPage}
-        />
+        <Table />
       </div>
-    </UsersContext>
+    </UsersContext.Provider>
   );
 }
 
